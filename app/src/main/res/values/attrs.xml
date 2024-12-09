@@ -1,0 +1,10 @@
+<resources>
+    <declare-styleable name="InputField">
+        <attr name="labelText" format="string" />
+        <attr name="maxLength" format="integer" />
+        <attr name="android:inputType" format="string" />
+        <attr name="android:textColor" format="string" />
+        <attr name="placeholderText" format="string" />
+        <attr name="using_list_input" format="boolean" />
+    </declare-styleable>
+</resources>

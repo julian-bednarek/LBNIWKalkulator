@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/input_field_size"
+    android:layout_height="@dimen/input_field_size"
+    android:padding="8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="@dimen/input_field_size"
+        android:layout_height="@dimen/input_field_size"
+        android:layout_gravity="center"
+        android:background="@drawable/start_buttons">
+
+        <TextView
+            android:id="@+id/input_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:lines="2"
+            android:ellipsize="none"
+            android:gravity="center"
+            android:padding="7dp"
+            android:textColor="@color/default_text_color"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/input_value"
+            android:layout_width="@dimen/input_entry_width"
+            android:layout_height="@dimen/input_entry_height"
+            android:autofillHints=""
+            android:background="@drawable/entry_shape"
+            android:gravity="center"
+            android:hint="@string/null_str"
+            android:inputType="none"
+            android:textColor="@color/default_text_color"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.771"
+            tools:ignore="TouchTargetSizeCheck"
+            android:visibility="visible"/>
+
+        <Spinner
+            android:id="@+id/input_spinner"
+            android:layout_width="@dimen/input_entry_width"
+            android:layout_height="@dimen/input_entry_height"
+            android:textColor="@color/default_text_color"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.771"
+            android:visibility="gone" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</merge>

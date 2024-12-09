@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="@dimen/textview_width"
+        android:layout_height="wrap_content"
+        android:background="@drawable/start_buttons"
+        android:padding="@dimen/textview_padding"
+        android:text="@string/button_select_xray"
+        android:textAlignment="center"
+        android:textColor="@color/default_text_color"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.306" />
+
+    <com.julian.lbniwkalkulator.components.InputField
+        app:placeholderText="@string/dev_placeholder"
+        app:labelText="@string/voltage"
+        android:id="@+id/inputXRayVoltage"
+        android:inputType="none"
+        android:layout_width="@dimen/input_field_size"
+        android:textColor="@color/default_text_color"
+        android:layout_height="@dimen/input_field_size"
+        android:layout_marginTop="@dimen/input_up_margin"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintEnd_toStartOf="@+id/inputXRayCurrent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+    </com.julian.lbniwkalkulator.components.InputField>
+
+    <com.julian.lbniwkalkulator.components.InputField
+        app:placeholderText="@string/dev_placeholder"
+        app:labelText="@string/current"
+        android:id="@+id/inputXRayCurrent"
+        android:layout_width="@dimen/input_field_size"
+        android:layout_height="@dimen/input_field_size"
+        android:layout_marginTop="@dimen/input_up_margin"
+        android:inputType="number"
+        android:textColor="@color/default_text_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <com.julian.lbniwkalkulator.components.InputField
+        app:placeholderText="@string/dev_placeholder"
+        app:labelText="@string/steel_thickness"
+        android:id="@+id/inputXRaySteelThickness"
+        android:inputType="numberDecimal"
+        android:layout_width="@dimen/input_field_size"
+        android:layout_height="@dimen/input_field_size"
+        android:layout_marginStart="@dimen/input_side_margin"
+        android:textColor="@color/default_text_color"
+        android:layout_marginTop="@dimen/input_up_margin"
+        app:layout_constraintStart_toEndOf="@+id/inputXRayCurrent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <com.julian.lbniwkalkulator.components.InputField
+        app:placeholderText="@string/dev_placeholder"
+        app:labelText="@string/film_type"
+        android:id="@+id/inputXRayFilmType"
+        android:inputType="none"
+        android:layout_width="@dimen/input_field_size"
+        android:layout_height="@dimen/input_field_size"
+        android:textColor="@color/default_text_color"
+        android:layout_marginTop="@dimen/input_up_margin"
+        android:layout_marginEnd="@dimen/input_side_margin"
+        app:layout_constraintEnd_toStartOf="@+id/inputXRaySourceToDetector"
+        app:layout_constraintTop_toBottomOf="@+id/inputXRayVoltage">
+
+    </com.julian.lbniwkalkulator.components.InputField>
+
+    <com.julian.lbniwkalkulator.components.InputField
+        app:placeholderText="@string/dev_placeholder"
+        app:labelText="@string/source_to_detector"
+        android:id="@+id/inputXRaySourceToDetector"
+        android:layout_width="@dimen/input_field_size"
+        android:layout_height="@dimen/input_field_size"
+        android:layout_marginTop="@dimen/input_up_margin"
+        android:inputType="number"
+        android:textColor="@color/default_text_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputXRayCurrent" />
+
+    <com.julian.lbniwkalkulator.components.InputField
+        app:placeholderText="@string/dev_placeholder"
+        app:labelText="@string/target_density"
+        android:inputType="none"
+        android:id="@+id/inputXRayTargetDensity"
+        android:layout_width="@dimen/input_field_size"
+        android:layout_height="@dimen/input_field_size"
+        android:textColor="@color/default_text_color"
+        android:layout_marginStart="@dimen/input_side_margin"
+        android:layout_marginTop="@dimen/input_up_margin"
+        app:layout_constraintStart_toEndOf="@+id/inputXRaySourceToDetector"
+        app:layout_constraintTop_toBottomOf="@+id/inputXRaySteelThickness">
+
+    </com.julian.lbniwkalkulator.components.InputField>
+
+    <Button
+        android:id="@+id/button"
+        android:background="@drawable/button_selector"
+        android:layout_width="@dimen/textview_width"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/input_up_margin"
+        android:textColor="@color/default_text_color"
+        android:text="@string/calculate"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputXRaySourceToDetector"
+        app:layout_constraintVertical_bias="0.051" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
