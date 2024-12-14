@@ -23,7 +23,7 @@
             android:gravity="center"
             android:padding="7dp"
             android:textColor="@color/default_text_color"
-            android:textSize="12sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -40,25 +40,27 @@
             android:inputType="none"
             android:textColor="@color/default_text_color"
             android:textSize="14sp"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.771"
-            tools:ignore="TouchTargetSizeCheck"
-            android:visibility="visible"/>
+            tools:ignore="TouchTargetSizeCheck" />
 
-        <Spinner
+        <com.julian.lbniwkalkulator.components.InputFieldSpinner
             android:id="@+id/input_spinner"
             android:layout_width="@dimen/input_entry_width"
             android:layout_height="@dimen/input_entry_height"
+            app:enum_type="@string/voltage_enum"
+            android:background="@drawable/entry_shape"
             android:textColor="@color/default_text_color"
             android:textSize="14sp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.771"
-            android:visibility="gone" />
+            app:layout_constraintVertical_bias="0.771" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </merge>

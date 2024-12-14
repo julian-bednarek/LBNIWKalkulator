@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="input_field_size">90dp</dimen>
-    <dimen name="textview_width">300dp</dimen>
+    <dimen name="input_field_size">110dp</dimen>
+    <dimen name="textview_width">350dp</dimen>
     <dimen name="textview_padding">10dp</dimen>
-    <dimen name="input_up_margin">30dp</dimen>
-    <dimen name="input_side_margin">15dp</dimen>
-    <dimen name="input_entry_width">70dp</dimen>
-    <dimen name="input_entry_height">25dp</dimen>
+    <dimen name="input_up_margin">10dp</dimen>
+    <dimen name="input_side_margin">10dp</dimen>
+    <dimen name="input_entry_width">90dp</dimen>
+    <dimen name="input_entry_height">35dp</dimen>
 </resources>

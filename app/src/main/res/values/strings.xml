@@ -13,4 +13,6 @@
     <string name="calculate">Calculate</string>
     <string name="dev_placeholder">0.0</string>
     <string name="null_str">null</string>
+    <string name="voltage_enum">VOLTAGE_VALUE</string>
+    <string name="film_enum">FILM_TYPE</string>
 </resources>

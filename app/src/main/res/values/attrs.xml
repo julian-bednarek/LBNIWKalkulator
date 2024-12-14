@@ -7,4 +7,7 @@
         <attr name="placeholderText" format="string" />
         <attr name="using_list_input" format="boolean" />
     </declare-styleable>
+    <declare-styleable name="InputFieldSpinner">
+        <attr name="enum_type" format="string" />
+    </declare-styleable>
 </resources>

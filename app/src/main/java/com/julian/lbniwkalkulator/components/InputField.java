@@ -7,20 +7,29 @@ import android.text.InputFilter;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import com.julian.lbniwkalkulator.R;
+import com.julian.lbniwkalkulator.calculations.VoltageValuesEnum;
+import com.julian.lbniwkalkulator.exceptions.InvalidComponentException;
+import com.julian.lbniwkalkulator.exceptions.InvalidComponentParameterException;
+import com.julian.lbniwkalkulator.exceptions.MissingComponentParameterException;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class InputField extends LinearLayout {
 
     private TextView label;
     private EditText input;
-    private Spinner list_input;
+    private InputFieldSpinner list_input;
     private final int DEFAULT_INPUT_LEN = 5;
 
-    public InputField(Context context, AttributeSet attrs) {
+    public InputField(Context context, AttributeSet attrs) throws InvalidComponentException {
         super(context, attrs);
         init(context, attrs);
     }
@@ -37,7 +46,9 @@ public class InputField extends LinearLayout {
         input.setVisibility(GONE);
     }
 
-    private void setCustomAttributes (Context context, AttributeSet attrset) {
+
+
+    private void setCustomAttributes (Context context, AttributeSet attrset) throws MissingComponentParameterException {
         TypedArray attr = context.obtainStyledAttributes(attrset, R.styleable.InputField);
         boolean usingListInput =    attr.getBoolean(R.styleable.InputField_using_list_input, false);
         String fieldLabel =         attr.getString(R.styleable.InputField_labelText);
@@ -56,11 +67,11 @@ public class InputField extends LinearLayout {
         }
         input.setInputType(fieldType);
         input.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
-        assert placeholderText != null;
+        if (placeholderText == null) throw new MissingComponentParameterException("There is a missing parameter of a component", "placeholderText");
         input.setHint(placeholderText);
     }
 
-    private void init(Context context, AttributeSet attrset) {
+    private void init(Context context, AttributeSet attrset) throws InvalidComponentException{
         LayoutInflater.from(context).inflate(R.layout.input_field, this, true);
 
         label = findViewById(R.id.input_label);
