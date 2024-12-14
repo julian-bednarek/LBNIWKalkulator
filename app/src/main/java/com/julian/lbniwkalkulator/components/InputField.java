@@ -78,5 +78,6 @@ public class InputField extends LinearLayout {
         input = findViewById(R.id.input_value);
         list_input = findViewById(R.id.input_spinner);
         setCustomAttributes(context, attrset);
+        input.addTextChangedListener(new TextChangedListener("kg"));
     }
 }
