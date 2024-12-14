@@ -19,7 +19,12 @@ public class IsotopeMenuViewActivity extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.isotope_menu_layout);
         } catch (InflateException e) {
-            Throwable actualCause = Objects.requireNonNull(Objects.requireNonNull(e.getCause()).getCause()).getCause();
+            Throwable cause = e;
+            Throwable actualCause = e.getCause();
+            while (cause.getCause() != null) {
+                actualCause = cause;
+                cause = cause.getCause();
+            }
             if (actualCause instanceof InvalidComponentException) {
                 InvalidComponentException ex = (InvalidComponentException) actualCause;
                 Toast.makeText(this, ex.getMessage(), Toast.LENGTH_LONG).show();
