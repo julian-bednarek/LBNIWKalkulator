@@ -40,7 +40,7 @@
     </com.julian.lbniwkalkulator.components.InputFieldWrapper>
 
     <com.julian.lbniwkalkulator.components.InputFieldWrapper
-        android:hint="@string/dev_placeholder"
+        android:hint="@string/integer_placeholder"
         app:suffixText="mA"
         app:labelText="@string/current"
         android:id="@+id/inputXRayCurrent"
@@ -54,7 +54,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <com.julian.lbniwkalkulator.components.InputFieldWrapper
-        android:hint="@string/dev_placeholder"
+        android:hint="@string/decimal_placeholder"
         app:labelText="@string/steel_thickness"
         android:id="@+id/inputXRaySteelThickness"
         android:inputType="numberDecimal"
@@ -85,7 +85,7 @@
     </com.julian.lbniwkalkulator.components.InputFieldWrapper>
 
     <com.julian.lbniwkalkulator.components.InputFieldWrapper
-        android:hint="@string/dev_placeholder"
+        android:hint="@string/integer_placeholder"
         app:labelText="@string/source_to_detector"
         app:suffixText="mm"
         android:id="@+id/inputXRaySourceToDetector"
@@ -100,11 +100,11 @@
         app:layout_constraintTop_toBottomOf="@+id/inputXRayCurrent" />
 
     <com.julian.lbniwkalkulator.components.InputFieldWrapper
-        android:hint="@string/dev_placeholder"
+        android:hint="@string/decimal_placeholder"
         app:labelText="@string/target_density"
         app:suffixText="g/cm3"
         app:layout_constraintStart_toEndOf="@+id/inputXRaySourceToDetector"
-        android:inputType="none"
+        android:inputType="numberDecimal"
         android:id="@+id/inputXRayTargetDensity"
         android:layout_width="@dimen/input_field_size"
         android:layout_height="@dimen/input_field_size"

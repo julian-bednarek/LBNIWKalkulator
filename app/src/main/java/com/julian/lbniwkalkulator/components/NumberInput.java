@@ -45,6 +45,10 @@ public class NumberInput extends LinearLayout {
         setUpInputUnit(unit);
     }
 
+    public void setPlaceholder(String placeholder) {
+        input.setHint(placeholder);
+    }
+
     public NumberInput(Context context, AttributeSet attrset) {
         super(context, attrset);
         init(context, attrset);

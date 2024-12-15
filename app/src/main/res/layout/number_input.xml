@@ -22,18 +22,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        android:layout_marginLeft="4dp"
+        android:layout_marginStart="6dp"
         android:background="@android:color/transparent"/>
 
     <TextView
         android:id="@+id/suffix_label"
         android:layout_width="30dp"
         android:layout_height="@dimen/input_entry_height"
-        android:gravity="center_vertical"
+        android:gravity="center"
         android:importantForAccessibility="no"
         android:text="@string/null_str"
         android:textColor="@color/default_text_color"
-        android:textSize="14sp"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

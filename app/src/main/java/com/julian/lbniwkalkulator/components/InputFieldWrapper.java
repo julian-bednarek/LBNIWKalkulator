@@ -33,6 +33,7 @@ public class InputFieldWrapper extends LinearLayout {
 
     private void setUpPlaceholder(String placeholder) throws MissingComponentParameterException {
         if(placeholder == null) throw new MissingComponentParameterException("There is a missing placeholder in some input field/fields", "hint");
+        text_input.setPlaceholder(placeholder);
     }
 
     private void init(Context context, AttributeSet attrset) throws InvalidComponentException{

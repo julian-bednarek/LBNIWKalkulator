@@ -11,7 +11,8 @@
     <string name="source_to_detector">Source to detector</string>
     <string name="target_density">Target Density</string>
     <string name="calculate">Calculate</string>
-    <string name="dev_placeholder">0.0</string>
+    <string name="decimal_placeholder">0.0</string>
+    <string name="integer_placeholder">0</string>
     <string name="null_str">null</string>
     <string name="voltage_enum">VOLTAGE_VALUE</string>
     <string name="film_type_enum">FILM_TYPE</string>
