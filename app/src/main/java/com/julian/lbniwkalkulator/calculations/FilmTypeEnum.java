@@ -19,8 +19,4 @@ public enum FilmTypeEnum {
     public int getTypeNumber() {
         return typeNumber;
     }
-
-    public void setTypeNumber(int typeNumber) {
-        this.typeNumber = typeNumber;
-    }
 }

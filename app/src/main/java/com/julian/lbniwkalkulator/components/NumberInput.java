@@ -46,4 +46,8 @@ public class NumberInput extends LinearLayout {
         super(context, attrset);
         init(context, attrset);
     }
+
+    public String getInputValue() {
+        return input.getText().toString();
+    }
 }

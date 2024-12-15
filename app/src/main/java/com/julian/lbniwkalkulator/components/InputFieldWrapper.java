@@ -15,6 +15,7 @@ public class InputFieldWrapper extends LinearLayout {
     private TextView label;
     private NumberInput text_input;
     private InputFieldSpinner list_input;
+    private boolean listInputVisible;
 
     public InputFieldWrapper(Context context, AttributeSet attrs) throws InvalidComponentException {
         super(context, attrs);
@@ -43,7 +44,7 @@ public class InputFieldWrapper extends LinearLayout {
         list_input = findViewById(R.id.input_spinner);
         TypedArray attributes = context.obtainStyledAttributes(attrset, R.styleable.InputFieldWrapper);
         String fieldLabel = attributes.getString(R.styleable.InputFieldWrapper_labelText);
-        boolean listInputVisible = attributes.getBoolean(R.styleable.InputFieldWrapper_using_list_input, false);
+        listInputVisible = attributes.getBoolean(R.styleable.InputFieldWrapper_using_list_input, false);
         String possibleEnum = attributes.getString(R.styleable.InputFieldWrapper_enum_type);
         String textInputPlaceholder = attributes.getString(R.styleable.InputFieldWrapper_android_hint);
         attributes.recycle();
@@ -53,6 +54,14 @@ public class InputFieldWrapper extends LinearLayout {
         if(listInputVisible) {
             list_input.setEnum(possibleEnum);
             setUpListInput();
+        }
+    }
+
+    public String getInputValue() {
+        if(listInputVisible) {
+            return list_input.getInputValue();
+        } else {
+            return text_input.getInputValue();
         }
     }
 }

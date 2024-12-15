@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.InflateException;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,16 +32,20 @@ public class StartViewActivity extends AppCompatActivity {
                 finish();
             }
         }
+        setUpButtons();
     }
 
-    public void goToIsotopePage(View view) {
-        Intent intent = new Intent(StartViewActivity.this, IsotopeMenuViewActivity.class);
-        startActivity(intent);
-    }
-
-    public void goToXRayPage(View view) {
-        Intent intent = new Intent(StartViewActivity.this, XRayMenuViewActivity.class);
-        startActivity(intent);
+    private void setUpButtons() {
+        Button XRayPageButton = findViewById(R.id.button_select_xray);
+        XRayPageButton.setOnClickListener(view -> {
+            Intent intent = new Intent(StartViewActivity.this, XRayMenuViewActivity.class);
+            startActivity(intent);
+        });
+        Button IsotopePageButton = findViewById(R.id.button_select_isotope);
+        IsotopePageButton.setOnClickListener(view -> {
+            Intent intent = new Intent(StartViewActivity.this, IsotopeMenuViewActivity.class);
+            startActivity(intent);
+        });
     }
 }
 
