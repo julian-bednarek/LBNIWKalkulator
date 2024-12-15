@@ -1,5 +1,5 @@
 <resources>
-    <declare-styleable name="InputField">
+    <declare-styleable name="InputFieldWrapper">
         <attr name="labelText" format="string" />
         <attr name="maxLength" format="integer" />
         <attr name="android:inputType" format="string" />
@@ -9,5 +9,8 @@
     </declare-styleable>
     <declare-styleable name="InputFieldSpinner">
         <attr name="enum_type" format="string" />
+    </declare-styleable>
+    <declare-styleable name="NumberInput">
+        <attr name="android:inputType" format="string" />
     </declare-styleable>
 </resources>

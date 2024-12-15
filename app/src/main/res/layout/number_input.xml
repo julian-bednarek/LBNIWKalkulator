@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.textfield.TextInputLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/text_input_layout"
+    android:layout_width="@dimen/input_entry_width"
+    android:layout_height="@dimen/input_entry_height"
+    android:layout_margin="8dp"
+    android:padding="4dp"
+    android:background="@drawable/entry_shape"
+    android:theme="@style/Theme.LBNIWKalkulator"
+    android:importantForAccessibility="yes"
+    app:hintEnabled="true"
+    app:suffixText="@string/null_str"
+    android:textColorHint="@color/default_text_color"
+    app:suffixTextColor="@color/default_text_color">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/actual_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/null_str"
+        android:importantForAccessibility="yes"
+        android:inputType="none"
+        android:textColor="@color/default_text_color"
+        android:textSize="14sp"
+        android:theme="@style/Theme.LBNIWKalkulator"
+        tools:ignore="TouchTargetSizeCheck" />
+
+</com.google.android.material.textfield.TextInputLayout>

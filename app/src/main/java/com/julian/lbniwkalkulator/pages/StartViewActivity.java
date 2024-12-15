@@ -9,9 +9,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.julian.lbniwkalkulator.R;
 import com.julian.lbniwkalkulator.exceptions.InvalidComponentException;
-
-import java.util.Objects;
-
 public class StartViewActivity extends AppCompatActivity {
 
 
