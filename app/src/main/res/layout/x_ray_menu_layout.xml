@@ -41,6 +41,7 @@
 
     <com.julian.lbniwkalkulator.components.InputFieldWrapper
         android:hint="@string/dev_placeholder"
+        app:suffixText="mA"
         app:labelText="@string/current"
         android:id="@+id/inputXRayCurrent"
         android:layout_width="@dimen/input_field_size"
@@ -67,8 +68,10 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <com.julian.lbniwkalkulator.components.InputFieldWrapper
-        android:hint="@string/dev_placeholder"
+        android:hint="@string/null_str"
         app:labelText="@string/film_type"
+        app:using_list_input="true"
+        app:enum_type="@string/film_type_enum"
         android:id="@+id/inputXRayFilmType"
         android:inputType="none"
         android:layout_width="@dimen/input_field_size"
@@ -84,6 +87,7 @@
     <com.julian.lbniwkalkulator.components.InputFieldWrapper
         android:hint="@string/dev_placeholder"
         app:labelText="@string/source_to_detector"
+        app:suffixText="mm"
         android:id="@+id/inputXRaySourceToDetector"
         android:layout_width="@dimen/input_field_size"
         android:layout_height="@dimen/input_field_size"
@@ -98,6 +102,7 @@
     <com.julian.lbniwkalkulator.components.InputFieldWrapper
         android:hint="@string/dev_placeholder"
         app:labelText="@string/target_density"
+        app:suffixText="g/cm3"
         app:layout_constraintStart_toEndOf="@+id/inputXRaySourceToDetector"
         android:inputType="none"
         android:id="@+id/inputXRayTargetDensity"
