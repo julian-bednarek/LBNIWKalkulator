@@ -8,14 +8,7 @@ import android.view.LayoutInflater;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.julian.lbniwkalkulator.R;
-import com.julian.lbniwkalkulator.exceptions.MissingComponentParameterException;
-import com.julian.lbniwkalkulator.exceptions.InvalidComponentException;
-
-import java.lang.reflect.Constructor;
 
 public class NumberInput extends LinearLayout {
 
