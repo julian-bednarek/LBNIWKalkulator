@@ -31,18 +31,24 @@ public class InputFieldWrapper extends LinearLayout {
         label.setText(fieldLabel);
     }
 
+    private void setUpPlaceholder(String placeholder) throws MissingComponentParameterException {
+        if(placeholder == null) throw new MissingComponentParameterException("There is a missing placeholder in some input field/fields", "hint");
+    }
+
     private void init(Context context, AttributeSet attrset) throws InvalidComponentException{
         LayoutInflater.from(context).inflate(R.layout.input_field, this, true);
         label = findViewById(R.id.input_label);
         text_input = findViewById(R.id.text_input);
-        text_input.init(context, attrset);
         list_input = findViewById(R.id.input_spinner);
         TypedArray attributes = context.obtainStyledAttributes(attrset, R.styleable.InputFieldWrapper);
         String fieldLabel = attributes.getString(R.styleable.InputFieldWrapper_labelText);
         boolean listInputVisible = attributes.getBoolean(R.styleable.InputFieldWrapper_using_list_input, false);
         String possibleEnum = attributes.getString(R.styleable.InputFieldWrapper_enum_type);
+        String textInputPlaceholder = attributes.getString(R.styleable.InputFieldWrapper_android_hint);
         attributes.recycle();
         setUpLabel(fieldLabel);
+        setUpPlaceholder(textInputPlaceholder);
+        text_input.init(context, attrset);
         if(listInputVisible) {
             list_input.setEnum(possibleEnum);
             setUpListInput();
