@@ -1,4 +1,4 @@
-#Exposure Time Calculator
+# Exposure Time Calculator
 
 The **LBNIW Kalkulator** is an Android application designed for Non-Destructive Testing (NDT) firms to help technicians calculate exposure times for X-ray lamps based on selected isotopes. It features a timer to track the exposure time, and sends notifications and alarms when the time is up. The app is built using Java and targets Android 13 (API level 33).
 
