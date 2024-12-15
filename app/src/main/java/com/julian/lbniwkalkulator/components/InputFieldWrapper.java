@@ -21,15 +21,9 @@ public class InputFieldWrapper extends LinearLayout {
         init(context, attrs);
     }
 
-    /**
-     * If parameter is false, there is no need to change anything
-     * @param listInputVisible determining whether we use enum type input or text
-     */
-    private void setUpListInput(boolean listInputVisible) {
-        if(listInputVisible) {
-            list_input.setVisibility(VISIBLE);
-            text_input.setVisibility(GONE);
-        }
+    private void setUpListInput() {
+        list_input.setVisibility(VISIBLE);
+        text_input.setVisibility(GONE);
     }
 
     private void setUpLabel(String fieldLabel) throws MissingComponentParameterException {
@@ -41,12 +35,17 @@ public class InputFieldWrapper extends LinearLayout {
         LayoutInflater.from(context).inflate(R.layout.input_field, this, true);
         label = findViewById(R.id.input_label);
         text_input = findViewById(R.id.text_input);
+        text_input.init(context, attrset);
         list_input = findViewById(R.id.input_spinner);
         TypedArray attributes = context.obtainStyledAttributes(attrset, R.styleable.InputFieldWrapper);
         String fieldLabel = attributes.getString(R.styleable.InputFieldWrapper_labelText);
         boolean listInputVisible = attributes.getBoolean(R.styleable.InputFieldWrapper_using_list_input, false);
+        String possibleEnum = attributes.getString(R.styleable.InputFieldWrapper_enum_type);
         attributes.recycle();
         setUpLabel(fieldLabel);
-        setUpListInput(listInputVisible);
+        if(listInputVisible) {
+            list_input.setEnum(possibleEnum);
+            setUpListInput();
+        }
     }
 }

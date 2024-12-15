@@ -21,10 +21,10 @@ public class XRayMenuViewActivity extends AppCompatActivity {
             setContentView(R.layout.x_ray_menu_layout);
         } catch (InflateException e) {
             Throwable cause = e;
-            Throwable actualCause = e.getCause();
+            Throwable actualCause = e;
             while (cause.getCause() != null) {
-                actualCause = cause;
                 cause = cause.getCause();
+                actualCause = cause;
             }
             if (actualCause instanceof InvalidComponentException) {
                 InvalidComponentException ex = (InvalidComponentException) actualCause;

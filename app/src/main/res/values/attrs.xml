@@ -1,16 +1,15 @@
 <resources>
     <declare-styleable name="InputFieldWrapper">
         <attr name="labelText" format="string" />
-        <attr name="maxLength" format="integer" />
         <attr name="android:inputType" format="string" />
         <attr name="android:textColor" format="string" />
-        <attr name="placeholderText" format="string" />
         <attr name="using_list_input" format="boolean" />
-    </declare-styleable>
-    <declare-styleable name="InputFieldSpinner">
         <attr name="enum_type" format="string" />
     </declare-styleable>
     <declare-styleable name="NumberInput">
         <attr name="android:inputType" format="string" />
+        <attr name="android:hint" format="string" />
+        <attr name="suffixText" format="string" />
+        <attr name="maxLength" format="integer" />
     </declare-styleable>
 </resources>

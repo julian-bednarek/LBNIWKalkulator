@@ -6,8 +6,6 @@
     android:id="@+id/text_input_layout"
     android:layout_width="@dimen/input_entry_width"
     android:layout_height="@dimen/input_entry_height"
-    android:layout_margin="8dp"
-    android:padding="4dp"
     android:background="@drawable/entry_shape"
     android:theme="@style/Theme.LBNIWKalkulator"
     android:importantForAccessibility="yes"

@@ -17,17 +17,11 @@ import java.util.Objects;
 
 public class InputFieldSpinner extends androidx.appcompat.widget.AppCompatSpinner {
 
-    private ArrayAdapter<String> adapter;
-
-    public InputFieldSpinner(Context context, AttributeSet attrs) throws InvalidComponentException {
+    public InputFieldSpinner(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init(context, attrs);
     }
 
-    private void init(Context context, AttributeSet attrs) throws MissingComponentParameterException, InvalidComponentParameterException {
-        TypedArray attr = context.obtainStyledAttributes(attrs, R.styleable.InputFieldSpinner);
-        String enumType = attr.getString(R.styleable.InputFieldSpinner_enum_type);
-        attr.recycle();
+    public void setEnum(String enumType) throws MissingComponentParameterException, InvalidComponentParameterException {
         if(enumType == null) throw new MissingComponentParameterException("Enum type is missing", "enum_type");
         boolean validEnum = Arrays.stream(InputEnumTypes.values()).anyMatch(e -> e.name().equals(enumType.toUpperCase()));
         if(!validEnum) throw new InvalidComponentParameterException("Invalid enum type", enumType);
@@ -35,7 +29,7 @@ public class InputFieldSpinner extends androidx.appcompat.widget.AppCompatSpinne
         fillData(eType.getEnumClass());
     }
 
-    private <T extends Enum<T>> void fillData(Class<? extends Enum<?>> enumClass) {
+    private void fillData(Class<? extends Enum<?>> enumClass) {
         List<String> spinnerData = new ArrayList<>();
         for (Enum<?> enumConstant : Objects.requireNonNull(enumClass.getEnumConstants())) {
             String displayName = enumConstant.name().replace("_", " ");
@@ -45,4 +39,5 @@ public class InputFieldSpinner extends androidx.appcompat.widget.AppCompatSpinne
         adapter.setDropDownViewResource(R.layout.item_list_dropdown_field);
         setAdapter(adapter);
     }
+
 }
