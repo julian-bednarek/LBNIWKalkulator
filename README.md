@@ -9,7 +9,6 @@ The **LBNIW Kalkulator** is an Android application designed for Non-Destructive 
 - **Exposure Timer**: Start and track exposure time with a countdown timer.
 - **Notifications & Alarms**: Receive notifications and alarms when the exposure time is complete.
 - **Offline Functionality**: No internet required to use the app, all data is locally stored.
-- **User-friendly Interface**: Simple and intuitive UI for quick calculations and easy access to features.
 
 ## Requirements
 
@@ -17,6 +16,10 @@ The **LBNIW Kalkulator** is an Android application designed for Non-Destructive 
 - **Permissions**:
   - `VIBRATE`: To trigger vibration alerts on timer completion.
   - `NOTIFICATIONS`: To send alerts when the timer finishes.
+ 
+## Limitations
+
+- **Types of isotopes and lamps are manually added.** This can change in the future
 
 ## Installation
 
