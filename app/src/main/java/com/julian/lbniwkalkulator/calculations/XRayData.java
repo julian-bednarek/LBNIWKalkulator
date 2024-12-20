@@ -1,6 +1,8 @@
 package com.julian.lbniwkalkulator.calculations;
 
 
+import com.julian.lbniwkalkulator.enums.FilmTypeEnum;
+
 import java.io.Serializable;
 
 public class XRayData implements Serializable {
@@ -8,11 +10,11 @@ public class XRayData implements Serializable {
     private int voltage;
     private int current;
     private double steelThickness;
-    private FilmTypeEnum filmType;
+    private int filmType;
     private double sourceToDetectorDistance;
     private double targetDensity;
 
-    public XRayData(int voltage, int current, double steelThickness, FilmTypeEnum filmType, double sourceToDetectorDistance, double targetDensity) {
+    public XRayData(int voltage, int current, double steelThickness, int filmType, double sourceToDetectorDistance, double targetDensity) {
         this.voltage = voltage;
         this.current = current;
         this.steelThickness = steelThickness;
@@ -21,6 +23,18 @@ public class XRayData implements Serializable {
         this.sourceToDetectorDistance = sourceToDetectorDistance;
     }
 
+    public XRayData() {
+        this.voltage = 0;
+        this.current = 0;
+        this.steelThickness = 0;
+        this.filmType = 0;
+        this.targetDensity = 0;
+        this.sourceToDetectorDistance = 0;
+    }
+
+    /**
+     * For debug purpose only
+     */
     @Override
     public String toString() {
         return "XRayData{" +
@@ -45,7 +59,7 @@ public class XRayData implements Serializable {
         return steelThickness;
     }
 
-    public FilmTypeEnum getFilmType() {
+    public int getFilmType() {
         return filmType;
     }
 
@@ -65,7 +79,7 @@ public class XRayData implements Serializable {
         this.steelThickness = steelThickness;
     }
 
-    public void setFilmType(FilmTypeEnum filmType) {
+    public void setFilmType(int filmType) {
         this.filmType = filmType;
     }
 

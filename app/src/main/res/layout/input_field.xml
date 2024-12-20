@@ -10,7 +10,7 @@
         android:layout_width="@dimen/input_field_size"
         android:layout_height="@dimen/input_field_size"
         android:layout_gravity="center"
-        android:background="@drawable/start_buttons">
+        android:background="@drawable/input_field_shape">
 
         <TextView
             android:id="@+id/input_label"

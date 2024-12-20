@@ -19,7 +19,7 @@
         </activity>
         <activity android:name=".pages.IsotopeMenuViewActivity" />
         <activity android:name=".pages.XRayMenuViewActivity" />
-        <activity android:name=".pages.CalculatedTimeViewAcitivity"/>
+        <activity android:name=".pages.CalculatedTimeViewActivity"/>
 
     </application>
 

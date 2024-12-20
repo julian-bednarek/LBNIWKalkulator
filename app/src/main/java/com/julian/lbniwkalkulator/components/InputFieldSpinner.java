@@ -1,12 +1,10 @@
 package com.julian.lbniwkalkulator.components;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.widget.ArrayAdapter;
 import com.julian.lbniwkalkulator.R;
-import com.julian.lbniwkalkulator.calculations.InputEnumTypes;
-import com.julian.lbniwkalkulator.exceptions.InvalidComponentException;
+import com.julian.lbniwkalkulator.enums.InputEnumTypes;
 import com.julian.lbniwkalkulator.exceptions.InvalidComponentParameterException;
 import com.julian.lbniwkalkulator.exceptions.MissingComponentParameterException;
 

@@ -1,4 +1,4 @@
-package com.julian.lbniwkalkulator.calculations;
+package com.julian.lbniwkalkulator.enums;
 
 public enum InputEnumTypes {
     FILM_TYPE(FilmTypeEnum.class),
