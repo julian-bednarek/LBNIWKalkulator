@@ -25,5 +25,5 @@ The **LBNIW Kalkulator** is an Android application designed for Non-Destructive 
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/ndt-exposure-time-calculator.git
+   git clone https://github.com/julian-bednarek/LBNIWKalkulator
    ```
