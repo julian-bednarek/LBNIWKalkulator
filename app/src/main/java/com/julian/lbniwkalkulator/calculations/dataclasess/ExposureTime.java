@@ -1,4 +1,4 @@
-package com.julian.lbniwkalkulator.calculations;
+package com.julian.lbniwkalkulator.calculations.dataclasess;
 
 public class ExposureTime {
     private int minutes;

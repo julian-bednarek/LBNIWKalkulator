@@ -1,18 +1,13 @@
-package com.julian.lbniwkalkulator.calculations;
+package com.julian.lbniwkalkulator.calculations.dataclasess;
 
+public class XRayData implements RadiationData {
 
-import com.julian.lbniwkalkulator.enums.FilmTypeEnum;
-
-import java.io.Serializable;
-
-public class XRayData implements Serializable {
-
-    private int voltage;
-    private int current;
-    private double steelThickness;
-    private int filmType;
-    private double sourceToDetectorDistance;
-    private double targetDensity;
+    private final int voltage;
+    private final int current;
+    private final double steelThickness;
+    private final int filmType;
+    private final double sourceToDetectorDistance;
+    private final double targetDensity;
 
     public XRayData(int voltage, int current, double steelThickness, int filmType, double sourceToDetectorDistance, double targetDensity) {
         this.voltage = voltage;
@@ -30,6 +25,11 @@ public class XRayData implements Serializable {
         this.filmType = 0;
         this.targetDensity = 0;
         this.sourceToDetectorDistance = 0;
+    }
+
+    @Override
+    public String getType() {
+        return RadiationDataTypes.XRAY;
     }
 
     /**
@@ -65,30 +65,6 @@ public class XRayData implements Serializable {
 
     public double getSourceToDetectorDistance() {
         return sourceToDetectorDistance;
-    }
-
-    public void setCurrent(int current) {
-        this.current = current;
-    }
-
-    public void setVoltage(int voltage) {
-        this.voltage = voltage;
-    }
-
-    public void setSteelThickness(double steelThickness) {
-        this.steelThickness = steelThickness;
-    }
-
-    public void setFilmType(int filmType) {
-        this.filmType = filmType;
-    }
-
-    public void setSourceToDetectorDistance(double sourceToDetectorDistance) {
-        this.sourceToDetectorDistance = sourceToDetectorDistance;
-    }
-
-    public void setTargetDensity(double targetDensity) {
-        this.targetDensity = targetDensity;
     }
 
     public double getTargetDensity() {

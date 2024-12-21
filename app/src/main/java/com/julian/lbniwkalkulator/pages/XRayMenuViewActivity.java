@@ -2,7 +2,6 @@ package com.julian.lbniwkalkulator.pages;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.InflateException;
 import android.widget.Button;
 import android.widget.Toast;
@@ -11,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.julian.lbniwkalkulator.R;
 import com.julian.lbniwkalkulator.calculations.CustomInputParsers;
 import com.julian.lbniwkalkulator.enums.FilmTypeEnum;
-import com.julian.lbniwkalkulator.calculations.XRayData;
+import com.julian.lbniwkalkulator.calculations.dataclasess.XRayData;
 import com.julian.lbniwkalkulator.components.InputFieldWrapper;
 import com.julian.lbniwkalkulator.enums.VoltageValuesEnum;
 import com.julian.lbniwkalkulator.exceptions.InputNotSupportedException;
@@ -49,7 +48,7 @@ public class XRayMenuViewActivity extends AppCompatActivity {
         calculateButton.setOnClickListener(view -> {
             XRayData data = collectData();
             Intent intent = new Intent(XRayMenuViewActivity.this, CalculatedTimeViewActivity.class);
-            intent.putExtra("x_ray_input_data", data);
+            intent.putExtra("input_data", data);
             startActivity(intent);
         });
     }

@@ -1,16 +1,23 @@
 package com.julian.lbniwkalkulator.calculations;
 
-import java.math.MathContext;
+import com.julian.lbniwkalkulator.calculations.dataclasess.ExposureTime;
+import com.julian.lbniwkalkulator.calculations.dataclasess.XRayData;
 
 public class XRayExposureTimeCalculator implements CalculationScheme{
     private static final int SECONDS_IN_MINUTE = 60;
 
+    private XRayData data;
+
     @Override
-    public ExposureTime getTotalExposureTime(XRayData data) {
-        return computeExposureTime(data);
+    public ExposureTime getTotalExposureTime() {
+        return computeExposureTime();
     }
 
-    private ExposureTime computeExposureTime(XRayData data) {
+    public XRayExposureTimeCalculator(XRayData data) {
+        this.data = data;
+    }
+
+    private ExposureTime computeExposureTime() {
         int power = computePower(data);
         int filmType = data.getFilmType();
         double targetDensity = data.getTargetDensity();
