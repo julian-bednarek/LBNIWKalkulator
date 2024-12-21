@@ -28,7 +28,7 @@ public enum VoltageValuesEnum {
 
     /**
      * Parses a stringified voltage enum to extract the voltage value.
-     *
+     * There is no need to multiply value by 1000 because current is given in mA so kV * mA = W
      * @param stringifiedEnum the input string in the format "XkV" where X is the voltage.
      * @return the parsed voltage value as an integer.
      * @throws InputNotSupportedException if the input format is invalid.
@@ -37,7 +37,6 @@ public enum VoltageValuesEnum {
         if (stringifiedEnum == null || stringifiedEnum.isEmpty()) {
             throw new InputNotSupportedException("Input string cannot be null or empty");
         }
-        Log.d("KURWA", stringifiedEnum);
         if (stringifiedEnum.matches(STRINGIFIED_ENUM_REGEX)) {
             String voltageString = stringifiedEnum.substring(1, stringifiedEnum.length() - 2);
             return Integer.parseInt(voltageString);

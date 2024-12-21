@@ -64,7 +64,6 @@ public class XRayMenuViewActivity extends AppCompatActivity {
             double targetDensity = CustomInputParsers.parseInputDouble(((InputFieldWrapper) findViewById(R.id.inputXRayTargetDensity)).getInputValue());
             return new XRayData(voltage, current, steelThickness, filmType, sourceToDetectorDistance, targetDensity);
         } catch (InputNotSupportedException e) {
-            Log.e("CHUJ", e.getMessage());
             return new XRayData();
         }
     }
