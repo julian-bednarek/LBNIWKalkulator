@@ -12,8 +12,6 @@ import com.julian.lbniwkalkulator.R;
 import com.julian.lbniwkalkulator.calculations.RadiationDataProcessor;
 import com.julian.lbniwkalkulator.calculations.dataclasess.ExposureTime;
 import com.julian.lbniwkalkulator.calculations.dataclasess.RadiationData;
-import com.julian.lbniwkalkulator.calculations.dataclasess.RadiationDataTypes;
-import com.julian.lbniwkalkulator.calculations.dataclasess.XRayData;
 import com.julian.lbniwkalkulator.exceptions.ExposureTimeTooLongException;
 import com.julian.lbniwkalkulator.exceptions.InvalidRadiationDataTypeException;
 import com.julian.lbniwkalkulator.exceptions.RadiationDataNotFoundException;
@@ -47,7 +45,7 @@ public class CalculatedTimeViewActivity extends AppCompatActivity {
 
     private void setUpButton() {
         Button countDownButton = findViewById(R.id.count_down_button);
-        timeRemaining = exposureTime.toMiliseconds();
+        timeRemaining = exposureTime.toMilliseconds();
         countDownButton.setText(exposureTime.toString());
 
         countDownButton.setOnClickListener(view -> {
@@ -66,7 +64,7 @@ public class CalculatedTimeViewActivity extends AppCompatActivity {
             @Override
             public void onTick(long millisUntilFinished) {
                 timeRemaining = millisUntilFinished;
-                countDownButton.setText(ExposureTime.fromMiliseconds(timeRemaining).toString());
+                countDownButton.setText(ExposureTime.fromMilliseconds(timeRemaining).toString());
             }
 
             @Override
@@ -83,7 +81,7 @@ public class CalculatedTimeViewActivity extends AppCompatActivity {
         if (countDownTimer != null) {
             countDownTimer.cancel();
         }
-        timeRemaining = exposureTime.toMiliseconds();
+        timeRemaining = exposureTime.toMilliseconds();
         countDownButton.setText(exposureTime.toString());
     }
 

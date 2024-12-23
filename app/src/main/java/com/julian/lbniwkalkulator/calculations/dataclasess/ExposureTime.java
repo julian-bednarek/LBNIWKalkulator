@@ -14,13 +14,14 @@ public class ExposureTime {
     public ExposureTime() {
         this.minutes = 0;
         this.seconds = 0;
+
     }
 
-    public static ExposureTime fromMiliseconds(long timeInMS) {
+    public static ExposureTime fromMilliseconds(long timeInMS) {
         return new ExposureTime((int) (timeInMS / 60_000), (int) ((timeInMS / 1000) % 60));
     }
 
-    public long toMiliseconds() {
+    public long toMilliseconds() {
         return (60L * minutes + seconds ) * 1_000;
     }
 
