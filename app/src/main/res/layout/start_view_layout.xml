@@ -8,8 +8,8 @@
 
     <Button
         android:id="@+id/button_select_xray"
-        android:layout_width="240dp"
-        android:layout_height="90dp"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="@dimen/button_height"
         android:layout_marginTop="56dp"
         android:background="@drawable/button_selector"
         android:text="@string/button_select_xray"
@@ -23,8 +23,8 @@
 
     <Button
         android:id="@+id/button_select_isotope"
-        android:layout_width="240dp"
-        android:layout_height="90dp"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="@dimen/button_height"
         android:background="@drawable/button_selector"
         android:padding="5dp"
         android:text="@string/button_select_isotope"

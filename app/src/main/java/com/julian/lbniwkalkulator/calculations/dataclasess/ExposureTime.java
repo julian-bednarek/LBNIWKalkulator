@@ -24,4 +24,9 @@ public class ExposureTime {
     public void setSeconds(int seconds) {
         this.seconds = seconds;
     }
+
+    @Override
+    public String toString() {
+        return Integer.toString(minutes) + ":" + Integer.toString(seconds);
+    }
 }

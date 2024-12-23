@@ -7,4 +7,6 @@
     <dimen name="input_side_margin">10dp</dimen>
     <dimen name="input_entry_width">90dp</dimen>
     <dimen name="input_entry_height">35dp</dimen>
+    <dimen name="button_width">240dp</dimen>
+    <dimen name="button_height">90dp</dimen>
 </resources>

@@ -4,9 +4,8 @@ import com.julian.lbniwkalkulator.calculations.dataclasess.ExposureTime;
 import com.julian.lbniwkalkulator.calculations.dataclasess.XRayData;
 
 public class XRayExposureTimeCalculator implements CalculationScheme{
-    private static final int SECONDS_IN_MINUTE = 60;
 
-    private XRayData data;
+    private final XRayData data;
 
     @Override
     public ExposureTime getTotalExposureTime() {
