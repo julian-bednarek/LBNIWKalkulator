@@ -20,10 +20,3 @@ The **LBNIW Kalkulator** is an Android application designed for Non-Destructive 
 ## Limitations
 
 - **Types of isotopes and lamps are manually added.** This can change in the future
-
-## Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/julian-bednarek/LBNIWKalkulator
-   ```
