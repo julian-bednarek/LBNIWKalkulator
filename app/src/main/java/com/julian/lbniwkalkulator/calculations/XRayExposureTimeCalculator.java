@@ -2,13 +2,14 @@ package com.julian.lbniwkalkulator.calculations;
 
 import com.julian.lbniwkalkulator.calculations.dataclasess.ExposureTime;
 import com.julian.lbniwkalkulator.calculations.dataclasess.XRayData;
+import com.julian.lbniwkalkulator.exceptions.ExposureTimeTooLongException;
 
 public class XRayExposureTimeCalculator implements CalculationScheme{
 
     private final XRayData data;
 
     @Override
-    public ExposureTime getTotalExposureTime() {
+    public ExposureTime getTotalExposureTime() throws ExposureTimeTooLongException {
         return computeExposureTime();
     }
 
@@ -16,7 +17,7 @@ public class XRayExposureTimeCalculator implements CalculationScheme{
         this.data = data;
     }
 
-    private ExposureTime computeExposureTime() {
+    private ExposureTime computeExposureTime() throws ExposureTimeTooLongException {
         int power = computePower(data);
         int filmType = data.getFilmType();
         double targetDensity = data.getTargetDensity();
@@ -24,8 +25,12 @@ public class XRayExposureTimeCalculator implements CalculationScheme{
         double sourceToDetectorDistance = data.getSourceToDetectorDistance();
         int exposureTimeInSeconds = (int) (Math.exp(targetDensity * targetThickness) /
                 (power * Math.pow(sourceToDetectorDistance, 2)));
-        return new ExposureTime(exposureTimeInSeconds / SECONDS_IN_MINUTE,
-                                exposureTimeInSeconds % SECONDS_IN_MINUTE);
+        ExposureTime retval = new ExposureTime(
+                exposureTimeInSeconds / SECONDS_IN_MINUTE,
+                exposureTimeInSeconds % SECONDS_IN_MINUTE);
+        if(retval.getMinutes() > 99) throw new ExposureTimeTooLongException(
+                "Exposure time is too long, probably invalid input occured", retval);
+        return retval;
     }
 
     /**

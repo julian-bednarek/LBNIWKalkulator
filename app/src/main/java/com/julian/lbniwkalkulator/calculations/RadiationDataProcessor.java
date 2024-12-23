@@ -5,19 +5,21 @@ import com.julian.lbniwkalkulator.calculations.dataclasess.IsotopeData;
 import com.julian.lbniwkalkulator.calculations.dataclasess.RadiationData;
 import com.julian.lbniwkalkulator.calculations.dataclasess.RadiationDataTypes;
 import com.julian.lbniwkalkulator.calculations.dataclasess.XRayData;
+import com.julian.lbniwkalkulator.exceptions.ExposureTimeTooLongException;
+import com.julian.lbniwkalkulator.exceptions.InvalidRadiationDataTypeException;
 
 public class RadiationDataProcessor {
-    public static ExposureTime processRadiationData(RadiationData data) {
+    public static ExposureTime processRadiationData(RadiationData data) throws ExposureTimeTooLongException, InvalidRadiationDataTypeException {
         switch (data.getType()) {
             case RadiationDataTypes.ISOTOPE:
                 return processIsotopeData((IsotopeData) data);
             case RadiationDataTypes.XRAY:
                 return processXRayData((XRayData) data);
         }
-        return null;
+        throw new InvalidRadiationDataTypeException("Radiation sub type is invalid", data.getType());
     }
 
-    private static ExposureTime processXRayData(XRayData data) {
+    private static ExposureTime processXRayData(XRayData data) throws ExposureTimeTooLongException {
         XRayExposureTimeCalculator calculator = new XRayExposureTimeCalculator(data);
         return calculator.getTotalExposureTime();
     }
