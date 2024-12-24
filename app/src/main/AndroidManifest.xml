@@ -9,6 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LBNIWKalkulator">
 
+        <service android:name=".KillNotificationService"/>
         <activity
             android:name=".pages.StartViewActivity"
             android:exported="true">
