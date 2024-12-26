@@ -11,6 +11,7 @@ import com.julian.lbniwkalkulator.exceptions.InvalidComponentException;
 
 public class IsotopeMenuViewActivity extends AppCompatActivity {
 
+    //TODO: Finish it
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         try {
