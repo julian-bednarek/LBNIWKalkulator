@@ -1,8 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_color">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="@dimen/textview_width"
+        android:layout_height="wrap_content"
+        android:background="@drawable/start_buttons"
+        android:padding="@dimen/textview_padding"
+        android:text="@string/button_select_isotope"
+        android:textAlignment="center"
+        android:textColor="@color/default_text_color"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.239" />
+
+    <com.julian.lbniwkalkulator.components.InputFieldWrapper
+        android:id="@+id/activity_input_isotope"
+        android:layout_width="@dimen/input_field_size"
+        android:layout_height="@dimen/input_field_size"
+        android:layout_marginTop="@dimen/input_up_margin"
+        android:hint="@string/decimal_placeholder"
+        android:inputType="numberDecimal"
+        app:labelText="@string/activity"
+        app:layout_constraintEnd_toStartOf="@+id/material_thickness_isotope"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:suffixText="Ci" />
+
+    <com.julian.lbniwkalkulator.components.InputFieldWrapper
+        android:id="@+id/material_thickness_isotope"
+        android:layout_width="@dimen/input_field_size"
+        android:layout_height="@dimen/input_field_size"
+        android:layout_marginTop="@dimen/input_up_margin"
+        android:hint="@string/decimal_placeholder"
+        app:labelText="@string/steel_thickness"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:suffixText="mm" />
+
+    <com.julian.lbniwkalkulator.components.InputFieldWrapper
+        android:id="@+id/film_type_isotope"
+        android:layout_width="@dimen/input_field_size"
+        android:layout_height="@dimen/input_field_size"
+        android:layout_marginTop="@dimen/input_up_margin"
+        android:hint="@string/null_str"
+        android:inputType="none"
+        android:textColor="@color/default_text_color"
+        app:enum_type="@string/film_type_enum"
+        app:labelText="@string/film_type"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.225"
+        app:layout_constraintStart_toEndOf="@+id/material_thickness_isotope"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:using_list_input="true" />
+
+    <com.julian.lbniwkalkulator.components.InputFieldWrapper
+        android:id="@+id/distance_from_detector_isotope"
+        android:layout_width="@dimen/input_field_size"
+        android:layout_height="@dimen/input_field_size"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="@dimen/input_up_margin"
+        android:hint="@string/integer_placeholder"
+        android:inputType="number"
+        android:textColor="@color/default_text_color"
+        app:labelText="@string/source_to_detector"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/material_thickness_isotope"
+        app:suffixText="mm" />
+
+    <com.julian.lbniwkalkulator.components.InputFieldWrapper
+        android:id="@+id/target_density_isotope"
+        android:layout_width="@dimen/input_field_size"
+        android:layout_height="@dimen/input_field_size"
+        android:layout_marginTop="@dimen/input_up_margin"
+        android:layout_marginEnd="90dp"
+        android:hint="@string/decimal_placeholder"
+        android:inputType="numberDecimal"
+        android:textColor="@color/default_text_color"
+        app:labelText="@string/target_density"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/material_thickness_isotope"
+        app:suffixText="g/cm3" />
+
+    <Button
+        android:id="@+id/calculate_button"
+        android:layout_width="@dimen/textview_width"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/input_up_margin"
+        android:background="@drawable/button_selector"
+        android:text="@string/calculate"
+        android:textColor="@color/default_text_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/distance_from_detector_isotope" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
