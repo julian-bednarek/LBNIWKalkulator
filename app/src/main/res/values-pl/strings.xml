@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">LBNIW Kalkulator</string>
-    <string
-        name="button_select_xray">X-Ray (uniwersalny)</string>
+    <string name="button_select_xray">X-Ray (uniwersalny)</string>
     <string name="button_select_isotope">Izotop</string>
     <string name="company_logo">Logo firmy</string>
     <string name="voltage">Napięcie</string>

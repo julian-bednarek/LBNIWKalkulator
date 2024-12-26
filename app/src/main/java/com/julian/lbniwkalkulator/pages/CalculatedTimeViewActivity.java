@@ -34,10 +34,10 @@ public class CalculatedTimeViewActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.calculated_time_view_layout);
-        exposureTime = new ExposureTime();
+        this.exposureTime = new ExposureTime();
         try {
             RadiationData data = getDataFromIntent();
-            exposureTime = RadiationDataProcessor.processRadiationData(data);
+            this.exposureTime = RadiationDataProcessor.processRadiationData(data);
         } catch (RadiationDataNotFoundException | ExposureTimeTooLongException |
                  InvalidRadiationDataTypeException e) {
             Log.e("Data error", Objects.requireNonNull(e.getMessage()));
@@ -58,6 +58,7 @@ public class CalculatedTimeViewActivity extends AppCompatActivity {
     }
 
     private void setUpButton() {
+        // TODO: Fix timing issues
         Button countDownButton = findViewById(R.id.count_down_button);
         timeRemaining = exposureTime.toMilliseconds();
         countDownButton.setText(exposureTime.toString());

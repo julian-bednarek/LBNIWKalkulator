@@ -29,6 +29,7 @@ public class LanguageHandler {
         if (context instanceof Activity && !languageCode.equalsIgnoreCase(currentLanguage)) {
             currentLanguage = languageCode;
             Activity activity = (Activity) context;
+            // TODO: Replace it with non-deprecated method
             activity
                     .getBaseContext()
                     .getResources()
