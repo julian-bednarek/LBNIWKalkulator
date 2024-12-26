@@ -6,10 +6,6 @@ android {
     namespace 'com.julian.lbniwkalkulator'
     compileSdk 34
 
-    androidResources {
-        generateLocaleConfig true
-    }
-
     defaultConfig {
         applicationId "com.julian.lbniwkalkulator"
         minSdk 31
