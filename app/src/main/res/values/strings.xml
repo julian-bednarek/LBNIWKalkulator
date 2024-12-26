@@ -1,12 +1,12 @@
 <resources>
-    <string name="app_name">LBNIW Kalkulator</string>
+    <string name="app_name">LBNIW Calkulator</string>
     <string
         name="button_select_xray">X-Ray (generic)</string>
     <string name="button_select_isotope">Isotope</string>
     <string name="company_logo">Company Logo</string>
     <string name="voltage">Voltage</string>
     <string name="current">Current</string>
-    <string name="steel_thickness">Steel Thickness</string>
+    <string name="steel_thickness">Material Thickness</string>
     <string name="film_type">Film Type</string>
     <string name="source_to_detector">Source to detector</string>
     <string name="target_density">Target Density</string>

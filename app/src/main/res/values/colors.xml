@@ -9,4 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="background_color">#454545</color>
     <color name="default_text_color">@color/black</color>
+    <color name="transparent">#00000000</color>
+    <color name="lang_selected">#4CAF50</color>
+    <color name="lang_not_selected">#B0BEC5</color>
 </resources>

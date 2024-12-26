@@ -4,12 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.InflateException;
 import android.widget.Button;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.julian.lbniwkalkulator.R;
 import com.julian.lbniwkalkulator.exceptions.InvalidComponentException;
-import com.julian.lbniwkalkulator.service.KillNotificationService;
+import static com.julian.lbniwkalkulator.util.LanguageHandler.*;
 
 public class StartViewActivity extends AppCompatActivity {
 
@@ -33,8 +34,8 @@ public class StartViewActivity extends AppCompatActivity {
                 finish();
             }
         }
-        startService(new Intent(this, KillNotificationService.class));
         setUpButtons();
+        setUpLanguageSelector();
     }
 
     private void setUpButtons() {
@@ -47,6 +48,18 @@ public class StartViewActivity extends AppCompatActivity {
         IsotopePageButton.setOnClickListener(view -> {
             Intent intent = new Intent(StartViewActivity.this, IsotopeMenuViewActivity.class);
             startActivity(intent);
+        });
+    }
+
+    private void setUpLanguageSelector() {
+        RadioGroup languageSelector = findViewById(R.id.language_selector);
+        languageSelector.check(R.id.lang_english);
+        languageSelector.setOnCheckedChangeListener((radioGroup, checkedID) -> {
+            if(checkedID == R.id.lang_english) {
+                setLanguage(StartViewActivity.this, ENGLISH_LANG_CODE);
+            } else if (checkedID == R.id.lang_polish) {
+                setLanguage(StartViewActivity.this, POLISH_LANG_CODE);
+            }
         });
     }
 }

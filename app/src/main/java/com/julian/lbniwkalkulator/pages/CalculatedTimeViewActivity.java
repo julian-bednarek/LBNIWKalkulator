@@ -51,6 +51,12 @@ public class CalculatedTimeViewActivity extends AppCompatActivity {
         setUpButton();
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        notificationHandler.cancelNotification();
+    }
+
     private void setUpButton() {
         Button countDownButton = findViewById(R.id.count_down_button);
         timeRemaining = exposureTime.toMilliseconds();
@@ -61,6 +67,7 @@ public class CalculatedTimeViewActivity extends AppCompatActivity {
                 stopCountdown();
             } else {
                 startCountdown(countDownButton);
+                notificationHandler.updateTimeRemaining(timeRemaining);
                 notificationHandler.sendNotification();
             }
         });

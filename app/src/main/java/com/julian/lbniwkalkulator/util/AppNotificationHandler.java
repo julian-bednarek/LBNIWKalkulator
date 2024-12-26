@@ -14,7 +14,7 @@ public class AppNotificationHandler {
     private static final String NOTIFICATION_CHANNEL_ID = "LBNIW_APP_CHANNEL";
     private static final CharSequence CHANNEL_NAME = "LBNIW_APP";
     private static final String CHANNEL_DESCRIPTION = "Notification channel of LBNIW Calculator app";
-    private static final int CHANNEL_IMPORTANCE = NotificationManager.IMPORTANCE_MAX;
+    private static final int CHANNEL_IMPORTANCE = NotificationManager.IMPORTANCE_HIGH;
     private static final int NOTIFICATION_ID = 1;
 
     private final NotificationCompat.Builder builder;
@@ -46,5 +46,9 @@ public class AppNotificationHandler {
 
     public void sendNotification() {
         notificationManager.notify(NOTIFICATION_ID, builder.build());
+    }
+
+    public void updateTimeRemaining(long timeRemaining) {
+        builder.setWhen(System.currentTimeMillis() + timeRemaining);
     }
 }
