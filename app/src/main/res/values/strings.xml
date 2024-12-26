@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">LBNIW Calkulator</string>
+    <string name="app_name" translatable="false">LBNIW Calkulator</string>
     <string
         name="button_select_xray">X-Ray (generic)</string>
     <string name="button_select_isotope">Isotope</string>
