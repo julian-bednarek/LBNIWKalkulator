@@ -44,7 +44,7 @@ public class XRayMenuViewActivity extends AppCompatActivity {
     }
 
     private void setUpCalculateButton() {
-        Button calculateButton = findViewById(R.id.calculate_button);
+        Button calculateButton = findViewById(R.id.calculate_button_xray);
         calculateButton.setOnClickListener(view -> {
             XRayData data = collectData();
             Intent intent = new Intent(XRayMenuViewActivity.this, CalculatedTimeViewActivity.class);
@@ -59,7 +59,7 @@ public class XRayMenuViewActivity extends AppCompatActivity {
             int current = CustomInputParsers.parseInputInt(((InputFieldWrapper) findViewById(R.id.inputXRayCurrent)).getInputValue());
             double steelThickness = CustomInputParsers.parseInputDouble(((InputFieldWrapper) findViewById(R.id.inputXRaySteelThickness)).getInputValue());
             int filmType = FilmTypeEnum.valueFromString(((InputFieldWrapper) findViewById(R.id.inputXRayFilmType)).getInputValue());
-            double sourceToDetectorDistance = CustomInputParsers.parseInputDouble(((InputFieldWrapper) findViewById(R.id.inputXRaySourceToDetector)).getInputValue());
+            int sourceToDetectorDistance = CustomInputParsers.parseInputInt(((InputFieldWrapper) findViewById(R.id.inputXRaySourceToDetector)).getInputValue());
             double targetDensity = CustomInputParsers.parseInputDouble(((InputFieldWrapper) findViewById(R.id.inputXRayTargetDensity)).getInputValue());
             return new XRayData(voltage, current, steelThickness, filmType, sourceToDetectorDistance, targetDensity);
         } catch (InputNotSupportedException e) {

@@ -1,13 +1,13 @@
 package com.julian.lbniwkalkulator.enums;
 
 public enum IsotopeTypeEnum {
-    _SE_75("SE_75"),
-    _IR_192("IR_192"),
-    _CO_60("CO_60");
+    _SE_75(0),
+    _IR_192(1),
+    _CO_60(2);
 
-    private final String isotopeName;
+    private final double halfLife;
 
-    IsotopeTypeEnum(String isotopeName) {
-        this.isotopeName = isotopeName;
+    IsotopeTypeEnum(double halfLife) {
+        this.halfLife = halfLife;
     }
 }

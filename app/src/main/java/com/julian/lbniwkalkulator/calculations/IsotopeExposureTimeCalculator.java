@@ -8,7 +8,7 @@ public class IsotopeExposureTimeCalculator implements CalculationScheme{
 
     @Override
     public ExposureTime getTotalExposureTime() {
-        return null;
+        return new ExposureTime();
     }
 
     public IsotopeExposureTimeCalculator(IsotopeData data) {

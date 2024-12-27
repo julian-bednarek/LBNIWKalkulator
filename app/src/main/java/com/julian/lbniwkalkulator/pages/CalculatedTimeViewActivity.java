@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
+import android.view.InflateException;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -33,7 +34,11 @@ public class CalculatedTimeViewActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.calculated_time_view_layout);
+        try {
+            setContentView(R.layout.calculated_time_view_layout);
+        } catch (Exception e) {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
         this.exposureTime = new ExposureTime();
         try {
             RadiationData data = getDataFromIntent();
