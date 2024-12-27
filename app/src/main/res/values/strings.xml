@@ -17,4 +17,8 @@
     <string name="film_type_enum" translatable="false">FILM_TYPE</string>
     <string name="isotope_enum" translatable="false">ISOTOPE_ENUM</string>
     <string name="activity">Activity</string>
+    <!--
+     Exception messages
+     -->
+    <string name="exception_too_long_exposure_time">Exposure time is too long, probably invalid input occurred</string>
 </resources>

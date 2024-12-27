@@ -10,6 +10,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.julian.lbniwkalkulator.R;
 import com.julian.lbniwkalkulator.exceptions.InvalidComponentException;
+import com.julian.lbniwkalkulator.util.StringGetter;
+
 import static com.julian.lbniwkalkulator.util.LanguageHandler.*;
 
 public class StartViewActivity extends AppCompatActivity {
@@ -21,6 +23,7 @@ public class StartViewActivity extends AppCompatActivity {
         try {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.start_view_layout);
+            StringGetter.setAppContext(this);
         } catch (InflateException e) {
             Throwable cause = e;
             Throwable actualCause = e.getCause();

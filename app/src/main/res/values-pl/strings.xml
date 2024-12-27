@@ -16,4 +16,8 @@
     <string name="voltage_enum">VOLTAGE_VALUE</string>
     <string name="film_type_enum">FILM_TYPE</string>
     <string name="activity">Aktywność izotopu</string>
+    <!--
+    Exception messages
+    -->
+    <string name="exception_too_long_exposure_time">Za długi czas eskpozycji. Najprawdopodobniej wprowadzone dane są niewłaściwe</string>
 </resources>
