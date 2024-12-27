@@ -69,15 +69,13 @@
         android:id="@+id/target_density_isotope"
         android:layout_width="@dimen/input_field_size"
         android:layout_height="@dimen/input_field_size"
-        android:layout_marginStart="@dimen/input_side_margin"
         android:layout_marginTop="@dimen/input_up_margin"
         android:hint="@string/decimal_placeholder"
         android:inputType="numberDecimal"
         android:textColor="@color/default_text_color"
         app:labelText="@string/target_density"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/distance_from_detector_isotope"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/material_thickness_isotope"
         app:suffixText="g/cm3" />
 
@@ -85,15 +83,32 @@
         android:id="@+id/distance_from_detector_isotope"
         android:layout_width="@dimen/input_field_size"
         android:layout_height="@dimen/input_field_size"
-        android:layout_marginStart="90dp"
         android:layout_marginTop="@dimen/input_up_margin"
         android:hint="@string/integer_placeholder"
         android:inputType="number"
         android:textColor="@color/default_text_color"
         app:labelText="@string/source_to_detector"
+        app:layout_constraintEnd_toStartOf="@+id/target_density_isotope"
+        app:layout_constraintHorizontal_bias="0.756"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/material_thickness_isotope"
         app:suffixText="mm" />
+
+    <com.julian.lbniwkalkulator.components.InputFieldWrapper
+        android:id="@+id/isotope_type_isotope"
+        android:layout_width="@dimen/input_field_size"
+        android:layout_height="@dimen/input_field_size"
+        android:layout_marginTop="@dimen/input_up_margin"
+        android:hint="@string/null_str"
+        android:inputType="none"
+        android:textColor="@color/default_text_color"
+        app:enum_type="@string/isotope_enum"
+        app:labelText="@string/button_select_isotope"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.225"
+        app:layout_constraintStart_toEndOf="@+id/target_density_isotope"
+        app:layout_constraintTop_toBottomOf="@+id/material_thickness_isotope"
+        app:using_list_input="true" />
 
     <Button
         android:id="@+id/calculate_button"
@@ -106,5 +121,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/distance_from_detector_isotope" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

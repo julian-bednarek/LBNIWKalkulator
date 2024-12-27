@@ -2,7 +2,8 @@ package com.julian.lbniwkalkulator.enums;
 
 public enum InputEnumTypes {
     FILM_TYPE(FilmTypeEnum.class),
-    VOLTAGE_VALUE(VoltageValuesEnum.class);
+    VOLTAGE_VALUE(VoltageValuesEnum.class),
+    ISOTOPE_ENUM(IsotopeTypeEnum.class);
 
     private final Class<? extends Enum<?>> enumClass;
 
