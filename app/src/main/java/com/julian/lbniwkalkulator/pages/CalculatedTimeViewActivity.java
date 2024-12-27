@@ -1,10 +1,12 @@
 package com.julian.lbniwkalkulator.pages;
 
+import static com.julian.lbniwkalkulator.util.ErrorHandler.processException;
+import static com.julian.lbniwkalkulator.util.ErrorHandler.showErrorDialog;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
-import android.view.InflateException;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -15,10 +17,12 @@ import com.julian.lbniwkalkulator.calculations.RadiationDataProcessor;
 import com.julian.lbniwkalkulator.calculations.dataclasess.ExposureTime;
 import com.julian.lbniwkalkulator.calculations.dataclasess.RadiationData;
 import com.julian.lbniwkalkulator.exceptions.ExposureTimeTooLongException;
+import com.julian.lbniwkalkulator.exceptions.InputNotSupportedException;
 import com.julian.lbniwkalkulator.exceptions.InvalidRadiationDataTypeException;
 import com.julian.lbniwkalkulator.exceptions.NotificationManagerInitializationFailedException;
 import com.julian.lbniwkalkulator.exceptions.RadiationDataNotFoundException;
 import com.julian.lbniwkalkulator.util.AppNotificationHandler;
+import com.julian.lbniwkalkulator.util.StringGetter;
 
 import java.util.Objects;
 
@@ -39,15 +43,7 @@ public class CalculatedTimeViewActivity extends AppCompatActivity {
         } catch (Exception e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
-        this.exposureTime = new ExposureTime();
-        try {
-            RadiationData data = getDataFromIntent();
-            this.exposureTime = RadiationDataProcessor.processRadiationData(data);
-        } catch (RadiationDataNotFoundException | ExposureTimeTooLongException |
-                 InvalidRadiationDataTypeException e) {
-            Log.e("Data error", Objects.requireNonNull(e.getMessage()));
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
-        }
+        setExposureTime();
         try {
             this.notificationHandler = new AppNotificationHandler(this, exposureTime);
         } catch (NotificationManagerInitializationFailedException e) {
@@ -60,6 +56,30 @@ public class CalculatedTimeViewActivity extends AppCompatActivity {
     public void onDestroy() {
         super.onDestroy();
         notificationHandler.cancelNotification();
+    }
+
+
+    private void setExposureTime() {
+        this.exposureTime = new ExposureTime();
+        try {
+            RadiationData data = getDataFromIntent();
+            this.exposureTime = RadiationDataProcessor.processRadiationData(data);
+        } catch (ExposureTimeTooLongException e) {
+            processException(this,
+                    e.getMessage(),
+                    R.string.exception_too_long_exposure_time_additional,
+                    e.getExposureTime());
+            finish();
+        } catch (RadiationDataNotFoundException | InputNotSupportedException e) {
+            processException(this, e.getMessage(), null, null);
+            finish();
+        } catch (InvalidRadiationDataTypeException e) {
+            processException(this,
+                    e.getMessage(),
+                    R.string.exception_invalid_radiation_data_type_additional,
+                    e.getInvalidType());
+            finish();
+        }
     }
 
     private void setUpButton() {

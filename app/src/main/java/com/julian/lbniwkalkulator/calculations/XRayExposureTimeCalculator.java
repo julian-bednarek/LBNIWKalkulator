@@ -4,6 +4,7 @@ import com.julian.lbniwkalkulator.R;
 import com.julian.lbniwkalkulator.calculations.dataclasess.ExposureTime;
 import com.julian.lbniwkalkulator.calculations.dataclasess.XRayData;
 import com.julian.lbniwkalkulator.exceptions.ExposureTimeTooLongException;
+import com.julian.lbniwkalkulator.exceptions.InputNotSupportedException;
 import com.julian.lbniwkalkulator.util.StringGetter;
 
 public class XRayExposureTimeCalculator implements CalculationScheme {
@@ -11,7 +12,7 @@ public class XRayExposureTimeCalculator implements CalculationScheme {
     private final XRayData data;
 
     @Override
-    public ExposureTime getTotalExposureTime() throws ExposureTimeTooLongException {
+    public ExposureTime getTotalExposureTime() throws ExposureTimeTooLongException, InputNotSupportedException {
         return computeExposureTime();
     }
 
@@ -19,12 +20,13 @@ public class XRayExposureTimeCalculator implements CalculationScheme {
         this.data = data;
     }
 
-    private ExposureTime computeExposureTime() throws ExposureTimeTooLongException {
+    private ExposureTime computeExposureTime() throws ExposureTimeTooLongException, InputNotSupportedException {
         int power = computePower(data);
         int filmType = data.getFilmType();
         double targetDensity = data.getTargetDensity();
         double targetThickness = data.getSteelThickness();
         double sourceToDetectorDistance = data.getSourceToDetectorDistance();
+        if(power == 0 || sourceToDetectorDistance == 0) throw new InputNotSupportedException(StringGetter.fromStringsXML(R.string.exception_input_not_supported));
         int exposureTimeInSeconds = (int) (Math.exp(targetDensity * targetThickness) /
                 (power * Math.pow(sourceToDetectorDistance, 2)));
         ExposureTime retval = new ExposureTime(

@@ -19,5 +19,10 @@
     <!--
     Exception messages
     -->
-    <string name="exception_too_long_exposure_time">Za długi czas eskpozycji. Najprawdopodobniej wprowadzone dane są niewłaściwe</string>
+    <string name="error">Wystąpił błąd</string>
+    <string name="exception_too_long_exposure_time">Za długi czas eskpozycji. Najprawdopodobniej wprowadzone dane są niewłaściwe.</string>
+    <string name="exception_too_long_exposure_time_additional">Nieprawidłowy czas ekspozycji wynosi: </string>
+    <string name="exception_input_not_supported">Twoje dane wejściowe są nieprawidłowe lub prowadziłyby do podziału przez 0. Dlatego całkowity czas ekspozycji został ustawiony na 0</string>
+    <string name="exception_invalid_radiation_data_type"></string>
+    <string name="exception_invalid_radiation_data_type_additional">Nieprawidłowy typ danych promieniowania to: </string>
 </resources>

@@ -20,5 +20,10 @@
     <!--
      Exception messages
      -->
-    <string name="exception_too_long_exposure_time">Exposure time is too long, probably invalid input occurred</string>
+    <string name="error">Error occured</string>
+    <string name="exception_too_long_exposure_time">Exposure time is too long, probably invalid input occurred.</string>
+    <string name="exception_too_long_exposure_time_additional">Invalid exposure time is: </string>
+    <string name="exception_input_not_supported">Your input data is invalid or would lead to division by 0. Hence total exposure time is set to 0</string>
+    <string name="exception_invalid_radiation_data_type"></string>
+    <string name="exception_invalid_radiation_data_type_additional">Invalid radiation data type is: </string>
 </resources>
