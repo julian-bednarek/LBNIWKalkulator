@@ -21,8 +21,10 @@ jobs:
         distribution: 'temurin'
         cache: gradle
 
-    - name: Verify Java Version
-      run: java -version
+    - name: Set Android SDK Environment Variables
+      run: |
+        echo "ANDROID_HOME=$HOME/Android/Sdk" >> $GITHUB_ENV
+        echo "PATH=$HOME/Android/Sdk/cmdline-tools/latest/bin:$HOME/Android/Sdk/platform-tools:$PATH" >> $GITHUB_ENV
 
     - name: Install Android Command Line Tools
       run: |
@@ -37,7 +39,7 @@ jobs:
 
     - name: Install Android Dependencies
       run: |
-        sdkmanager --install "platform-tools" "platforms;android-33" "system-images;android-33;default;x86_64" "build-tools;33.0.2"
+        $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --install "platform-tools" "platforms;android-33" "system-images;android-33;default;x86_64" "build-tools;33.0.2"
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
