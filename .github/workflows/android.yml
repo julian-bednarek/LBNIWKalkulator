@@ -30,7 +30,7 @@ jobs:
     - name: Set up Android SDK
       uses: android-actions/setup-android@v3
 
-    - name: Start Android emulator
+    - name: Start Android emulator and run tests
       uses: reactivecircus/android-emulator-runner@v2
       with:
         api-level: 33
@@ -38,11 +38,5 @@ jobs:
         arch: x86_64
         profile: Pixel 8
         emulator-options: "-no-boot-anim -no-snapshot"
-
-    - name: Wait for emulator to boot
-      run: adb wait-for-device
-
-    - name: Run integration tests
-      run: ./gradlew connectedAndroidTest
-
+        script: ./gradlew connectedAndroidTest
 
