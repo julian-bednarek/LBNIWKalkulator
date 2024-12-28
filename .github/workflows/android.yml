@@ -13,7 +13,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: set up JDK 17
+
+    - name: Set up JDK 17
       uses: actions/setup-java@v4
       with:
         java-version: '17'
@@ -22,5 +23,26 @@ jobs:
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
+
     - name: Build with Gradle
       run: ./gradlew build
+
+    - name: Set up Android SDK
+      uses: android-actions/setup-android@v3
+
+    - name: Start Android emulator
+      uses: reactivecircus/android-emulator-runner@v2
+      with:
+        api-level: 33
+        target: default
+        arch: x86_64
+        profile: Pixel 8
+        emulator-options: "-no-boot-anim -no-snapshot"
+
+    - name: Wait for emulator to boot
+      run: adb wait-for-device
+
+    - name: Run integration tests
+      run: ./gradlew connectedAndroidTest
+
+
