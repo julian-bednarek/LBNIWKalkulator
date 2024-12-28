@@ -1,5 +1,6 @@
 package com.julian.lbniwkalkulator.pages;
 
+import static com.julian.lbniwkalkulator.util.ErrorHandler.getActualCause;
 import static com.julian.lbniwkalkulator.util.ErrorHandler.processException;
 import static com.julian.lbniwkalkulator.util.ErrorHandler.showErrorDialog;
 
@@ -7,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
+import android.view.InflateException;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -18,6 +20,7 @@ import com.julian.lbniwkalkulator.calculations.dataclasess.ExposureTime;
 import com.julian.lbniwkalkulator.calculations.dataclasess.RadiationData;
 import com.julian.lbniwkalkulator.exceptions.ExposureTimeTooLongException;
 import com.julian.lbniwkalkulator.exceptions.InputNotSupportedException;
+import com.julian.lbniwkalkulator.exceptions.InvalidComponentException;
 import com.julian.lbniwkalkulator.exceptions.InvalidRadiationDataTypeException;
 import com.julian.lbniwkalkulator.exceptions.NotificationManagerInitializationFailedException;
 import com.julian.lbniwkalkulator.exceptions.RadiationDataNotFoundException;
@@ -40,8 +43,13 @@ public class CalculatedTimeViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         try {
             setContentView(R.layout.calculated_time_view_layout);
-        } catch (Exception e) {
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+        } catch (InflateException e) {
+            Throwable actualCause = getActualCause(e);
+            if (actualCause instanceof InvalidComponentException) {
+                InvalidComponentException ex = (InvalidComponentException) actualCause;
+                processException(this, ex.getMessage(), null, null);
+                finish();
+            }
         }
         setExposureTime();
         try {

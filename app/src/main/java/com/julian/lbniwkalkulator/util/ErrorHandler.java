@@ -10,6 +10,17 @@ import com.julian.lbniwkalkulator.R;
 import java.util.Objects;
 
 public class ErrorHandler {
+
+    public static Throwable getActualCause(Exception exception) {
+        Throwable cause = exception;
+        Throwable actualCause = exception.getCause();
+        while (cause.getCause() != null) {
+            actualCause = cause;
+            cause = cause.getCause();
+        }
+        return actualCause;
+    }
+
     public static void processException(Context context,String message, Integer additionalMessageID, Object additionalData) {
         String additionalMessage = additionalMessageID != null
                 ? StringGetter.fromStringsXML(additionalMessageID)

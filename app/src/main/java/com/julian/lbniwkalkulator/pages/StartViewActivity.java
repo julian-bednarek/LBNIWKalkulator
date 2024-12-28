@@ -12,6 +12,8 @@ import com.julian.lbniwkalkulator.R;
 import com.julian.lbniwkalkulator.exceptions.InvalidComponentException;
 import com.julian.lbniwkalkulator.util.StringGetter;
 
+import static com.julian.lbniwkalkulator.util.ErrorHandler.getActualCause;
+import static com.julian.lbniwkalkulator.util.ErrorHandler.processException;
 import static com.julian.lbniwkalkulator.util.LanguageHandler.*;
 
 public class StartViewActivity extends AppCompatActivity {
@@ -25,15 +27,10 @@ public class StartViewActivity extends AppCompatActivity {
             setContentView(R.layout.start_view_layout);
             StringGetter.setAppContext(this);
         } catch (InflateException e) {
-            Throwable cause = e;
-            Throwable actualCause = e.getCause();
-            while (cause.getCause() != null) {
-                actualCause = cause;
-                cause = cause.getCause();
-            }
+            Throwable actualCause = getActualCause(e);
             if (actualCause instanceof InvalidComponentException) {
                 InvalidComponentException ex = (InvalidComponentException) actualCause;
-                Toast.makeText(this, ex.getMessage(), Toast.LENGTH_LONG).show();
+                processException(this, ex.getMessage(), null, null);
                 finish();
             }
         }

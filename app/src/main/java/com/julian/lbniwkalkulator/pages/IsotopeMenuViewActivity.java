@@ -1,5 +1,8 @@
 package com.julian.lbniwkalkulator.pages;
 
+import static com.julian.lbniwkalkulator.util.ErrorHandler.getActualCause;
+import static com.julian.lbniwkalkulator.util.ErrorHandler.processException;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.InflateException;
@@ -28,15 +31,10 @@ public class IsotopeMenuViewActivity extends AppCompatActivity {
             setContentView(R.layout.isotope_menu_layout);
             setUpCalculateButton();
         } catch (InflateException e) {
-            Throwable cause = e;
-            Throwable actualCause = e.getCause();
-            while (cause.getCause() != null) {
-                actualCause = cause;
-                cause = cause.getCause();
-            }
+            Throwable actualCause = getActualCause(e);
             if (actualCause instanceof InvalidComponentException) {
                 InvalidComponentException ex = (InvalidComponentException) actualCause;
-                Toast.makeText(this, ex.getMessage(), Toast.LENGTH_LONG).show();
+                processException(this, ex.getMessage(), null, null);
                 finish();
             }
         }
