@@ -24,11 +24,19 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
 
+    - name: Install Latest Android Command Line Tools
+      run: |
+        mkdir -p $ANDROID_HOME/cmdline-tools
+        curl -sSL https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip -o commandlinetools.zip
+        unzip commandlinetools.zip -d $ANDROID_HOME/cmdline-tools
+        mv $ANDROID_HOME/cmdline-tools/cmdline-tools $ANDROID_HOME/cmdline-tools/latest
+        rm commandlinetools.zip
+
+    - name: Accept Android SDK Licenses
+      run: yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses
+
     - name: Build with Gradle
       run: ./gradlew build
-
-    - name: Set up Android SDK
-      uses: android-actions/setup-android@v3
 
     - name: Start Android emulator and run tests
       uses: reactivecircus/android-emulator-runner@v2
@@ -39,3 +47,4 @@ jobs:
         profile: pixel_4
         emulator-options: "-no-boot-anim -no-snapshot"
         script: ./gradlew connectedAndroidTest
+
