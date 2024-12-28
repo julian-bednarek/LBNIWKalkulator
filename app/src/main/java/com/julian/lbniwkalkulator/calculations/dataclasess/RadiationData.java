@@ -1,5 +1,7 @@
 package com.julian.lbniwkalkulator.calculations.dataclasess;
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 
 public interface RadiationData extends Serializable{
@@ -12,6 +14,7 @@ public interface RadiationData extends Serializable{
     /**
      * For debug purposes.
      */
+    @NonNull
     @Override
     String toString();
 }

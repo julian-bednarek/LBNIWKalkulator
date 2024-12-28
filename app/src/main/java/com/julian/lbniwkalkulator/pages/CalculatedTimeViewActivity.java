@@ -2,16 +2,14 @@ package com.julian.lbniwkalkulator.pages;
 
 import static com.julian.lbniwkalkulator.util.ErrorHandler.getActualCause;
 import static com.julian.lbniwkalkulator.util.ErrorHandler.processException;
-import static com.julian.lbniwkalkulator.util.ErrorHandler.showErrorDialog;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.InflateException;
 import android.widget.Button;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.julian.lbniwkalkulator.R;
@@ -25,12 +23,12 @@ import com.julian.lbniwkalkulator.exceptions.InvalidRadiationDataTypeException;
 import com.julian.lbniwkalkulator.exceptions.NotificationManagerInitializationFailedException;
 import com.julian.lbniwkalkulator.exceptions.RadiationDataNotFoundException;
 import com.julian.lbniwkalkulator.util.AppNotificationHandler;
-import com.julian.lbniwkalkulator.util.StringGetter;
-
-import java.util.Objects;
 
 public class CalculatedTimeViewActivity extends AppCompatActivity {
     private static final String INPUT_DATA_INTENT = "input_data";
+    private static final int SOUND_TIME_MILLISECONDS = 10_000;
+    private static final int TIMER_TICK_MILLISECONDS = 1_000;
+
 
     private long timeRemaining;
     private boolean isCounting;
@@ -109,11 +107,14 @@ public class CalculatedTimeViewActivity extends AppCompatActivity {
 
     private void startCountdown(Button countDownButton) {
         isCounting = true;
-
-        countDownTimer = new CountDownTimer(timeRemaining, 1000) {
+        final boolean[] soundMade = {false};
+        countDownTimer = new CountDownTimer(timeRemaining, TIMER_TICK_MILLISECONDS) {
             @Override
             public void onTick(long millisUntilFinished) {
                 timeRemaining = millisUntilFinished;
+                if(millisUntilFinished <= SOUND_TIME_MILLISECONDS && !soundMade[0]) {
+                    soundMade[0] = true;
+                }
                 countDownButton.setText(ExposureTime.fromMilliseconds(timeRemaining).toString());
             }
 
@@ -136,6 +137,7 @@ public class CalculatedTimeViewActivity extends AppCompatActivity {
     }
 
 
+    @NonNull
     private RadiationData getDataFromIntent() throws RadiationDataNotFoundException {
         Intent intent = getIntent();
         if (intent == null) throw new RadiationDataNotFoundException("Something went wrong with radiation data");

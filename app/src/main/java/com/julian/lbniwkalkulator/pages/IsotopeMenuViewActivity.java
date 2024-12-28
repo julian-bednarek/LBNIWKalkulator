@@ -7,17 +7,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.InflateException;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.julian.lbniwkalkulator.R;
 import com.julian.lbniwkalkulator.calculations.CustomInputParsers;
 import com.julian.lbniwkalkulator.calculations.dataclasess.IsotopeData;
-import com.julian.lbniwkalkulator.calculations.dataclasess.XRayData;
 import com.julian.lbniwkalkulator.components.InputFieldWrapper;
 import com.julian.lbniwkalkulator.enums.FilmTypeEnum;
-import com.julian.lbniwkalkulator.enums.VoltageValuesEnum;
 import com.julian.lbniwkalkulator.exceptions.InputNotSupportedException;
 import com.julian.lbniwkalkulator.exceptions.InvalidComponentException;
 

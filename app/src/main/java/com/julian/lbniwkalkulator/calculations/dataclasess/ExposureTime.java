@@ -1,5 +1,7 @@
 package com.julian.lbniwkalkulator.calculations.dataclasess;
 
+import androidx.annotation.NonNull;
+
 import java.util.Locale;
 
 public class ExposureTime {
@@ -41,6 +43,7 @@ public class ExposureTime {
         this.seconds = seconds;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return String.format(Locale.US,"%02d:%02d", minutes, seconds);

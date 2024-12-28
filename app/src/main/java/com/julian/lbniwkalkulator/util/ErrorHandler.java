@@ -2,12 +2,8 @@ package com.julian.lbniwkalkulator.util;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
-
 import com.julian.lbniwkalkulator.R;
-
-import java.util.Objects;
 
 public class ErrorHandler {
 

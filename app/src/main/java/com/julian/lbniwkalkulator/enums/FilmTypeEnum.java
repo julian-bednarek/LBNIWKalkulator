@@ -12,8 +12,8 @@ public enum FilmTypeEnum {
     _D7(7);
 
 
-    private int typeNumber;
-    private static String STRINGIFIED_ENUM_REGEX = " D[0-9]";
+    private final int typeNumber;
+    private static final String STRINGIFIED_ENUM_REGEX = " D[0-9]";
 
     FilmTypeEnum(int typeNumber) {
         this.typeNumber = typeNumber;

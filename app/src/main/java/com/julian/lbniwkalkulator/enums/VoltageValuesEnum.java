@@ -1,7 +1,5 @@
 package com.julian.lbniwkalkulator.enums;
 
-import android.util.Log;
-
 import com.julian.lbniwkalkulator.exceptions.InputNotSupportedException;
 
 public enum VoltageValuesEnum {

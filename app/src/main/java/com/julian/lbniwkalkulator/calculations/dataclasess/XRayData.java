@@ -1,5 +1,7 @@
 package com.julian.lbniwkalkulator.calculations.dataclasess;
 
+import androidx.annotation.NonNull;
+
 public class XRayData implements RadiationData {
 
     private final int voltage;
@@ -35,6 +37,7 @@ public class XRayData implements RadiationData {
     /**
      * For debug purpose only
      */
+    @NonNull
     @Override
     public String toString() {
         return "XRayData{" +

@@ -14,7 +14,7 @@ public class NumberInput extends LinearLayout {
 
     private EditText input;
     private TextView inputUnit;
-    private final int MAX_INPUT_LEN = 5;
+    private static final int MAX_INPUT_LEN = 5;
 
     private void setUpInput(int type) {
         input.setInputType(type);
