@@ -23,6 +23,7 @@ import com.julian.lbniwkalkulator.exceptions.InvalidRadiationDataTypeException;
 import com.julian.lbniwkalkulator.exceptions.NotificationManagerInitializationFailedException;
 import com.julian.lbniwkalkulator.exceptions.RadiationDataNotFoundException;
 import com.julian.lbniwkalkulator.util.AppNotificationHandler;
+import com.julian.lbniwkalkulator.util.AudioHandler;
 
 public class CalculatedTimeViewActivity extends AppCompatActivity {
     private static final String INPUT_DATA_INTENT = "input_data";
@@ -35,6 +36,7 @@ public class CalculatedTimeViewActivity extends AppCompatActivity {
     private CountDownTimer countDownTimer;
     private ExposureTime exposureTime;
     private AppNotificationHandler notificationHandler;
+    private AudioHandler audioHandler;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,11 +47,11 @@ public class CalculatedTimeViewActivity extends AppCompatActivity {
             Throwable actualCause = getActualCause(e);
             if (actualCause instanceof InvalidComponentException) {
                 InvalidComponentException ex = (InvalidComponentException) actualCause;
-                processException(this, ex.getMessage(), null, null);
-                finish();
+                processException(this, ex.getMessage(), null, null, this::finish);
             }
         }
         setExposureTime();
+        audioHandler = new AudioHandler(this);
         try {
             this.notificationHandler = new AppNotificationHandler(this, exposureTime);
         } catch (NotificationManagerInitializationFailedException e) {
@@ -74,17 +76,16 @@ public class CalculatedTimeViewActivity extends AppCompatActivity {
             processException(this,
                     e.getMessage(),
                     R.string.exception_too_long_exposure_time_additional,
-                    e.getExposureTime());
-            finish();
+                    e.getExposureTime(),
+                    this::finish);
         } catch (RadiationDataNotFoundException | InputNotSupportedException e) {
-            processException(this, e.getMessage(), null, null);
-            finish();
+            processException(this, e.getMessage(), null, null, this::finish);
         } catch (InvalidRadiationDataTypeException e) {
             processException(this,
                     e.getMessage(),
                     R.string.exception_invalid_radiation_data_type_additional,
-                    e.getInvalidType());
-            finish();
+                    e.getInvalidType(),
+                    this::finish);
         }
     }
 
@@ -114,6 +115,7 @@ public class CalculatedTimeViewActivity extends AppCompatActivity {
                 timeRemaining = millisUntilFinished;
                 if(millisUntilFinished <= SOUND_TIME_MILLISECONDS && !soundMade[0]) {
                     soundMade[0] = true;
+                    audioHandler.play(R.raw.warning_music);
                 }
                 countDownButton.setText(ExposureTime.fromMilliseconds(timeRemaining).toString());
             }
@@ -121,6 +123,7 @@ public class CalculatedTimeViewActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 isCounting = false;
+                audioHandler.stop();
                 countDownButton.setText(new ExposureTime().toString());
                 notificationHandler.cancelNotification();
             }

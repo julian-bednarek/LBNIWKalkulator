@@ -17,7 +17,11 @@ public class ErrorHandler {
         return actualCause;
     }
 
-    public static void processException(Context context,String message, Integer additionalMessageID, Object additionalData) {
+    public static void processException(Context context,
+                                        String message,
+                                        Integer additionalMessageID,
+                                        Object additionalData,
+                                        Runnable dismissAction) {
         String additionalMessage = additionalMessageID != null
                 ? StringGetter.fromStringsXML(additionalMessageID)
                 : "";
@@ -25,14 +29,25 @@ public class ErrorHandler {
                 ? String.format("%s %s %s", message, additionalMessage, additionalData)
                 : message;
         Log.e("DATA ERROR", fullMessage);
-        showErrorDialog(context, StringGetter.fromStringsXML(R.string.error), fullMessage);
+        showErrorDialog(context, StringGetter.fromStringsXML(R.string.error), fullMessage, dismissAction);
     }
 
-    public static void showErrorDialog(Context context, String title, String message) {
-        new AlertDialog.Builder(context)
-                .setTitle(title)
-                .setMessage(message)
-                .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
-                .show();
+    public static void showErrorDialog(Context context, String title, String message, Runnable dismissAction) {
+            AlertDialog dialog = new AlertDialog.Builder(context)
+                    .setTitle(title)
+                    .setMessage(message)
+                    .setPositiveButton("OK", (dialogInterface, which) -> {
+                        dialogInterface.dismiss();
+                    })
+                    .setCancelable(false)
+                    .create();
+
+            dialog.setOnDismissListener(dialogInterface -> {
+                if (dismissAction != null) {
+                    dismissAction.run();
+                }
+            });
+
+            dialog.show();
     }
 }

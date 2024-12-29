@@ -29,8 +29,7 @@ public class StartViewActivity extends AppCompatActivity {
             Throwable actualCause = getActualCause(e);
             if (actualCause instanceof InvalidComponentException) {
                 InvalidComponentException ex = (InvalidComponentException) actualCause;
-                processException(this, ex.getMessage(), null, null);
-                finish();
+                processException(this, ex.getMessage(), null, null, this::finish);
             }
         }
         setUpButtons();
