@@ -32,11 +32,13 @@ public class ErrorHandler {
         showErrorDialog(context, StringGetter.fromStringsXML(R.string.error), fullMessage, dismissAction);
     }
 
+    public static final String ERROR_BUTTON_TEXT = "OK";
+
     public static void showErrorDialog(Context context, String title, String message, Runnable dismissAction) {
             AlertDialog dialog = new AlertDialog.Builder(context)
                     .setTitle(title)
                     .setMessage(message)
-                    .setPositiveButton("OK", (dialogInterface, which) -> {
+                    .setPositiveButton(ERROR_BUTTON_TEXT, (dialogInterface, which) -> {
                         dialogInterface.dismiss();
                     })
                     .setCancelable(false)
