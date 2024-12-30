@@ -3,16 +3,28 @@ package com.julian.lbniwkalkulator;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.action.ViewActions.typeText;
+import static androidx.test.espresso.matcher.ViewMatchers.hasDescendant;
+import static androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static org.hamcrest.Matchers.anyOf;
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertNotNull;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 import static com.julian.lbniwkalkulator.util.ErrorHandler.ERROR_BUTTON_TEXT;
+import static org.hamcrest.Matchers.allOf;
+
+
+import android.view.View;
+import android.widget.EditText;
 
 import androidx.test.core.app.ActivityScenario;
+import androidx.test.espresso.ViewInteraction;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.uiautomator.UiDevice;
@@ -21,22 +33,33 @@ import com.julian.lbniwkalkulator.pages.StartViewActivity;
 import com.julian.lbniwkalkulator.pages.XRayMenuViewActivity;
 import com.julian.lbniwkalkulator.util.StringGetter;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.testng.annotations.BeforeClass;
 
 @RunWith(AndroidJUnit4.class)
 public class ActivityFlowTests {
-    @BeforeClass
-    public static void disableAnimations() {
+    private UiDevice device;
+
+    @Before
+    public void disableAnimations() {
         try {
-            UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+            device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
             device.executeShellCommand("settings put global window_animation_scale 0");
             device.executeShellCommand("settings put global transition_animation_scale 0");
             device.executeShellCommand("settings put global animator_duration_scale 0");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        } catch (Exception ignored) {}
+    }
+
+    @After
+    public void restoreAnimations() {
+        try {
+            device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+            device.executeShellCommand("settings put global window_animation_scale 1");
+            device.executeShellCommand("settings put global transition_animation_scale 1");
+            device.executeShellCommand("settings put global animator_duration_scale 1");
+        } catch (Exception ignored) {}
     }
 
     @Test
@@ -94,13 +117,18 @@ public class ActivityFlowTests {
         /*Mandatory*/
         scenario.onActivity(StringGetter::setAppContext);
         /*Simple mock data which produces valid time*/
-        // TODO: Fix
-        // Issue lies in fact that actual edit text is inside input field wrapper
-        assert false;
-        onView(withId(R.id.inputXRayCurrent)).perform(typeText("1"), closeSoftKeyboard());
-        onView(withId(R.id.inputXRaySourceToDetector)).perform(typeText("1"), closeSoftKeyboard());
-        onView(withId(R.id.inputXRayTargetDensity)).perform(typeText("7"), closeSoftKeyboard());
-        onView(withId(R.id.inputXRaySteelThickness)).perform(typeText("1"), closeSoftKeyboard());
+        final int[] components =
+                {
+                    R.id.inputXRayCurrent,
+                    R.id.inputXRaySourceToDetector,
+                    R.id.inputXRaySteelThickness,
+                    R.id.inputXRayTargetDensity
+                };
+        for (int component : components) {
+            onView(withId(component))
+                    .perform(typeText("4"), closeSoftKeyboard())
+                    .check(matches(withText("4")));
+        }
         /*Actual test*/
         onView(withId(R.id.calculate_button_xray)).perform(closeSoftKeyboard());
         onView(withId(R.id.calculate_button_xray))

@@ -1,11 +1,19 @@
 package com.julian.lbniwkalkulator.components;
 
+import static androidx.core.content.ContextCompat.getSystemService;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
+
 import com.julian.lbniwkalkulator.R;
 import com.julian.lbniwkalkulator.exceptions.InvalidComponentException;
 import com.julian.lbniwkalkulator.exceptions.MissingComponentParameterException;
@@ -20,6 +28,33 @@ public class InputFieldWrapper extends LinearLayout {
     public InputFieldWrapper(Context context, AttributeSet attrs) throws InvalidComponentException {
         super(context, attrs);
         init(context, attrs);
+        setStateListeners(context);
+    }
+
+    //TODO: FIX PRIORITY HIGH
+    private void setStateListeners(Context context) {
+        EditText editText = findViewById(R.id.actual_input);
+        Spinner spinner = findViewById(R.id.input_spinner);
+        setOnClickListener(v -> {
+            Log.d("KURWA", Integer.toString(getFocusable()));
+
+            if (spinner != null && spinner.getVisibility() == View.VISIBLE) {
+                editText.clearFocus();;
+                spinner.performClick();
+            } else if (editText != null) {
+                editText.requestFocus();
+                InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT);
+            }
+        });
+        editText.setOnFocusChangeListener((view, hasFocus) -> {
+            if (hasFocus) {
+                InputMethodManager inputMethodManager = getSystemService(getContext(), InputMethodManager.class);
+                if (inputMethodManager != null) {
+                    inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
+            }
+        });
     }
 
     private void setUpListInput() {

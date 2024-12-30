@@ -18,35 +18,16 @@ import com.julian.lbniwkalkulator.enums.FilmTypeEnum;
 import com.julian.lbniwkalkulator.exceptions.InputNotSupportedException;
 import com.julian.lbniwkalkulator.exceptions.InvalidComponentException;
 
-public class IsotopeMenuViewActivity extends AppCompatActivity {
+public class IsotopeMenuViewActivity extends AbstractInputMenuActivity {
 
-    //TODO: Finish it
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        try {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.isotope_menu_layout);
-            setUpCalculateButton();
-        } catch (InflateException e) {
-            Throwable actualCause = getActualCause(e);
-            if (actualCause instanceof InvalidComponentException) {
-                InvalidComponentException ex = (InvalidComponentException) actualCause;
-                processException(this, ex.getMessage(), null, null, this::finish);
-            }
-        }
+        super.onCreate(savedInstanceState);
+        generalSetUp(R.layout.isotope_menu_layout, R.id.calculate_button_isotope);
     }
 
-    private void setUpCalculateButton() {
-        Button calculateButton = findViewById(R.id.calculate_button_isotope);
-        calculateButton.setOnClickListener(view -> {
-            IsotopeData data = collectData();
-            Intent intent = new Intent(IsotopeMenuViewActivity.this, CalculatedTimeViewActivity.class);
-            intent.putExtra("input_data", data);
-            startActivity(intent);
-        });
-    }
-
-    private IsotopeData collectData() {
+    @Override
+    protected IsotopeData collectData() {
         try {
             double activity = CustomInputParsers.parseInputDouble(((InputFieldWrapper) findViewById(R.id.activity_input_isotope)).getInputValue());
             double targetDensity = CustomInputParsers.parseInputDouble(((InputFieldWrapper) findViewById(R.id.target_density_isotope)).getInputValue());

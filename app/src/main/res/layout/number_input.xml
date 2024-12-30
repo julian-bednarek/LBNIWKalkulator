@@ -9,12 +9,14 @@
 
     <EditText
         android:id="@+id/actual_input"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:importantForAccessibility="yes"
         android:layout_width="60dp"
         android:layout_height="@dimen/input_entry_height"
         android:autofillHints="0.0"
         android:textColorHint="@color/default_text_color"
         android:hint="@string/null_str"
-        android:importantForAccessibility="yes"
         android:inputType="none"
         android:textColor="@color/default_text_color"
         android:textSize="14sp"

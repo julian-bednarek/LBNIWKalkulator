@@ -18,38 +18,16 @@ import com.julian.lbniwkalkulator.enums.VoltageValuesEnum;
 import com.julian.lbniwkalkulator.exceptions.InputNotSupportedException;
 import com.julian.lbniwkalkulator.exceptions.InvalidComponentException;
 
-public class XRayMenuViewActivity extends AppCompatActivity {
+public class XRayMenuViewActivity extends AbstractInputMenuActivity {
 
-    /**
-     * In catch clause, cause chain is expected to be:
-     * InflateException -> InvocationTargetException -> InvalidComponentException or its subclasses
-     **/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        try {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.x_ray_menu_layout);
-            setUpCalculateButton();
-        } catch (InflateException e) {
-            Throwable actualCause = getActualCause(e);
-            if (actualCause instanceof InvalidComponentException) {
-                InvalidComponentException ex = (InvalidComponentException) actualCause;
-                processException(this, ex.getMessage(), null, null, this::finish);
-            }
-        }
+        super.onCreate(savedInstanceState);
+        generalSetUp(R.layout.x_ray_menu_layout, R.id.calculate_button_xray);
     }
 
-    private void setUpCalculateButton() {
-        Button calculateButton = findViewById(R.id.calculate_button_xray);
-        calculateButton.setOnClickListener(view -> {
-            XRayData data = collectData();
-            Intent intent = new Intent(XRayMenuViewActivity.this, CalculatedTimeViewActivity.class);
-            intent.putExtra("input_data", data);
-            startActivity(intent);
-        });
-    }
-
-    private XRayData collectData() {
+    @Override
+    protected XRayData collectData() {
         try {
             int voltage = VoltageValuesEnum.valueFromString(((InputFieldWrapper) findViewById(R.id.inputXRayVoltage)).getInputValue());
             int current = CustomInputParsers.parseInputInt(((InputFieldWrapper) findViewById(R.id.inputXRayCurrent)).getInputValue());
