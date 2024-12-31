@@ -38,7 +38,6 @@ public class InputFieldSpinner extends androidx.appcompat.widget.AppCompatSpinne
         setAdapter(adapter);
     }
 
-
     public String getInputValue() {
         Object selectedItem = getSelectedItem();
         return selectedItem != null ? selectedItem.toString() : "";

@@ -2,7 +2,7 @@ package com.julian.lbniwkalkulator;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
-import static com.julian.lbniwkalkulator.calculations.CustomInputParsers.*;
+import static com.julian.lbniwkalkulator.util.CustomInputParsers.*;
 
 import com.julian.lbniwkalkulator.exceptions.InputNotSupportedException;
 

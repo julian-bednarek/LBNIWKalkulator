@@ -1,4 +1,4 @@
-package com.julian.lbniwkalkulator.calculations;
+package com.julian.lbniwkalkulator.util;
 
 import com.julian.lbniwkalkulator.exceptions.InputNotSupportedException;
 

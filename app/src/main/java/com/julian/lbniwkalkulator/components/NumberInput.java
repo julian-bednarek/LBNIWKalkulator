@@ -50,4 +50,8 @@ public class NumberInput extends LinearLayout {
     public String getInputValue() {
         return input.getText().toString();
     }
+
+    public EditText getInput() {
+        return input;
+    }
 }

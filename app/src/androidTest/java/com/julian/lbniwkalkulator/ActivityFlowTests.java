@@ -3,36 +3,32 @@ package com.julian.lbniwkalkulator;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.action.ViewActions.typeText;
-import static androidx.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static org.hamcrest.Matchers.anyOf;
-import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertNotNull;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
-
 import static com.julian.lbniwkalkulator.util.ErrorHandler.ERROR_BUTTON_TEXT;
-import static org.hamcrest.Matchers.allOf;
-
 
 import android.view.View;
 import android.widget.EditText;
 
 import androidx.test.core.app.ActivityScenario;
-import androidx.test.espresso.ViewInteraction;
+import androidx.test.espresso.UiController;
+import androidx.test.espresso.ViewAction;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.uiautomator.UiDevice;
 
+import com.julian.lbniwkalkulator.components.InputFieldWrapper;
+import com.julian.lbniwkalkulator.components.NumberInput;
 import com.julian.lbniwkalkulator.pages.StartViewActivity;
 import com.julian.lbniwkalkulator.pages.XRayMenuViewActivity;
 import com.julian.lbniwkalkulator.util.StringGetter;
 
+import org.hamcrest.Matcher;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -105,10 +101,9 @@ public class ActivityFlowTests {
                 .perform(click());
         /*
          * Check if we went back to original activity
-         *
+         */
         onView(withId(R.id.x_ray_menu_view))
                 .check(matches(isDisplayed()));
-        */
         scenario.close();
     }
     @Test
@@ -126,8 +121,23 @@ public class ActivityFlowTests {
                 };
         for (int component : components) {
             onView(withId(component))
-                    .perform(typeText("4"), closeSoftKeyboard())
-                    .check(matches(withText("4")));
+                    .perform(new ViewAction() {
+                        @Override
+                        public Matcher<View> getConstraints() {
+                            return isAssignableFrom(InputFieldWrapper.class);
+                        }
+
+                        @Override
+                        public String getDescription() {
+                            return "Typing text in wrapper edit text";
+                        }
+
+                        @Override
+                        public void perform(UiController uiController, View view) {
+                            EditText editText = ((InputFieldWrapper) view).getText_input().getInput();
+                            editText.setText("4");
+                        }
+                    }, closeSoftKeyboard());
         }
         /*Actual test*/
         onView(withId(R.id.calculate_button_xray)).perform(closeSoftKeyboard());

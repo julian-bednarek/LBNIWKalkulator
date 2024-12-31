@@ -1,5 +1,9 @@
 package com.julian.lbniwkalkulator.calculations.dataclasess;
 
+import android.os.Parcel;
+
+import androidx.annotation.NonNull;
+
 public class IsotopeData implements RadiationData {
 
     private final double activity;
@@ -25,11 +29,11 @@ public class IsotopeData implements RadiationData {
 
     public IsotopeData() {
         this.activity = 0;
-        this.isotopeType = null;
+        this.materialThickness = 0;
         this.distanceToDetector = 0;
+        this.isotopeType = null;
         this.filmType = 0;
         this.targetDensity = 0;
-        this.materialThickness = 0;
     }
 
     public double getActivity() {
@@ -55,4 +59,40 @@ public class IsotopeData implements RadiationData {
     public double getTargetDensity() {
         return targetDensity;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeDouble(activity);
+        dest.writeDouble(materialThickness);
+        dest.writeInt(distanceToDetector);
+        dest.writeString(isotopeType);
+        dest.writeInt(filmType);
+        dest.writeDouble(targetDensity);
+    }
+
+    protected IsotopeData(Parcel in) {
+        activity = in.readDouble();
+        materialThickness = in.readDouble();
+        distanceToDetector = in.readInt();
+        isotopeType = in.readString();
+        filmType = in.readInt();
+        targetDensity = in.readDouble();
+    }
+
+    public static final Creator<IsotopeData> CREATOR = new Creator<IsotopeData>() {
+        @Override
+        public IsotopeData createFromParcel(Parcel in) {
+            return new IsotopeData(in);
+        }
+
+        @Override
+        public IsotopeData[] newArray(int size) {
+            return new IsotopeData[size];
+        }
+    };
 }

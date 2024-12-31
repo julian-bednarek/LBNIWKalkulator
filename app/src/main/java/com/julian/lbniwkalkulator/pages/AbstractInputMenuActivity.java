@@ -5,6 +5,7 @@ import static com.julian.lbniwkalkulator.util.ErrorHandler.processException;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.InflateException;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -21,6 +22,7 @@ public abstract class AbstractInputMenuActivity extends AppCompatActivity {
     abstract protected RadiationData collectData();
 
     protected void setUpCalculateButton(int ID) {
+        Log.d("KURWA", Integer.toString(ID));
         Button calculateButton = findViewById(ID);
         calculateButton.setOnClickListener(view -> {
             RadiationData data = collectData();

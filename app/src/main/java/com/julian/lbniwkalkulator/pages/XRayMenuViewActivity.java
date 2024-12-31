@@ -1,22 +1,14 @@
 package com.julian.lbniwkalkulator.pages;
 
-import static com.julian.lbniwkalkulator.util.ErrorHandler.getActualCause;
-import static com.julian.lbniwkalkulator.util.ErrorHandler.processException;
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.InflateException;
-import android.widget.Button;
 
-import androidx.appcompat.app.AppCompatActivity;
 import com.julian.lbniwkalkulator.R;
-import com.julian.lbniwkalkulator.calculations.CustomInputParsers;
+import com.julian.lbniwkalkulator.util.CustomInputParsers;
 import com.julian.lbniwkalkulator.enums.FilmTypeEnum;
 import com.julian.lbniwkalkulator.calculations.dataclasess.XRayData;
 import com.julian.lbniwkalkulator.components.InputFieldWrapper;
 import com.julian.lbniwkalkulator.enums.VoltageValuesEnum;
 import com.julian.lbniwkalkulator.exceptions.InputNotSupportedException;
-import com.julian.lbniwkalkulator.exceptions.InvalidComponentException;
 
 public class XRayMenuViewActivity extends AbstractInputMenuActivity {
 

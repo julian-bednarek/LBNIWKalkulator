@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.julian.lbniwkalkulator.R;
 import com.julian.lbniwkalkulator.exceptions.InvalidComponentException;
 import com.julian.lbniwkalkulator.exceptions.MissingComponentParameterException;
+import com.julian.lbniwkalkulator.util.StringGetter;
 
 public class InputFieldWrapper extends LinearLayout {
 
@@ -98,5 +99,9 @@ public class InputFieldWrapper extends LinearLayout {
         } else {
             return text_input.getInputValue();
         }
+    }
+
+    public NumberInput getText_input() {
+        return text_input;
     }
 }

@@ -1,5 +1,7 @@
 package com.julian.lbniwkalkulator.calculations.dataclasess;
 
+import android.os.Parcel;
+
 import androidx.annotation.NonNull;
 
 public class XRayData implements RadiationData {
@@ -73,4 +75,40 @@ public class XRayData implements RadiationData {
     public double getTargetDensity() {
         return targetDensity;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeInt(voltage);
+        dest.writeInt(current);
+        dest.writeDouble(steelThickness);
+        dest.writeInt(filmType);
+        dest.writeDouble(sourceToDetectorDistance);
+        dest.writeDouble(targetDensity);
+    }
+
+    protected XRayData(Parcel in) {
+        voltage = in.readInt();
+        current = in.readInt();
+        steelThickness = in.readDouble();
+        filmType = in.readInt();
+        sourceToDetectorDistance = in.readDouble();
+        targetDensity = in.readDouble();
+    }
+
+    public static final Creator<XRayData> CREATOR = new Creator<XRayData>() {
+        @Override
+        public XRayData createFromParcel(Parcel in) {
+            return new XRayData(in);
+        }
+
+        @Override
+        public XRayData[] newArray(int size) {
+            return new XRayData[size];
+        }
+    };
 }

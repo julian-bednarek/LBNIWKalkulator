@@ -174,7 +174,7 @@ public class CalculatedTimeViewActivity extends AppCompatActivity {
     private RadiationData getDataFromIntent() throws RadiationDataNotFoundException {
         Intent intent = getIntent();
         if (intent == null) throw new RadiationDataNotFoundException("Something went wrong with radiation data");
-        RadiationData retval = (RadiationData) intent.getSerializableExtra(INPUT_DATA_INTENT);
+        RadiationData retval = (RadiationData) intent.getParcelableExtra(INPUT_DATA_INTENT, RadiationData.class);
         if (retval == null) throw new RadiationDataNotFoundException("Something went wrong with radiation data");
         return retval;
     }

@@ -1,10 +1,11 @@
 package com.julian.lbniwkalkulator.calculations.dataclasess;
 
+import android.os.Parcelable;
+
 import androidx.annotation.NonNull;
 
-import java.io.Serializable;
 
-public interface RadiationData extends Serializable{
+public interface RadiationData extends Parcelable {
     /**
      * Returns the type of radiation data.
      * E.g., "XRay" or "Isotope".

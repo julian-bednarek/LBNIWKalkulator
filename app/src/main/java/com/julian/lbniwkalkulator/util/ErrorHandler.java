@@ -8,11 +8,9 @@ import com.julian.lbniwkalkulator.R;
 public class ErrorHandler {
 
     public static Throwable getActualCause(Exception exception) {
-        Throwable cause = exception;
-        Throwable actualCause = exception.getCause();
-        while (cause.getCause() != null) {
-            actualCause = cause;
-            cause = cause.getCause();
+        Throwable actualCause = exception;
+        while (actualCause.getCause() != null) {
+            actualCause = actualCause.getCause();
         }
         return actualCause;
     }
