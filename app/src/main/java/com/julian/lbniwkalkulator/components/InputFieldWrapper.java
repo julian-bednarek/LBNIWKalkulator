@@ -1,11 +1,8 @@
 package com.julian.lbniwkalkulator.components;
 
-import static androidx.core.content.ContextCompat.getSystemService;
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -17,7 +14,6 @@ import android.widget.TextView;
 import com.julian.lbniwkalkulator.R;
 import com.julian.lbniwkalkulator.exceptions.InvalidComponentException;
 import com.julian.lbniwkalkulator.exceptions.MissingComponentParameterException;
-import com.julian.lbniwkalkulator.util.StringGetter;
 
 public class InputFieldWrapper extends LinearLayout {
 
@@ -38,7 +34,7 @@ public class InputFieldWrapper extends LinearLayout {
         setOnClickListener(v -> {
 
             if (spinner.getVisibility() == View.VISIBLE) {
-                editText.clearFocus();;
+                editText.clearFocus();
                 spinner.performClick();
             } else {
                 editText.requestFocus();

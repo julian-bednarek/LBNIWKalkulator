@@ -27,8 +27,7 @@ public class StartViewActivity extends AppCompatActivity {
             StringGetter.setAppContext(this);
         } catch (InflateException e) {
             Throwable actualCause = getActualCause(e);
-            if (actualCause instanceof InvalidComponentException) {
-                InvalidComponentException ex = (InvalidComponentException) actualCause;
+            if (actualCause instanceof InvalidComponentException ex) {
                 processException(this, ex.getMessage(), null, null, this::finish);
             }
         }
