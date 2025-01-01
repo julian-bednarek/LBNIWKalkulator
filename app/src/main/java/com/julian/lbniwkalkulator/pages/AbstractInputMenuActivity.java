@@ -1,7 +1,10 @@
 package com.julian.lbniwkalkulator.pages;
 
+import static androidx.core.content.ContextCompat.getSystemService;
 import static com.julian.lbniwkalkulator.util.ErrorHandler.getActualCause;
 import static com.julian.lbniwkalkulator.util.ErrorHandler.processException;
+
+import static java.security.AccessController.getContext;
 
 import android.content.Context;
 import android.content.Intent;
@@ -29,6 +32,17 @@ public abstract class AbstractInputMenuActivity extends AppCompatActivity {
             Intent intent = new Intent(AbstractInputMenuActivity.this, CalculatedTimeViewActivity.class);
             intent.putExtra("input_data", data);
             startActivity(intent);
+        });
+        setUpHideKeyboard();
+    }
+
+    protected void setUpHideKeyboard() {
+        findViewById(android.R.id.content).setOnClickListener(view -> {
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            if (inputMethodManager != null) {
+                inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            }
+            view.setSoundEffectsEnabled(false);
         });
     }
 

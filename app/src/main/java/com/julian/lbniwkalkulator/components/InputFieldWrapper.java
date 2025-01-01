@@ -32,7 +32,6 @@ public class InputFieldWrapper extends LinearLayout {
         setStateListeners(context);
     }
 
-    //TODO: FIX PRIORITY HIGH
     private void setStateListeners(Context context) {
         EditText editText = findViewById(R.id.actual_input);
         Spinner spinner = findViewById(R.id.input_spinner);
@@ -45,14 +44,6 @@ public class InputFieldWrapper extends LinearLayout {
                 editText.requestFocus();
                 InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
                 inputMethodManager.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT);
-            }
-        });
-        setOnFocusChangeListener((view, hasFocus) -> {
-            if (!hasFocus) {
-                InputMethodManager inputMethodManager = getSystemService(getContext(), InputMethodManager.class);
-                if (inputMethodManager != null) {
-                    inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
-                }
             }
         });
     }
