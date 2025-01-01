@@ -10,6 +10,7 @@ public class StringGetter {
     }
 
     public static String fromStringsXML(int stringID) {
+        if(appContext == null) throw new NullPointerException("You didn't initialized appContext you moron");
         return appContext.getString(stringID);
     }
 }

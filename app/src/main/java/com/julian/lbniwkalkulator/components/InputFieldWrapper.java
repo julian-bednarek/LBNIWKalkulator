@@ -39,17 +39,17 @@ public class InputFieldWrapper extends LinearLayout {
         setOnClickListener(v -> {
             Log.d("KURWA", Integer.toString(getFocusable()));
 
-            if (spinner != null && spinner.getVisibility() == View.VISIBLE) {
+            if (spinner.getVisibility() == View.VISIBLE) {
                 editText.clearFocus();;
                 spinner.performClick();
-            } else if (editText != null) {
+            } else {
                 editText.requestFocus();
                 InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
                 inputMethodManager.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT);
             }
         });
-        editText.setOnFocusChangeListener((view, hasFocus) -> {
-            if (hasFocus) {
+        setOnFocusChangeListener((view, hasFocus) -> {
+            if (!hasFocus) {
                 InputMethodManager inputMethodManager = getSystemService(getContext(), InputMethodManager.class);
                 if (inputMethodManager != null) {
                     inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);

@@ -3,6 +3,8 @@ package com.julian.lbniwkalkulator.util;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.os.SystemClock;
+import android.system.SystemCleaner;
 
 import androidx.core.app.NotificationCompat;
 
@@ -24,20 +26,31 @@ public class AppNotificationHandler {
         NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, CHANNEL_NAME, CHANNEL_IMPORTANCE);
         notificationChannel.setDescription(CHANNEL_DESCRIPTION);
         notificationChannel.setLockscreenVisibility(NotificationCompat.VISIBILITY_PUBLIC);
-        this.builder = new NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID)
-                .setSmallIcon(R.drawable.lbniw_ai)
-                .setContentTitle("Time left")
-                .setPriority(NotificationCompat.PRIORITY_MAX)
-                .setCategory(NotificationCompat.CATEGORY_ALARM)
-                .setChronometerCountDown(true)
-                .setUsesChronometer(true)
-                .setShowWhen(true)
-                .setWhen(System.currentTimeMillis() + exposureTime.toMilliseconds())
-                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                .setOngoing(true);
+        long timeRemaining = exposureTime.toMilliseconds();
+        this.builder = new NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID);
+        setUpBuilder(context, timeRemaining);
         this.notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         if (notificationManager == null) throw new NotificationManagerInitializationFailedException("Something went wrong during setting up notifications");
         this.notificationManager.createNotificationChannel(notificationChannel);
+    }
+
+    private void setUpBuilder(Context context, long timeRemaining) {
+        this.builder.setSmallIcon(R.drawable.lbniw_ai)
+                    .setContentTitle("Time left")
+                    .setPriority(NotificationCompat.PRIORITY_MAX)
+                    .setCategory(NotificationCompat.CATEGORY_ALARM)
+                    .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                    .setOngoing(timeRemaining != 0);
+
+        if (timeRemaining > 0) {
+            builder.setUsesChronometer(true)
+                    .setChronometerCountDown(true)
+                    .setShowWhen(true)
+                    .setWhen(SystemClock.elapsedRealtime() + timeRemaining);
+        } else {
+            builder.setUsesChronometer(false)
+                    .setShowWhen(false);
+        }
     }
 
     public void cancelNotification() {

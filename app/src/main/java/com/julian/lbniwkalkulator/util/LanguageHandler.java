@@ -25,9 +25,8 @@ public class LanguageHandler {
         configuration.setLocale(locale);
         configuration.setLocales(new android.os.LocaleList(locale));
         Context updatedContext = context.createConfigurationContext(configuration);
-        if (context instanceof Activity && !languageCode.equalsIgnoreCase(currentLanguage)) {
+        if (context instanceof Activity activity && !languageCode.equalsIgnoreCase(currentLanguage)) {
             currentLanguage = languageCode;
-            Activity activity = (Activity) context;
             // TODO: Replace it with non-deprecated method
             activity
                     .getBaseContext()

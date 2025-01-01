@@ -31,7 +31,8 @@ public class XRayExposureTimeCalculator implements CalculationScheme {
                 (power * Math.pow(sourceToDetectorDistance, 2)));
         ExposureTime retval = new ExposureTime(
                 exposureTimeInSeconds / SECONDS_IN_MINUTE,
-                exposureTimeInSeconds % SECONDS_IN_MINUTE);
+                exposureTimeInSeconds % SECONDS_IN_MINUTE,
+                0);
         if(retval.getMinutes() > 99) throw new ExposureTimeTooLongException(
                 StringGetter.fromStringsXML(R.string.exception_too_long_exposure_time), retval);
         return retval;

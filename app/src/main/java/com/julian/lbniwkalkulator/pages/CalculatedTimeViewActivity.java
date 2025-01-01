@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.InflateException;
 import android.widget.Button;
 import android.widget.Toast;
@@ -33,7 +34,7 @@ import com.julian.lbniwkalkulator.util.AudioHandler;
 public class CalculatedTimeViewActivity extends AppCompatActivity {
     private static final String INPUT_DATA_INTENT = "input_data";
     private static final int SOUND_TIME_MILLISECONDS = 10_000;
-    private static final int TIMER_TICK_MILLISECONDS = 1_000;
+    private static final int TIMER_TICK_MILLISECONDS = 100;
     private static final int POST_NOTIFICATION_PERMISSION_REQUEST_CODE = 1;
 
     private boolean sendNotifications = false;
@@ -68,6 +69,8 @@ public class CalculatedTimeViewActivity extends AppCompatActivity {
                     this,
                     new String[]{Manifest.permission.POST_NOTIFICATIONS},
                     POST_NOTIFICATION_PERMISSION_REQUEST_CODE);
+        } else {
+            sendNotifications = true;
         }
     }
 
@@ -94,6 +97,7 @@ public class CalculatedTimeViewActivity extends AppCompatActivity {
     public void onDestroy() {
         super.onDestroy();
         notificationHandler.cancelNotification();
+        audioHandler.stop();
     }
 
 
@@ -124,21 +128,27 @@ public class CalculatedTimeViewActivity extends AppCompatActivity {
         Button countDownButton = findViewById(R.id.count_down_button);
         timeRemaining = exposureTime.toMilliseconds();
         countDownButton.setText(exposureTime.toString());
-
         countDownButton.setOnClickListener(view -> {
             if (isCounting) {
                 stopCountdown();
             } else {
                 startCountdown(countDownButton);
-                notificationHandler.updateTimeRemaining(timeRemaining);
-                notificationHandler.sendNotification();
             }
         });
+    }
+
+    private void sendNotificationsConditionally() {
+        if(sendNotifications) {
+            notificationHandler.updateTimeRemaining(timeRemaining);
+            notificationHandler.sendNotification();
+        }
     }
 
     private void startCountdown(Button countDownButton) {
         isCounting = true;
         final boolean[] soundMade = {false};
+        if(timeRemaining == 0) return;
+        sendNotificationsConditionally();
         countDownTimer = new CountDownTimer(timeRemaining, TIMER_TICK_MILLISECONDS) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -147,7 +157,11 @@ public class CalculatedTimeViewActivity extends AppCompatActivity {
                     soundMade[0] = true;
                     audioHandler.play(R.raw.warning_music);
                 }
-                countDownButton.setText(ExposureTime.fromMilliseconds(timeRemaining).toString());
+                try {
+                    countDownButton.setText(ExposureTime.fromMilliseconds(timeRemaining).toString());
+                } catch (InputNotSupportedException e) {
+                    throw new RuntimeException("Something very bad happened in count down timer", e);
+                }
             }
 
             @Override
@@ -167,6 +181,7 @@ public class CalculatedTimeViewActivity extends AppCompatActivity {
             countDownTimer.cancel();
         }
         notificationHandler.cancelNotification();
+        audioHandler.stop();
     }
 
 
@@ -174,7 +189,7 @@ public class CalculatedTimeViewActivity extends AppCompatActivity {
     private RadiationData getDataFromIntent() throws RadiationDataNotFoundException {
         Intent intent = getIntent();
         if (intent == null) throw new RadiationDataNotFoundException("Something went wrong with radiation data");
-        RadiationData retval = (RadiationData) intent.getParcelableExtra(INPUT_DATA_INTENT, RadiationData.class);
+        RadiationData retval = intent.getParcelableExtra(INPUT_DATA_INTENT, RadiationData.class);
         if (retval == null) throw new RadiationDataNotFoundException("Something went wrong with radiation data");
         return retval;
     }
