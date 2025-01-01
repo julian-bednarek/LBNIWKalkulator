@@ -37,7 +37,6 @@ public class InputFieldWrapper extends LinearLayout {
         EditText editText = findViewById(R.id.actual_input);
         Spinner spinner = findViewById(R.id.input_spinner);
         setOnClickListener(v -> {
-            Log.d("KURWA", Integer.toString(getFocusable()));
 
             if (spinner.getVisibility() == View.VISIBLE) {
                 editText.clearFocus();;

@@ -63,6 +63,12 @@ public class CalculatedTimeViewActivity extends AppCompatActivity {
         handlePermissions();
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        cancelSoundAndNotification();
+    }
+
     private void handlePermissions() {
         if(ContextCompat.checkSelfPermission(this, POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(
@@ -92,15 +98,6 @@ public class CalculatedTimeViewActivity extends AppCompatActivity {
         }
     }
 
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        notificationHandler.cancelNotification();
-        audioHandler.stop();
-    }
-
-
     private void setExposureTime() {
         this.exposureTime = new ExposureTime();
         try {
@@ -124,7 +121,6 @@ public class CalculatedTimeViewActivity extends AppCompatActivity {
     }
 
     private void setUpButton() {
-        // TODO: Fix timing issues
         Button countDownButton = findViewById(R.id.count_down_button);
         timeRemaining = exposureTime.toMilliseconds();
         countDownButton.setText(exposureTime.toString());
@@ -146,9 +142,13 @@ public class CalculatedTimeViewActivity extends AppCompatActivity {
 
     private void startCountdown(Button countDownButton) {
         isCounting = true;
-        final boolean[] soundMade = {false};
         if(timeRemaining == 0) return;
         sendNotificationsConditionally();
+        setUpCountDownTimer(countDownButton);
+    }
+
+    private void setUpCountDownTimer(Button countDownButton) {
+        final boolean[] soundMade = {false};
         countDownTimer = new CountDownTimer(timeRemaining, TIMER_TICK_MILLISECONDS) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -160,19 +160,21 @@ public class CalculatedTimeViewActivity extends AppCompatActivity {
                 try {
                     countDownButton.setText(ExposureTime.fromMilliseconds(timeRemaining).toString());
                 } catch (InputNotSupportedException e) {
-                    throw new RuntimeException("Something very bad happened in count down timer", e);
+                    throw new RuntimeException("Something really bad happened in count down timer", e);
                 }
             }
-
             @Override
             public void onFinish() {
                 isCounting = false;
-                audioHandler.stop();
                 countDownButton.setText(new ExposureTime().toString());
-                notificationHandler.cancelNotification();
+                cancelSoundAndNotification();
             }
-        };
-        countDownTimer.start();
+        }.start();
+    }
+
+    private void cancelSoundAndNotification() {
+        notificationHandler.cancelNotification();
+        audioHandler.stop();
     }
 
     private void stopCountdown() {
@@ -180,8 +182,7 @@ public class CalculatedTimeViewActivity extends AppCompatActivity {
         if (countDownTimer != null) {
             countDownTimer.cancel();
         }
-        notificationHandler.cancelNotification();
-        audioHandler.stop();
+        cancelSoundAndNotification();
     }
 
 
