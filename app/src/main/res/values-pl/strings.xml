@@ -27,5 +27,8 @@
     <string name="exception_invalid_radiation_data_type_additional">Nieprawidłowy typ danych promieniowania to: </string>
     <string name="exception_couldnot_start_language_selector_title">Nie udało się otworzyć systemowego wyboru języka aplikacji</string>
     <string name="exception_coundnot_start_language_selector_message">Spróbuj zmienić język za pomocą aplikacji ustawień</string>
-
+    <string name="exception_missing_component_parameter_exception_message">Brakuje niektórego z wymaganych parametrów komponentu. Proszę ponownie zainstalować aplikację. Jeśli problem będzie się powtarzał, prosimy o kontakt z dostawcą oprogramowania.</string>
+    <string name="exception_missing_component_parameter_exception_additional">Brakuje następującego parametru:</string>
+    <string name="exception_invalid_component_parameter_exception_message">Jeden z parametrów komponentu jest niewłaściwy. Proszę ponownie zainstalować aplikację. Jeśli problem będzie się powtarzał, prosimy o kontakt z dostawcą oprogramowania.</string>
+    <string name="exception_invalid_component_parameter_exception_additional">Błędny jest następujący parametr:</string>
 </resources>

@@ -28,4 +28,8 @@
     <string name="exception_invalid_radiation_data_type_additional">Invalid radiation data type is: </string>
     <string name="exception_couldnot_start_language_selector_title">Could not open system\'s app language selection</string>
     <string name="exception_coundnot_start_language_selector_message">Try to change language using settings app</string>
+    <string name="exception_missing_component_parameter_exception_message">Some mandatory parameter of component is missing. Please reinstall the app. If the issue persists please contact software provider</string>
+    <string name="exception_missing_component_parameter_exception_additional">The missing parameter is:</string>
+    <string name="exception_invalid_component_parameter_exception_message">One of the component parameters is invalid. Please reinstall the app. If the issue persists, please contact the software provider.</string>
+    <string name="exception_invalid_component_parameter_exception_additional">The following parameter is invalid:</string>
 </resources>

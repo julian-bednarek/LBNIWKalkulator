@@ -4,8 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.fail;
 
-import android.os.Parcelable;
-
 import com.julian.lbniwkalkulator.calculations.dataclasess.ExposureTime;
 import com.julian.lbniwkalkulator.exceptions.InputNotSupportedException;
 
@@ -25,40 +23,43 @@ public class ExposureTimeClassTests {
             long timeInMsForValue4 = 216_115;
             ExposureTime testValue4 = ExposureTime.fromMilliseconds(timeInMsForValue4);
             assertEquals("03:36.11", testValue4.toString());
-        } catch (Exception ignored) {}
+        } catch (Exception e) {
+            fail("Exception should not be thrown: " + e.getMessage());
+        }
         assertThrows(InputNotSupportedException.class, () -> ExposureTime.fromMilliseconds(-1_000));
 
     }
     @Test
     public void testToMilliseconds() {
         try {
-            ExposureTime testValue1 = new ExposureTime(5, 3, 99);
+            ExposureTime testValue1 = ExposureTime.fromMilliseconds(303_990);
             assertEquals(303_990, testValue1.toMilliseconds());
-            ExposureTime testValue2 = new ExposureTime(0, 0, 0);
+
+            ExposureTime testValue2 = ExposureTime.fromMilliseconds(0);
             assertEquals(0, testValue2.toMilliseconds());
-            ExposureTime testValue3 = new ExposureTime(0, 0, 1);
+
+            ExposureTime testValue3 = ExposureTime.fromMilliseconds(10);
             assertEquals(10, testValue3.toMilliseconds());
-            ExposureTime testValue4 = new ExposureTime(0, 45, 0);
+
+            ExposureTime testValue4 = ExposureTime.fromMilliseconds(45_000);
             assertEquals(45_000, testValue4.toMilliseconds());
-            ExposureTime testValue5 = new ExposureTime(3, 0, 0);
+
+            ExposureTime testValue5 = ExposureTime.fromMilliseconds(180_000);
             assertEquals(180_000, testValue5.toMilliseconds());
-            ExposureTime testValue6 = new ExposureTime(2, 15, 25);
+
+            ExposureTime testValue6 = ExposureTime.fromMilliseconds(135_250);
             assertEquals(135_250, testValue6.toMilliseconds());
-            ExposureTime testValue7 = new ExposureTime(99, 59, 99);
+
+            ExposureTime testValue7 = ExposureTime.fromMilliseconds(5_999_990);
             assertEquals(5_999_990, testValue7.toMilliseconds());
-        } catch (Exception ignored) {}
+        } catch (InputNotSupportedException e) {
+            fail("Exception should not be thrown: " + e.getMessage());
+        }
     }
     @Test
     public void testConstructor() {
-        assertThrows(InputNotSupportedException.class, () -> {new ExposureTime(60, 0, 0);});
-        assertThrows(InputNotSupportedException.class, () -> {new ExposureTime(0, 60, 0);});
-        assertThrows(InputNotSupportedException.class, () -> {new ExposureTime(0, 0, 100);});
-        assertThrows(InputNotSupportedException.class, () -> {new ExposureTime(-1, 0, 0);});
-        assertThrows(InputNotSupportedException.class, () -> {new ExposureTime(0, -1, 0);});
-        assertThrows(InputNotSupportedException.class, () -> {new ExposureTime(0, 0, -1);});
-        try {
-            new ExposureTime(1, 2, 3);
-        } catch (InputNotSupportedException ignored) {fail();}
+        assertThrows(InputNotSupportedException.class, () -> ExposureTime.fromMilliseconds(-1_000));
+        assertThrows(InputNotSupportedException.class, () -> ExposureTime.fromMilliseconds(Long.MIN_VALUE));
     }
 
 }

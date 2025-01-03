@@ -7,6 +7,7 @@ import com.julian.lbniwkalkulator.R;
 import com.julian.lbniwkalkulator.enums.InputEnumTypes;
 import com.julian.lbniwkalkulator.exceptions.InvalidComponentParameterException;
 import com.julian.lbniwkalkulator.exceptions.MissingComponentParameterException;
+import com.julian.lbniwkalkulator.util.StringGetter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,9 +21,13 @@ public class InputFieldSpinner extends androidx.appcompat.widget.AppCompatSpinne
     }
 
     public void setEnum(String enumType) throws MissingComponentParameterException, InvalidComponentParameterException {
-        if(enumType == null) throw new MissingComponentParameterException("Enum type is missing", "enum_type");
+        if(enumType == null) throw new MissingComponentParameterException(
+                StringGetter.fromStringsXML(R.string.exception_missing_component_parameter_exception_message),
+                "enum_type");
         boolean validEnum = Arrays.stream(InputEnumTypes.values()).anyMatch(e -> e.name().equals(enumType.toUpperCase()));
-        if(!validEnum) throw new InvalidComponentParameterException("Invalid enum type", enumType);
+        if(!validEnum) throw new InvalidComponentParameterException(
+                StringGetter.fromStringsXML(R.string.exception_invalid_component_parameter_exception_message),
+                enumType);
         InputEnumTypes eType = InputEnumTypes.valueOf(enumType.toUpperCase());
         fillData(eType.getEnumClass());
     }

@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.julian.lbniwkalkulator.R;
 import com.julian.lbniwkalkulator.exceptions.InvalidComponentException;
 import com.julian.lbniwkalkulator.exceptions.MissingComponentParameterException;
+import com.julian.lbniwkalkulator.util.StringGetter;
 
 public class InputFieldWrapper extends LinearLayout {
 
@@ -50,12 +51,14 @@ public class InputFieldWrapper extends LinearLayout {
     }
 
     private void setUpLabel(String fieldLabel) throws MissingComponentParameterException {
-        if(fieldLabel == null) throw new MissingComponentParameterException("There is a missing parameter input field component", "labelText");
+        if(fieldLabel == null) throw new MissingComponentParameterException(StringGetter.
+                fromStringsXML(R.string.exception_missing_component_parameter_exception_message), "labelText");
         label.setText(fieldLabel);
     }
 
     private void setUpPlaceholder(String placeholder) throws MissingComponentParameterException {
-        if(placeholder == null) throw new MissingComponentParameterException("There is a missing placeholder in some input field/fields", "hint");
+        if(placeholder == null) throw new MissingComponentParameterException(StringGetter.
+                fromStringsXML(R.string.exception_missing_component_parameter_exception_message), "hint");
         text_input.setPlaceholder(placeholder);
     }
 

@@ -8,8 +8,13 @@ import android.view.InflateException;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.julian.lbniwkalkulator.R;
 import com.julian.lbniwkalkulator.calculations.dataclasess.RadiationData;
 import com.julian.lbniwkalkulator.exceptions.InvalidComponentException;
+import com.julian.lbniwkalkulator.exceptions.InvalidComponentParameterException;
+import com.julian.lbniwkalkulator.exceptions.MissingComponentParameterException;
+import com.julian.lbniwkalkulator.util.StringGetter;
 
 public abstract class AbstractInputMenuActivity extends AppCompatActivity {
 
@@ -41,9 +46,21 @@ public abstract class AbstractInputMenuActivity extends AppCompatActivity {
             setContentView(layoutID);
         } catch (InflateException e) {
             Throwable actualCause = getActualCause(e);
-            if (actualCause instanceof InvalidComponentException ex) {
-                processException(this, ex.getMessage(), null, null, this::finish);
+            String message = e.getMessage();
+            Integer additionalMessageId = null;
+            String additionalMessage = null;
+            if (actualCause instanceof MissingComponentParameterException ex) {
+                message = ex.getMessage();
+                additionalMessageId = R.string.exception_missing_component_parameter_exception_additional;
+                additionalMessage = ex.getMissingParameter();
+            } else if (actualCause instanceof InvalidComponentParameterException ex) {
+                message = ex.getMessage();
+                additionalMessageId = R.string.exception_invalid_component_parameter_exception_additional;
+                additionalMessage = ex.getInvalidParameter();
+            } else if (actualCause instanceof InvalidComponentException ex) {
+                message = ex.getMessage();
             }
+            processException(this, message, additionalMessageId, additionalMessage, this::finish);
         }
         setUpCalculateButton(buttonID);
     }

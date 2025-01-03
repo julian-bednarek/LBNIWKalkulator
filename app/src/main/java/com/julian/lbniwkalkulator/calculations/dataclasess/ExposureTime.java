@@ -11,18 +11,9 @@ public class ExposureTime {
     private final int seconds;
     private final int hundredthsOfSecond;
 
-    public ExposureTime(int minutes, int seconds, int hundredthsOfSecond) throws InputNotSupportedException {
-        if(minutes < 0 || minutes > 59) {
-            throw new InputNotSupportedException("Placeholder", minutes);
-        }
+    private ExposureTime(int minutes, int seconds, int hundredthsOfSecond) {
         this.minutes = minutes;
-        if(seconds < 0 || seconds > 59) {
-            throw new InputNotSupportedException("Placeholder", seconds);
-        }
         this.seconds = seconds;
-        if(hundredthsOfSecond < 0 || hundredthsOfSecond > 99) {
-            throw new InputNotSupportedException("Placeholder", hundredthsOfSecond);
-        }
         this.hundredthsOfSecond = hundredthsOfSecond;
     }
 
@@ -33,6 +24,7 @@ public class ExposureTime {
     }
 
     public static ExposureTime fromMilliseconds(long timeInMS) throws InputNotSupportedException {
+        if(timeInMS < 0) throw new InputNotSupportedException("Dupa");
         return new ExposureTime((int) (timeInMS / 60_000),
                 (int) ((timeInMS / 1000) % 60),
                 (int) (timeInMS % 1_000) / 10);
