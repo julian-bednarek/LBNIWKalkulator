@@ -2,6 +2,7 @@ package com.julian.lbniwkalkulator;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.fail;
 
 import android.os.Parcelable;
 
@@ -46,6 +47,18 @@ public class ExposureTimeClassTests {
             ExposureTime testValue7 = new ExposureTime(99, 59, 99);
             assertEquals(5_999_990, testValue7.toMilliseconds());
         } catch (Exception ignored) {}
+    }
+    @Test
+    public void testConstructor() {
+        assertThrows(InputNotSupportedException.class, () -> {new ExposureTime(60, 0, 0);});
+        assertThrows(InputNotSupportedException.class, () -> {new ExposureTime(0, 60, 0);});
+        assertThrows(InputNotSupportedException.class, () -> {new ExposureTime(0, 0, 100);});
+        assertThrows(InputNotSupportedException.class, () -> {new ExposureTime(-1, 0, 0);});
+        assertThrows(InputNotSupportedException.class, () -> {new ExposureTime(0, -1, 0);});
+        assertThrows(InputNotSupportedException.class, () -> {new ExposureTime(0, 0, -1);});
+        try {
+            new ExposureTime(1, 2, 3);
+        } catch (InputNotSupportedException ignored) {fail();}
     }
 
 }

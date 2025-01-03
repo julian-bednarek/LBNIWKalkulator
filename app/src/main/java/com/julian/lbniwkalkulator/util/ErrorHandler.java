@@ -20,7 +20,7 @@ public class ErrorHandler {
                                         Integer additionalMessageID,
                                         Object additionalData,
                                         Runnable dismissAction) {
-        String additionalMessage = additionalMessageID != null
+        String additionalMessage = additionalMessageID != null && additionalData != null
                 ? StringGetter.fromStringsXML(additionalMessageID)
                 : "";
         String fullMessage = additionalData != null

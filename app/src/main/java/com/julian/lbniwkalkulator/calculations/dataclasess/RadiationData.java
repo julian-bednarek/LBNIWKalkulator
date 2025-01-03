@@ -18,4 +18,9 @@ public interface RadiationData extends Parcelable {
     @NonNull
     @Override
     String toString();
+    
+    @Override
+    default int describeContents() {
+        return 0;
+    }
 }

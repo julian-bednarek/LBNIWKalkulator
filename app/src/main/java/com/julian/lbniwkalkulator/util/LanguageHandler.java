@@ -28,6 +28,7 @@ public class LanguageHandler {
         if (context instanceof Activity activity) {
             currentLanguage = languageCode;
             // TODO: Replace it with non-deprecated method
+            // TODO: Add saving language to some dataset
             activity
                     .getBaseContext()
                     .getResources()

@@ -15,6 +15,8 @@ import static com.julian.lbniwkalkulator.util.ErrorHandler.getActualCause;
 import static com.julian.lbniwkalkulator.util.ErrorHandler.processException;
 import static com.julian.lbniwkalkulator.util.LanguageHandler.*;
 
+import java.util.Locale;
+
 public class StartViewActivity extends AppCompatActivity {
 
 
@@ -50,7 +52,12 @@ public class StartViewActivity extends AppCompatActivity {
 
     private void setUpLanguageSelector() {
         RadioGroup languageSelector = findViewById(R.id.language_selector);
-        languageSelector.check(R.id.lang_english);
+        Locale currentLanguage = Locale.getDefault();
+        if (currentLanguage.getLanguage().equals("en")) {
+            languageSelector.check(R.id.lang_english);
+        } else if (currentLanguage.getLanguage().equals("pl")) {
+            languageSelector.check(R.id.lang_polish);
+        }
         languageSelector.setOnCheckedChangeListener((radioGroup, checkedID) -> {
             if(checkedID == R.id.lang_english) {
                 setLanguage(StartViewActivity.this, ENGLISH_LANG_CODE);

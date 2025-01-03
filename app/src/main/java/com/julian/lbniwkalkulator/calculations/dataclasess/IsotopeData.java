@@ -61,11 +61,6 @@ public class IsotopeData implements RadiationData {
     }
 
     @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
     public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeDouble(activity);
         dest.writeDouble(materialThickness);
