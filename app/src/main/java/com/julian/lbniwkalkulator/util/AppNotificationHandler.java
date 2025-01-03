@@ -4,7 +4,6 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.os.SystemClock;
-import android.system.SystemCleaner;
 
 import androidx.core.app.NotificationCompat;
 
@@ -28,13 +27,13 @@ public class AppNotificationHandler {
         notificationChannel.setLockscreenVisibility(NotificationCompat.VISIBILITY_PUBLIC);
         long timeRemaining = exposureTime.toMilliseconds();
         this.builder = new NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID);
-        setUpBuilder(context, timeRemaining);
+        setUpBuilder(timeRemaining);
         this.notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         if (notificationManager == null) throw new NotificationManagerInitializationFailedException("Something went wrong during setting up notifications");
         this.notificationManager.createNotificationChannel(notificationChannel);
     }
 
-    private void setUpBuilder(Context context, long timeRemaining) {
+    private void setUpBuilder(long timeRemaining) {
         this.builder.setSmallIcon(R.drawable.lbniw_ai)
                     .setContentTitle("Time left")
                     .setPriority(NotificationCompat.PRIORITY_MAX)

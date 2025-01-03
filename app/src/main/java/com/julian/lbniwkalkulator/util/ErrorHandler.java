@@ -26,7 +26,6 @@ public class ErrorHandler {
         String fullMessage = additionalData != null
                 ? String.format("%s %s %s", message, additionalMessage, additionalData)
                 : message;
-        Log.e("DATA ERROR", fullMessage);
         showErrorDialog(context, StringGetter.fromStringsXML(R.string.error), fullMessage, dismissAction);
     }
 

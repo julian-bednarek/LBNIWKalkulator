@@ -7,8 +7,8 @@
 
     <item>
         <bitmap
-            android:gravity="fill"
-            android:src="@drawable/uk" />
+            android:gravity="center"
+            android:src="@drawable/flag" />
     </item>
 
     <item>

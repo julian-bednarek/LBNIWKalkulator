@@ -26,4 +26,6 @@
     <string name="exception_input_not_supported">Your input data is invalid or would lead to division by 0. Hence total exposure time is set to 0</string>
     <string name="exception_invalid_radiation_data_type">Type of radiation data is not supported in this app.</string>
     <string name="exception_invalid_radiation_data_type_additional">Invalid radiation data type is: </string>
+    <string name="exception_couldnot_start_language_selector_title">Could not open system\'s app language selection</string>
+    <string name="exception_coundnot_start_language_selector_message">Try to change language using settings app</string>
 </resources>

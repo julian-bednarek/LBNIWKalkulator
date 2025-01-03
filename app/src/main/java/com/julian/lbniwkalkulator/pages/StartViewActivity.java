@@ -1,10 +1,11 @@
 package com.julian.lbniwkalkulator.pages;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.InflateException;
 import android.widget.Button;
-import android.widget.RadioGroup;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.julian.lbniwkalkulator.R;
@@ -13,13 +14,9 @@ import com.julian.lbniwkalkulator.util.StringGetter;
 
 import static com.julian.lbniwkalkulator.util.ErrorHandler.getActualCause;
 import static com.julian.lbniwkalkulator.util.ErrorHandler.processException;
-import static com.julian.lbniwkalkulator.util.LanguageHandler.*;
-
-import java.util.Locale;
+import static com.julian.lbniwkalkulator.util.ErrorHandler.showErrorDialog;
 
 public class StartViewActivity extends AppCompatActivity {
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -51,18 +48,17 @@ public class StartViewActivity extends AppCompatActivity {
     }
 
     private void setUpLanguageSelector() {
-        RadioGroup languageSelector = findViewById(R.id.language_selector);
-        Locale currentLanguage = Locale.getDefault();
-        if (currentLanguage.getLanguage().equals("en")) {
-            languageSelector.check(R.id.lang_english);
-        } else if (currentLanguage.getLanguage().equals("pl")) {
-            languageSelector.check(R.id.lang_polish);
-        }
-        languageSelector.setOnCheckedChangeListener((radioGroup, checkedID) -> {
-            if(checkedID == R.id.lang_english) {
-                setLanguage(StartViewActivity.this, ENGLISH_LANG_CODE);
-            } else if (checkedID == R.id.lang_polish) {
-                setLanguage(StartViewActivity.this, POLISH_LANG_CODE);
+        Button languageButton = findViewById(R.id.language_button);
+        languageButton.setOnClickListener(view -> {
+            try {
+                Intent intent = new Intent(Settings.ACTION_APP_LOCALE_SETTINGS);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            } catch (ActivityNotFoundException e) {
+                        showErrorDialog(StartViewActivity.this,
+                                StringGetter.fromStringsXML(R.string.exception_couldnot_start_language_selector_title),
+                                StringGetter.fromStringsXML(R.string.exception_coundnot_start_language_selector_message),
+                                null);
             }
         });
     }

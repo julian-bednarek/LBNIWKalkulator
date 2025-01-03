@@ -1,5 +1,6 @@
 [versions]
 agp = "8.5.0"
+datastorePreferences = "1.1.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
@@ -12,8 +13,11 @@ mockitoInline = "4.8.0"
 robotiumSolo = "5.6.3"
 testng = "6.9.6"
 uiautomator = "2.3.0"
+datastoreRxjava3 = "1.1.1"
+datastorePreferencesRxjava3 = "1.1.1"
 
 [libraries]
+datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
 espresso-contrib = { module = "androidx.test.espresso:espresso-contrib", version.ref = "espressoCore" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
@@ -27,6 +31,8 @@ mockito-inline = { module = "org.mockito:mockito-inline", version.ref = "mockito
 robotium-solo = { module = "com.robotium:robotium-solo", version.ref = "robotiumSolo" }
 testng = { group = "org.testng", name = "testng", version.ref = "testng" }
 uiautomator = { group = "androidx.test.uiautomator", name = "uiautomator", version.ref = "uiautomator" }
+datastore-rxjava3 = { group = "androidx.datastore", name = "datastore-rxjava3", version.ref = "datastoreRxjava3" }
+datastore-preferences-rxjava3 = { group = "androidx.datastore", name = "datastore-preferences-rxjava3", version.ref = "datastorePreferencesRxjava3" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

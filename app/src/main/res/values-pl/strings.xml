@@ -25,4 +25,7 @@
     <string name="exception_input_not_supported">Twoje dane wejściowe są nieprawidłowe lub prowadziłyby do podziału przez 0. Dlatego całkowity czas ekspozycji został ustawiony na 0</string>
     <string name="exception_invalid_radiation_data_type">Wprowadzony typ danych nie jest obsługiwany przez aplikację</string>
     <string name="exception_invalid_radiation_data_type_additional">Nieprawidłowy typ danych promieniowania to: </string>
+    <string name="exception_couldnot_start_language_selector_title">Nie udało się otworzyć systemowego wyboru języka aplikacji</string>
+    <string name="exception_coundnot_start_language_selector_message">Spróbuj zmienić język za pomocą aplikacji ustawień</string>
+
 </resources>

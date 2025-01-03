@@ -8,14 +8,15 @@
     <item>
         <bitmap
             android:gravity="fill"
-            android:src="@drawable/uk" />
+            android:src="@drawable/flag" />
     </item>
 
     <item>
         <shape android:shape="rectangle">
             <stroke
                 android:width="@dimen/radio_border_width"
-                android:color="@color/lang_not_selected" />
+                android:color="@color/lang_selected" />
         </shape>
     </item>
+
 </layer-list>
