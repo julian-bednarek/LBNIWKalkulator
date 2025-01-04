@@ -8,18 +8,12 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static com.julian.lbniwkalkulator.util.ErrorHandler.ERROR_BUTTON_TEXT;
 import static org.junit.Assert.assertEquals;
 
-import android.content.Context;
 import android.util.Log;
-
 import androidx.test.core.app.ActivityScenario;
-import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
-
 import com.julian.lbniwkalkulator.pages.StartViewActivity;
 import com.julian.lbniwkalkulator.util.ErrorHandler;
 import com.julian.lbniwkalkulator.util.StringGetter;
-
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 

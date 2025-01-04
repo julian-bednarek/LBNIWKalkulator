@@ -51,7 +51,7 @@ public class NotificationHandlerTests {
     }
 
     @Test
-    public void testSendNotification() throws InterruptedException {
+    public void testSendNotification() {
         appNotificationHandler.sendNotification();
         NotificationManager notificationManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
