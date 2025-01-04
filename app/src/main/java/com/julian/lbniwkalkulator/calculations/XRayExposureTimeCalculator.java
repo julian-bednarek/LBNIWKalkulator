@@ -26,7 +26,7 @@ public class XRayExposureTimeCalculator implements CalculationScheme {
         double targetDensity = data.getTargetDensity();
         double targetThickness = data.getSteelThickness();
         double sourceToDetectorDistance = data.getSourceToDetectorDistance();
-        if(power == 0 || sourceToDetectorDistance == 0) throw new InputNotSupportedException(StringGetter.fromStringsXML(R.string.exception_input_not_supported));
+        if(power == 0 || sourceToDetectorDistance == 0) throw new InputNotSupportedException(StringGetter.fromStringsXML(R.string.exception_input_not_supported_div_by_0));
         int exposureTimeInSeconds = (int) (Math.exp(targetDensity * targetThickness) /
                 (power * Math.pow(sourceToDetectorDistance, 2)));
         ExposureTime retval = ExposureTime.fromMilliseconds(exposureTimeInSeconds);

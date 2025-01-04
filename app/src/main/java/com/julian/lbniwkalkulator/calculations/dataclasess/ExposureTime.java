@@ -2,7 +2,9 @@ package com.julian.lbniwkalkulator.calculations.dataclasess;
 
 import androidx.annotation.NonNull;
 
+import com.julian.lbniwkalkulator.R;
 import com.julian.lbniwkalkulator.exceptions.InputNotSupportedException;
+import com.julian.lbniwkalkulator.util.StringGetter;
 
 import java.util.Locale;
 
@@ -24,7 +26,7 @@ public class ExposureTime {
     }
 
     public static ExposureTime fromMilliseconds(long timeInMS) throws InputNotSupportedException {
-        if(timeInMS < 0) throw new InputNotSupportedException("Dupa");
+        if(timeInMS < 0) throw new InputNotSupportedException(StringGetter.fromStringsXML(R.string.exception_input_not_supported_message));
         return new ExposureTime((int) (timeInMS / 60_000),
                 (int) ((timeInMS / 1000) % 60),
                 (int) (timeInMS % 1_000) / 10);
