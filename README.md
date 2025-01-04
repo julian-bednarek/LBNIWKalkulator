@@ -5,11 +5,10 @@ The **LBNIW Kalkulator** is an Android application designed for Non-Destructive 
 
 ## Features
 
-- **X-ray Lamp Time Calculation**: Calculates the exposure time based on the selected X-ray lamp and isotope.
-- **Isotope Selection**: Choose from a variety of isotopes to adjust the exposure time calculation.
+- **App supports both Polish And English**
+- **X-ray Lamp Time Calculation**: Calculates the exposure time based on X-ray lamp parameters and isotope.
 - **Exposure Timer**: Start and track exposure time with a countdown timer.
 - **Notifications & Alarms**: Receive notifications and alarms when the exposure time is complete.
-- **Offline Functionality**: No internet required to use the app, all data is locally stored.
 
 ## Requirements
 
