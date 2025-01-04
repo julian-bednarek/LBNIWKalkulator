@@ -20,7 +20,7 @@
     <!--
      Exception messages
      -->
-    <string name="error">Error occured</string>
+    <string name="error">Error occurred</string>
     <string name="exception_too_long_exposure_time">Exposure time is too long, probably invalid input occurred.</string>
     <string name="exception_too_long_exposure_time_additional">Invalid exposure time is: </string>
     <string name="exception_input_not_supported_div_by_0">Your input data is invalid or would lead to division by 0. Hence total exposure time is set to 0</string>
@@ -34,4 +34,9 @@
     <string name="exception_invalid_component_parameter_exception_additional">The following parameter is invalid:</string>
     <string name="exception_input_not_supported_message">Your input is invalid</string>
     <string name="exception_input_not_supported_additional">Invalid input:</string>
+    <string name="exception_radiation_data_not_found_message">"Something went wrong with retrieval of radiation data"</string>
+    <!--
+     Other
+    -->
+    <string name="notifications_denied">"Permission to post notifications denied."</string>
 </resources>

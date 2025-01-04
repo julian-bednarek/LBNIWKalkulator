@@ -33,5 +33,6 @@
     <string name="exception_invalid_component_parameter_exception_additional">Błędny jest następujący parametr:</string>
     <string name="exception_input_not_supported_message">Twoje dane wejściowe są nieprawidłowe</string>
     <string name="exception_input_not_supported_additional">Nieprawidłowe dane wejściowe:</string>
-
+    <string name="exception_radiation_data_not_found_message">"Coś poszło nie tak podczas przekazywania danych o promieniowaniu"</string>
+    <string name="notifications_denied">"Odmówiono pozwolenia na wysyłanie powiadomień."</string>
 </resources>

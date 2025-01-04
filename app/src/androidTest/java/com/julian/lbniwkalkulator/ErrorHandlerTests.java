@@ -1,23 +1,32 @@
 package com.julian.lbniwkalkulator;
 
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static com.julian.lbniwkalkulator.util.ErrorHandler.ERROR_BUTTON_TEXT;
 import static org.junit.Assert.assertEquals;
 
+import android.content.Context;
 import android.util.Log;
 
 import androidx.test.core.app.ActivityScenario;
+import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.julian.lbniwkalkulator.pages.StartViewActivity;
 import com.julian.lbniwkalkulator.util.ErrorHandler;
 import com.julian.lbniwkalkulator.util.StringGetter;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+/**
+ * I don't know why those test doesn't work
+ * In ActivityFlowTest everything is fine
+ */
 @RunWith(AndroidJUnit4.class)
 public class ErrorHandlerTests {
 
@@ -45,11 +54,10 @@ public class ErrorHandlerTests {
         String exceptionMessage = "Mock exception message";
         int additionalMessage = R.string.decimal_placeholder;
         Object object = 4.0;
-
-        scenario.onActivity(activity ->
-                ErrorHandler.processException(activity, exceptionMessage, additionalMessage, object, dismissAction));
-        onView(withText(ErrorHandler.ERROR_BUTTON_TEXT))
-                .check(matches(isDisplayed()));
+        scenario.onActivity(activity -> ErrorHandler.processException(activity, exceptionMessage, additionalMessage, object, dismissAction));
+        onView(withText(ERROR_BUTTON_TEXT))
+                .check(matches(isDisplayed()))
+                .perform(click());
 
         scenario.close();
     }
@@ -58,11 +66,10 @@ public class ErrorHandlerTests {
         ActivityScenario<StartViewActivity> scenario = ActivityScenario.launch(StartViewActivity.class);
         scenario.onActivity(StringGetter::setAppContext);
         String exceptionMessage = "Mock exception message";
-
-        scenario.onActivity(activity ->
-                ErrorHandler.processException(activity, exceptionMessage, null, null, null));
-        onView(withText(ErrorHandler.ERROR_BUTTON_TEXT))
-                .check(matches(isDisplayed()));
+        scenario.onActivity(activity -> ErrorHandler.processException(activity, exceptionMessage, null, null, null));
+        onView(withText(ERROR_BUTTON_TEXT))
+                .check(matches(isDisplayed()))
+                .perform(click());
 
         scenario.close();
     }

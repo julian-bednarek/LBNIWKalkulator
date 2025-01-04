@@ -9,6 +9,8 @@ import com.julian.lbniwkalkulator.util.StringGetter;
 
 public class XRayExposureTimeCalculator implements CalculationScheme {
 
+    private static final int MAX_EXPOSURE_TIME_MINUTES = 99;
+
     private final XRayData data;
 
     @Override
@@ -30,7 +32,7 @@ public class XRayExposureTimeCalculator implements CalculationScheme {
         int exposureTimeInSeconds = (int) (Math.exp(targetDensity * targetThickness) /
                 (power * Math.pow(sourceToDetectorDistance, 2)));
         ExposureTime retval = ExposureTime.fromMilliseconds(exposureTimeInSeconds);
-        if(retval.getMinutes() > 99) throw new ExposureTimeTooLongException(
+        if(retval.getMinutes() > MAX_EXPOSURE_TIME_MINUTES) throw new ExposureTimeTooLongException(
                 StringGetter.fromStringsXML(R.string.exception_too_long_exposure_time), retval);
         return retval;
     }

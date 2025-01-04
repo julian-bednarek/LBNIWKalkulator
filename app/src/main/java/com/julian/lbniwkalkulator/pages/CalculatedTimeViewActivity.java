@@ -29,11 +29,12 @@ import com.julian.lbniwkalkulator.exceptions.InvalidRadiationDataTypeException;
 import com.julian.lbniwkalkulator.exceptions.RadiationDataNotFoundException;
 import com.julian.lbniwkalkulator.util.AppNotificationHandler;
 import com.julian.lbniwkalkulator.util.AudioHandler;
+import com.julian.lbniwkalkulator.util.StringGetter;
 
 public class CalculatedTimeViewActivity extends AppCompatActivity {
     private static final String INPUT_DATA_INTENT = "input_data";
     private static final int SOUND_TIME_MILLISECONDS = 10_000;
-    private static final int TIMER_TICK_MILLISECONDS = 100;
+    private static final int TIMER_TICK_MILLISECONDS = 10;
     private static final int POST_NOTIFICATION_PERMISSION_REQUEST_CODE = 1;
 
     private boolean sendNotifications = false;
@@ -91,7 +92,7 @@ public class CalculatedTimeViewActivity extends AppCompatActivity {
                 sendNotifications = true;
             } else {
                 sendNotifications = false;
-                Toast.makeText(this, "Permission to post notifications denied.",
+                Toast.makeText(this, StringGetter.fromStringsXML(R.string.notifications_denied),
                         Toast.LENGTH_SHORT).show();
             }
         }
@@ -188,9 +189,10 @@ public class CalculatedTimeViewActivity extends AppCompatActivity {
     @NonNull
     private RadiationData getDataFromIntent() throws RadiationDataNotFoundException {
         Intent intent = getIntent();
-        if (intent == null) throw new RadiationDataNotFoundException("Something went wrong with radiation data");
+        String exceptionMessage = StringGetter.fromStringsXML(R.string.exception_radiation_data_not_found_message);
+        if (intent == null) throw new RadiationDataNotFoundException(exceptionMessage);
         RadiationData retval = intent.getParcelableExtra(INPUT_DATA_INTENT, RadiationData.class);
-        if (retval == null) throw new RadiationDataNotFoundException("Something went wrong with radiation data");
+        if (retval == null) throw new RadiationDataNotFoundException(exceptionMessage);
         return retval;
     }
 

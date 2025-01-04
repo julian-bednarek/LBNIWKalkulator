@@ -2,8 +2,6 @@ package com.julian.lbniwkalkulator.util;
 
 import android.content.Context;
 import android.media.MediaPlayer;
-import android.media.RingtoneManager;
-import android.net.Uri;
 
 public class AudioHandler {
     private MediaPlayer mediaPlayer;
@@ -21,6 +19,10 @@ public class AudioHandler {
         if (mediaPlayer != null) {
             mediaPlayer.start();
         }
+    }
+
+    public MediaPlayer getMediaPlayer() {
+        return mediaPlayer;
     }
 
     public void stop() {
