@@ -1,6 +1,7 @@
 package com.julian.lbniwkalkulator.pages;
 
 import android.os.Bundle;
+import android.widget.RadioButton;
 
 import com.julian.lbniwkalkulator.R;
 import com.julian.lbniwkalkulator.util.CustomInputParsers;
@@ -16,6 +17,7 @@ public class XRayMenuViewActivity extends AbstractInputMenuActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         generalSetUp(R.layout.x_ray_menu_layout, R.id.calculate_button_xray);
+        ((RadioButton)findViewById(R.id.lamp_y_smart)).setChecked(true);
     }
 
     @Override
