@@ -1,8 +1,16 @@
 plugins {
-    alias(libs.plugins.android.application)
+    id 'com.android.application'
+    id 'androidx.navigation.safeargs'
 }
 
 android {
+    viewBinding {
+        enabled = true
+    }
+    dataBinding {
+        enabled = true
+    }
+
     namespace 'com.julian.lbniwkalkulator'
     compileSdk 34
 
@@ -31,18 +39,17 @@ android {
 
 dependencies {
 
-    implementation libs.material.v190
-    implementation libs.appcompat
     implementation libs.material
-    implementation libs.espresso.intents
-    implementation libs.uiautomator
+    implementation libs.appcompat
     implementation libs.datastore.preferences
-    implementation libs.datastore.rxjava3
-    implementation libs.datastore.preferences.rxjava3
+
+    implementation libs.navigation.fragment.ktx
+    implementation libs.navigation.ui.ktx
+    implementation libs.fragment.testing
+
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
-    androidTestImplementation libs.testng
-    androidTestImplementation libs.espresso.contrib
+    androidTestImplementation libs.uiautomator
 
 }

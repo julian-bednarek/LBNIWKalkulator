@@ -9,16 +9,16 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 
 import androidx.core.content.ContextCompat;
-import androidx.test.core.app.ActivityScenario;
+import androidx.fragment.app.testing.FragmentScenario;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import android.Manifest;
-import com.julian.lbniwkalkulator.calculations.dataclasess.ExposureTime;
+import com.julian.lbniwkalkulator.dataclasess.ExposureTime;
 import com.julian.lbniwkalkulator.exceptions.InputNotSupportedException;
 import com.julian.lbniwkalkulator.exceptions.NotificationManagerInitializationFailedException;
-import com.julian.lbniwkalkulator.pages.StartViewActivity;
+import com.julian.lbniwkalkulator.fragments.StartViewFragment;
 import com.julian.lbniwkalkulator.util.AppNotificationHandler;
 import com.julian.lbniwkalkulator.util.StringGetter;
 
@@ -31,13 +31,13 @@ public class NotificationHandlerTests {
 
     private Context context;
     private AppNotificationHandler appNotificationHandler;
-    private ActivityScenario<StartViewActivity> scenario;
+    private FragmentScenario<StartViewFragment> scenario;
 
     @Before
     public void setUp() throws NotificationManagerInitializationFailedException, InputNotSupportedException {
         context = ApplicationProvider.getApplicationContext();
         StringGetter.setAppContext(context);
-        scenario = ActivityScenario.launch(StartViewActivity.class);
+        scenario = FragmentScenario.launchInContainer(StartViewFragment.class);
         ExposureTime exposureTime = ExposureTime.fromMilliseconds(60_000);
         appNotificationHandler = new AppNotificationHandler(context, exposureTime);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -61,7 +61,7 @@ public class NotificationHandlerTests {
 
     @Test
     public void testCancelNotification() {
-        scenario.onActivity(activity -> {
+        scenario.onFragment(fragment -> {
             appNotificationHandler.sendNotification();
             appNotificationHandler.cancelNotification();
         });

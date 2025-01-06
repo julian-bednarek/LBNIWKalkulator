@@ -8,7 +8,7 @@ import android.os.SystemClock;
 import androidx.core.app.NotificationCompat;
 
 import com.julian.lbniwkalkulator.R;
-import com.julian.lbniwkalkulator.calculations.dataclasess.ExposureTime;
+import com.julian.lbniwkalkulator.dataclasess.ExposureTime;
 import com.julian.lbniwkalkulator.exceptions.NotificationManagerInitializationFailedException;
 
 public class AppNotificationHandler {

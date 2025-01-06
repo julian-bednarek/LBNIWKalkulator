@@ -1,76 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/start_view"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background_color"
-    android:padding="5dp">
-
-    <Button
-        android:id="@+id/button_select_xray"
-        android:layout_width="@dimen/button_width"
-        android:layout_height="@dimen/button_height"
-        android:layout_marginTop="56dp"
-        android:background="@drawable/button_selector"
-        android:text="@string/button_select_xray"
-        android:textColor="@color/default_text_color"
-        android:textSize="28sp"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/company_logo"
-        tools:ignore="TextSizeCheck" />
-
-    <Button
-        android:id="@+id/button_select_isotope"
-        android:layout_width="@dimen/button_width"
-        android:layout_height="@dimen/button_height"
-        android:background="@drawable/button_selector"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/start_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_color"
+        app:defaultNavHost="true"
         android:padding="5dp"
-        android:text="@string/button_select_isotope"
-        android:textColor="@color/default_text_color"
-        android:textSize="28sp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_select_xray"
-        app:layout_constraintVertical_bias="0.093" />
+        tools:context="core.MainActivity">
 
-    <ImageView
-        android:id="@+id/company_logo"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="140dp"
-        android:background="@drawable/logo_wrapper"
-        android:contentDescription="@string/company_logo"
-        android:foreground="@drawable/logo_wrapper"
-        android:scaleType="fitCenter"
-        android:scaleX="1"
-        android:scaleY="1"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/lbniw_ai" />
+        <Button
+            android:id="@+id/button_select_xray"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginTop="56dp"
+            android:background="@drawable/button_selector"
+            android:text="@string/button_select_xray"
+            android:textColor="@color/default_text_color"
+            android:textSize="28sp"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/company_logo"
+            tools:ignore="TextSizeCheck" />
 
-    <Button
-        android:id="@+id/language_button"
-        android:layout_width="45dp"
-        android:layout_height="30dp"
-        android:background="@drawable/language_flag"
-        android:padding="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.898"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.036"
-        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+        <Button
+            android:id="@+id/button_select_isotope"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
+            android:background="@drawable/button_selector"
+            android:padding="5dp"
+            android:text="@string/button_select_isotope"
+            android:textColor="@color/default_text_color"
+            android:textSize="28sp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_select_xray"
+            app:layout_constraintVertical_bias="0.093" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/company_logo"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="140dp"
+            android:background="@drawable/logo_wrapper"
+            android:contentDescription="@string/company_logo"
+            android:foreground="@drawable/logo_wrapper"
+            android:scaleType="fitCenter"
+            android:scaleX="1"
+            android:scaleY="1"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/lbniw_ai" />
+
+        <Button
+            android:id="@+id/language_button"
+            android:layout_width="45dp"
+            android:layout_height="30dp"
+            android:background="@drawable/language_flag"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.898"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.036"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

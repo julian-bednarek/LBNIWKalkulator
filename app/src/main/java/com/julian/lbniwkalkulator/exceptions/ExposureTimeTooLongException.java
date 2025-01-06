@@ -1,6 +1,6 @@
 package com.julian.lbniwkalkulator.exceptions;
 
-import com.julian.lbniwkalkulator.calculations.dataclasess.ExposureTime;
+import com.julian.lbniwkalkulator.dataclasess.ExposureTime;
 
 public class ExposureTimeTooLongException extends Exception{
     private final ExposureTime exposureTime;

@@ -1,6 +1,6 @@
 package com.julian.lbniwkalkulator.calculations;
 
-import com.julian.lbniwkalkulator.calculations.dataclasess.ExposureTime;
+import com.julian.lbniwkalkulator.dataclasess.ExposureTime;
 import com.julian.lbniwkalkulator.exceptions.ExposureTimeTooLongException;
 import com.julian.lbniwkalkulator.exceptions.InputNotSupportedException;
 

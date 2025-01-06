@@ -10,11 +10,16 @@ materialVersion = "1.9.0"
 espressoIntents = "3.6.1"
 mockitoAndroid = "4.3.1"
 mockitoInline = "4.8.0"
+navigationFragmentKtx = "2.6.0"
+navigationUiKtx = "2.6.0"
 robotiumSolo = "5.6.3"
 testng = "6.9.6"
 uiautomator = "2.3.0"
 datastoreRxjava3 = "1.1.1"
 datastorePreferencesRxjava3 = "1.1.1"
+navigationFragment = "2.8.5"
+navigationUi = "2.8.5"
+fragmentTesting = "1.8.5"
 
 [libraries]
 datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
@@ -28,11 +33,20 @@ material-v190 = { module = "com.google.android.material:material", version.ref =
 espresso-intents = { group = "androidx.test.espresso", name = "espresso-intents", version.ref = "espressoIntents" }
 mockito-android = { module = "org.mockito:mockito-android", version.ref = "mockitoAndroid" }
 mockito-inline = { module = "org.mockito:mockito-inline", version.ref = "mockitoInline" }
+navigation-compose = { module = "androidx.navigation:navigation-compose" }
+navigation-dynamic-features-fragment = { module = "androidx.navigation:navigation-dynamic-features-fragment" }
+navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigationFragment" }
+navigation-fragment-ktx-v260 = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
+navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigationFragment" }
+navigation-ui-ktx-v260 = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigationUiKtx" }
 robotium-solo = { module = "com.robotium:robotium-solo", version.ref = "robotiumSolo" }
 testng = { group = "org.testng", name = "testng", version.ref = "testng" }
 uiautomator = { group = "androidx.test.uiautomator", name = "uiautomator", version.ref = "uiautomator" }
 datastore-rxjava3 = { group = "androidx.datastore", name = "datastore-rxjava3", version.ref = "datastoreRxjava3" }
 datastore-preferences-rxjava3 = { group = "androidx.datastore", name = "datastore-preferences-rxjava3", version.ref = "datastorePreferencesRxjava3" }
+navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment", version.ref = "navigationFragment" }
+navigation-ui = { group = "androidx.navigation", name = "navigation-ui", version.ref = "navigationUi" }
+fragment-testing = { group = "androidx.fragment", name = "fragment-testing", version.ref = "fragmentTesting" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

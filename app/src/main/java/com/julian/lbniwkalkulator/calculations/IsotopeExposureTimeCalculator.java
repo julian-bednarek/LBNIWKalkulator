@@ -1,7 +1,7 @@
 package com.julian.lbniwkalkulator.calculations;
 
-import com.julian.lbniwkalkulator.calculations.dataclasess.ExposureTime;
-import com.julian.lbniwkalkulator.calculations.dataclasess.IsotopeData;
+import com.julian.lbniwkalkulator.dataclasess.ExposureTime;
+import com.julian.lbniwkalkulator.dataclasess.IsotopeData;
 
 public class IsotopeExposureTimeCalculator implements CalculationScheme{
     private final IsotopeData data;

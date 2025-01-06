@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.fail;
 
-import com.julian.lbniwkalkulator.calculations.dataclasess.ExposureTime;
+import com.julian.lbniwkalkulator.dataclasess.ExposureTime;
 import com.julian.lbniwkalkulator.exceptions.InputNotSupportedException;
 
 import org.junit.Test;

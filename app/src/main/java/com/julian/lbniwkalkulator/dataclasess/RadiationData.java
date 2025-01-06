@@ -1,4 +1,4 @@
-package com.julian.lbniwkalkulator.calculations.dataclasess;
+package com.julian.lbniwkalkulator.dataclasess;
 
 import android.os.Parcelable;
 

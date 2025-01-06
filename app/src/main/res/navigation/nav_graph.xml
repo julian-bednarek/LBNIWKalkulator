@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/startViewFragment">
+
+    <fragment
+        android:id="@+id/startViewFragment"
+        android:name="com.julian.lbniwkalkulator.fragments.StartViewFragment"
+        android:label="StartViewFragment" >
+        <action
+            android:id="@+id/action_startViewFragment_to_XRayMenuViewFragment"
+            app:destination="@id/XRayMenuViewFragment" />
+        <action
+            android:id="@+id/action_startViewFragment_to_isotopeMenuViewFragment"
+            app:destination="@id/isotopeMenuViewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/XRayMenuViewFragment"
+        android:name="com.julian.lbniwkalkulator.fragments.XRayMenuViewFragment"
+        android:label="XRayMenuViewFragment" >
+        <action
+            android:id="@+id/action_XRayMenuViewFragment_to_calculatedTimeViewFragment"
+            app:destination="@id/calculatedTimeViewFragment" />
+        <argument
+            android:name="input_data"
+            app:argType="com.julian.lbniwkalkulator.dataclasess.RadiationData" />
+    </fragment>
+    <fragment
+        android:id="@+id/isotopeMenuViewFragment"
+        android:name="com.julian.lbniwkalkulator.fragments.IsotopeMenuViewFragment"
+        android:label="IsotopeMenuViewFragment" >
+        <action
+            android:id="@+id/action_isotopeMenuViewFragment_to_calculatedTimeViewFragment"
+            app:destination="@id/calculatedTimeViewFragment" />
+        <argument
+            android:name="input_data"
+            app:argType="com.julian.lbniwkalkulator.dataclasess.RadiationData" />
+    </fragment>
+    <fragment
+        android:id="@+id/calculatedTimeViewFragment"
+        android:name="com.julian.lbniwkalkulator.fragments.CalculatedTimeViewFragment"
+        android:label="CalculatedTimeViewFragment" />
+</navigation>

@@ -7,11 +7,10 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static com.julian.lbniwkalkulator.util.ErrorHandler.ERROR_BUTTON_TEXT;
 import static org.junit.Assert.assertEquals;
-
 import android.util.Log;
-import androidx.test.core.app.ActivityScenario;
+import androidx.fragment.app.testing.FragmentScenario;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
-import com.julian.lbniwkalkulator.pages.StartViewActivity;
+import com.julian.lbniwkalkulator.fragments.StartViewFragment;
 import com.julian.lbniwkalkulator.util.ErrorHandler;
 import com.julian.lbniwkalkulator.util.StringGetter;
 import org.junit.Test;
@@ -42,25 +41,32 @@ public class ErrorHandlerTests {
     }
     @Test
     public void testBasicInvocationOfProcessException() {
-        ActivityScenario<StartViewActivity> scenario = ActivityScenario.launch(StartViewActivity.class);
-        scenario.onActivity(StringGetter::setAppContext);
+        FragmentScenario<StartViewFragment> scenario = FragmentScenario.launchInContainer(StartViewFragment.class);
+        scenario.onFragment(fragment -> StringGetter.setAppContext(fragment.getContext()));
+
         Runnable dismissAction = () -> Log.d("Something", "Something");
         String exceptionMessage = "Mock exception message";
         int additionalMessage = R.string.decimal_placeholder;
         Object object = 4.0;
-        scenario.onActivity(activity -> ErrorHandler.processException(activity, exceptionMessage, additionalMessage, object, dismissAction));
+
+        scenario.onFragment(fragment -> ErrorHandler.processException(fragment.getContext(), exceptionMessage, additionalMessage, object, dismissAction));
+
         onView(withText(ERROR_BUTTON_TEXT))
                 .check(matches(isDisplayed()))
                 .perform(click());
 
         scenario.close();
     }
+
     @Test
     public void testBasicInvocationOfProcessExceptionsWithNullArguments() {
-        ActivityScenario<StartViewActivity> scenario = ActivityScenario.launch(StartViewActivity.class);
-        scenario.onActivity(StringGetter::setAppContext);
+        FragmentScenario<StartViewFragment> scenario = FragmentScenario.launchInContainer(StartViewFragment.class);
+        scenario.onFragment(fragment -> StringGetter.setAppContext(fragment.getContext()));
+
         String exceptionMessage = "Mock exception message";
-        scenario.onActivity(activity -> ErrorHandler.processException(activity, exceptionMessage, null, null, null));
+
+        scenario.onFragment(fragment -> ErrorHandler.processException(fragment.getContext(), exceptionMessage, null, null, null));
+
         onView(withText(ERROR_BUTTON_TEXT))
                 .check(matches(isDisplayed()))
                 .perform(click());
@@ -68,3 +74,4 @@ public class ErrorHandlerTests {
         scenario.close();
     }
 }
+

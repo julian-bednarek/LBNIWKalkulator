@@ -1,5 +1,4 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.julian.lbniwkalkulator">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission
         android:name="android.permission.POST_NOTIFICATIONS"
         android:minSdkVersion="33"/>
@@ -7,21 +6,18 @@
         android:icon="@drawable/lbniw_ai"
         android:label="@string/app_name"
         android:roundIcon="@drawable/lbniw_ai"
+        android:name=".core.LBNIWKalkulatorApp"
         android:supportsRtl="true"
         android:theme="@style/Theme.LBNIWKalkulator"
         android:localeConfig="@xml/locales_config">
         <activity
-            android:name=".pages.StartViewActivity"
+            android:name=".core.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".pages.IsotopeMenuViewActivity"/>
-        <activity android:name=".pages.XRayMenuViewActivity" />
-        <activity android:name=".pages.CalculatedTimeViewActivity"/>
-
     </application>
 
 </manifest>

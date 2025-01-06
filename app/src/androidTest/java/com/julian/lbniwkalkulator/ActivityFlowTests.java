@@ -19,9 +19,10 @@ import androidx.test.espresso.ViewAction;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.uiautomator.UiDevice;
+import androidx.fragment.app.testing.FragmentScenario;
 import com.julian.lbniwkalkulator.components.InputFieldWrapper;
-import com.julian.lbniwkalkulator.pages.StartViewActivity;
-import com.julian.lbniwkalkulator.pages.XRayMenuViewActivity;
+import com.julian.lbniwkalkulator.fragments.StartViewFragment;
+import com.julian.lbniwkalkulator.fragments.XRayMenuViewFragment;
 import com.julian.lbniwkalkulator.util.StringGetter;
 
 import org.hamcrest.Matcher;
@@ -56,13 +57,13 @@ public class ActivityFlowTests {
 
     @Test
     public void testStartViewActivity() {
-        ActivityScenario<StartViewActivity> scenario = ActivityScenario.launch(StartViewActivity.class);
+        FragmentScenario<StartViewFragment> scenario = FragmentScenario.launchInContainer(StartViewFragment.class);
         assertNotNull(scenario);
         scenario.close();
     }
     @Test
     public void testGoingFromStartToIsotopeActivity() {
-        ActivityScenario<StartViewActivity> scenario = ActivityScenario.launch(StartViewActivity.class);
+        FragmentScenario<StartViewFragment> scenario = FragmentScenario.launchInContainer(StartViewFragment.class);
         onView(withId(R.id.button_select_isotope)).perform(closeSoftKeyboard());
         onView(withId(R.id.button_select_isotope))
                 .perform(click());
@@ -72,7 +73,7 @@ public class ActivityFlowTests {
     }
     @Test
     public void testGoingFromStartToXrayActivity() {
-        ActivityScenario<StartViewActivity> scenario = ActivityScenario.launch(StartViewActivity.class);
+        FragmentScenario<StartViewFragment> scenario = FragmentScenario.launchInContainer(StartViewFragment.class);
         onView(withId(R.id.button_select_xray)).perform(closeSoftKeyboard());
         onView(withId(R.id.button_select_xray))
                 .perform(click());
@@ -82,10 +83,9 @@ public class ActivityFlowTests {
     }
     @Test
     public void testGoingFromXRayToCalculatedActivityWithInvalidData() {
-        ActivityScenario<XRayMenuViewActivity> scenario = ActivityScenario.launch(XRayMenuViewActivity.class);
+        FragmentScenario<XRayMenuViewFragment> scenario = FragmentScenario.launchInContainer(XRayMenuViewFragment.class);
         /*Mandatory*/
-        scenario.onActivity(StringGetter::setAppContext);
-
+        scenario.onFragment(fragment -> StringGetter.setAppContext(fragment.getContext()));
         onView(withId(R.id.calculate_button_xray)).perform(closeSoftKeyboard());
         onView(withId(R.id.calculate_button_xray))
                 .perform(click());
@@ -104,9 +104,9 @@ public class ActivityFlowTests {
     }
     @Test
     public void testGoingFromXRayToCalculatedActivityWithValidData() {
-        ActivityScenario<XRayMenuViewActivity> scenario = ActivityScenario.launch(XRayMenuViewActivity.class);
+        FragmentScenario<XRayMenuViewFragment> scenario = FragmentScenario.launchInContainer(XRayMenuViewFragment.class);
         /*Mandatory*/
-        scenario.onActivity(StringGetter::setAppContext);
+        scenario.onFragment(fragment -> StringGetter.setAppContext(fragment.getContext()));
         /*Simple mock data which produces valid time*/
         final int[] components =
                 {

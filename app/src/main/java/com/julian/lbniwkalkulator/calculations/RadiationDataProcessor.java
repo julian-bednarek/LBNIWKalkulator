@@ -1,11 +1,11 @@
 package com.julian.lbniwkalkulator.calculations;
 
 import com.julian.lbniwkalkulator.R;
-import com.julian.lbniwkalkulator.calculations.dataclasess.ExposureTime;
-import com.julian.lbniwkalkulator.calculations.dataclasess.IsotopeData;
-import com.julian.lbniwkalkulator.calculations.dataclasess.RadiationData;
-import com.julian.lbniwkalkulator.calculations.dataclasess.RadiationDataTypes;
-import com.julian.lbniwkalkulator.calculations.dataclasess.XRayData;
+import com.julian.lbniwkalkulator.dataclasess.ExposureTime;
+import com.julian.lbniwkalkulator.dataclasess.IsotopeData;
+import com.julian.lbniwkalkulator.dataclasess.RadiationData;
+import com.julian.lbniwkalkulator.dataclasess.RadiationDataTypes;
+import com.julian.lbniwkalkulator.dataclasess.XRayData;
 import com.julian.lbniwkalkulator.exceptions.ExposureTimeTooLongException;
 import com.julian.lbniwkalkulator.exceptions.InputNotSupportedException;
 import com.julian.lbniwkalkulator.exceptions.InvalidRadiationDataTypeException;
