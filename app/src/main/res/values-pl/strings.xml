@@ -3,6 +3,7 @@
     <string name="button_select_xray">X-Ray (uniwersalny)</string>
     <string name="button_select_isotope">Izotop</string>
     <string name="company_logo">Logo firmy</string>
+    <string name="button_select_saved_isotopes">Zapisane izotopy</string>
     <string name="voltage">Napięcie</string>
     <string name="current">Natężenie</string>
     <string name="steel_thickness">Grubość materiału</string>

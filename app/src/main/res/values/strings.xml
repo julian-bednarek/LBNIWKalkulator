@@ -2,6 +2,7 @@
     <string name="app_name" translatable="false">LBNIW Kalkulator</string>
     <string name="button_select_xray">X-Ray (generic)</string>
     <string name="button_select_isotope">Isotope</string>
+    <string name="button_select_saved_isotopes">Saved isotopes</string>
     <string name="company_logo">Company Logo</string>
     <string name="voltage">Voltage</string>
     <string name="current">Current</string>

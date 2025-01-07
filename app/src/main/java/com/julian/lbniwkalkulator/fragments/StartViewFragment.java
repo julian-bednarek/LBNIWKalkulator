@@ -47,8 +47,8 @@ public class StartViewFragment extends Fragment {
     private void startNewFragment(Fragment fragment) {
         requireActivity().getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragmentContainerView, fragment) // Replace the container view
-                .addToBackStack(null) // Optional: Add transaction to the back stack
+                .replace(R.id.nav_host_fragment_activity_main, fragment)
+                .addToBackStack(null)
                 .commit();
     }
 

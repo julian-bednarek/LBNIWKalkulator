@@ -15,8 +15,8 @@ public class LBNIWKalkulatorApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        database = new SQLiteDatabaseWrapper(this);
         StringGetter.setAppContext(this);
+        database = new SQLiteDatabaseWrapper(this);
 
     }
     @Override

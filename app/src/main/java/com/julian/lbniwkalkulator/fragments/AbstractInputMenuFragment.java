@@ -32,7 +32,7 @@ public abstract class AbstractInputMenuFragment extends Fragment {
             nextFragment.setArguments(bundle);
             requireActivity().getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.fragmentContainerView, nextFragment)
+                    .replace(R.id.nav_host_fragment_activity_main, nextFragment)
                     .addToBackStack(null)
                     .commit();
         });

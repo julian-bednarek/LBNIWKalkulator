@@ -14,8 +14,13 @@ public class SQLiteDatabaseWrapper {
         activity = activity * POW(0.5, CAST(strftime('%s', 'now') AS REAL) - mostRecentTimestamp) / (halfLifeTime * 60)
         WHERE mostRecentTimestamp < strftime('%s', 'now');
         """;
+    private static final String DELETE_UPDATE_QUERY =
+        """
+        DELETE FROM isotopes
+        WHERE activity < 0.01;
+        """;
 
-    private IsotopeSQLiteHelper dbHelper;
+    private final IsotopeSQLiteHelper dbHelper;
 
     public SQLiteDatabaseWrapper(Context context) {
         this.dbHelper = new IsotopeSQLiteHelper(context);
@@ -37,5 +42,6 @@ public class SQLiteDatabaseWrapper {
 
     public void updateContents() {
         dbHelper.getWritableDatabase().execSQL(UPDATE_QUERY);
+        dbHelper.getWritableDatabase().execSQL(DELETE_UPDATE_QUERY);
     }
 }
