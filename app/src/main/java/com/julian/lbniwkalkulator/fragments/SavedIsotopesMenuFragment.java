@@ -1,5 +1,6 @@
 package com.julian.lbniwkalkulator.fragments;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -12,7 +13,12 @@ import androidx.fragment.app.Fragment;
 
 import com.julian.lbniwkalkulator.R;
 import com.julian.lbniwkalkulator.components.CustomTableRow;
+import com.julian.lbniwkalkulator.core.MainActivity;
 import com.julian.lbniwkalkulator.databinding.ViewSavedIsotopesMenuLayoutBinding;
+import com.julian.lbniwkalkulator.dataclasess.IsotopeActivity;
+
+import java.util.ArrayList;
+import java.util.Locale;
 
 public class SavedIsotopesMenuFragment extends Fragment {
     private ViewSavedIsotopesMenuLayoutBinding binding;
@@ -27,8 +33,12 @@ public class SavedIsotopesMenuFragment extends Fragment {
         binding = ViewSavedIsotopesMenuLayoutBinding.bind(view);
         TableRow testRow = new TableRow(requireContext());
         testRow.setGravity(Gravity.CENTER);
-        for (int i = 1; i <= 25; i++) {
-            CustomTableRow row = new CustomTableRow(requireContext(), i, "Sr-" + i, Double.toString(30 + i * 0.35));
+        ArrayList<IsotopeActivity> savedIsotopes = ((MainActivity)requireActivity()).getDatabase().loadRecords(null, null);
+        for (IsotopeActivity isotope : savedIsotopes) {
+            CustomTableRow row = new CustomTableRow(requireContext(),
+                                                    isotope.getID(),
+                                                    isotope.getIsotopeName(),
+                                                    String.format(Locale.getDefault(),"%.2f", isotope.getActivity()));
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT

@@ -12,6 +12,7 @@ import android.util.Log;
 import com.julian.lbniwkalkulator.dataclasess.IsotopeActivity;
 import com.julian.lbniwkalkulator.exceptions.InsertionFailedSQLiteException;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class SQLiteDatabaseWrapper {
@@ -34,6 +35,27 @@ public class SQLiteDatabaseWrapper {
     public Cursor select(String whereClause, String[] whereClauseArgs) {
         return dbHelper.getReadableDatabase().query(TABLE_NAME, null, whereClause, whereClauseArgs,
                 null, null, null);
+    }
+
+    public ArrayList<IsotopeActivity> loadRecords(String whereClause, String[] whereClauseArgs) {
+        ArrayList<IsotopeActivity> retval = new ArrayList<>();
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        try {
+            db.beginTransaction();
+            Cursor recordCursor = this.select(whereClause, whereClauseArgs);
+            if (recordCursor.moveToFirst()) {
+                do {
+                    retval.add(IsotopeActivity.fromDatabaseRecord(recordCursor));
+                } while (recordCursor.moveToNext());
+            }
+            recordCursor.close();
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            Log.e("Something went wrong in SQLite", Objects.requireNonNull(e.getMessage()));
+        } finally {
+            db.endTransaction();
+        }
+        return retval;
     }
 
     public void updateContents() {

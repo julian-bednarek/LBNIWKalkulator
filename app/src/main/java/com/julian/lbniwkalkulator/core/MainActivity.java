@@ -26,6 +26,10 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    public SQLiteDatabaseWrapper getDatabase() {
+        return database;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
