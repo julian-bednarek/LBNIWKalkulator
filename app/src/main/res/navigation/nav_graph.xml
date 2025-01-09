@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_startViewFragment_to_isotopeMenuViewFragment"
             app:destination="@id/isotopeMenuViewFragment" />
+        <action
+            android:id="@+id/action_startViewFragment_to_savedIsotopesMenuFragment"
+            app:destination="@id/savedIsotopesMenuFragment" />
     </fragment>
     <fragment
         android:id="@+id/XRayMenuViewFragment"
@@ -25,6 +28,9 @@
         <argument
             android:name="input_data"
             app:argType="com.julian.lbniwkalkulator.dataclasess.RadiationData" />
+        <action
+            android:id="@+id/action_XRayMenuViewFragment_to_startViewFragment"
+            app:destination="@id/startViewFragment" />
     </fragment>
     <fragment
         android:id="@+id/isotopeMenuViewFragment"
@@ -36,9 +42,24 @@
         <argument
             android:name="input_data"
             app:argType="com.julian.lbniwkalkulator.dataclasess.RadiationData" />
+        <action
+            android:id="@+id/action_isotopeMenuViewFragment_to_startViewFragment"
+            app:destination="@id/startViewFragment" />
     </fragment>
     <fragment
         android:id="@+id/calculatedTimeViewFragment"
         android:name="com.julian.lbniwkalkulator.fragments.CalculatedTimeViewFragment"
-        android:label="CalculatedTimeViewFragment" />
+        android:label="CalculatedTimeViewFragment" >
+        <action
+            android:id="@+id/action_calculatedTimeViewFragment_to_startViewFragment"
+            app:destination="@id/startViewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/savedIsotopesMenuFragment"
+        android:name="com.julian.lbniwkalkulator.fragments.SavedIsotopesMenuFragment"
+        android:label="SavedIsotopesMenuFragment" >
+        <action
+            android:id="@+id/action_savedIsotopesMenuFragment_to_startViewFragment"
+            app:destination="@id/startViewFragment" />
+    </fragment>
 </navigation>

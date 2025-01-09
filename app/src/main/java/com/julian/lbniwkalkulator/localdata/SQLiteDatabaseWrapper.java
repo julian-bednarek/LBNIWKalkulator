@@ -12,6 +12,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.julian.lbniwkalkulator.dataclasess.IsotopeActivity;
 import com.julian.lbniwkalkulator.exceptions.InsertionFailedSQLiteException;
 
 public class SQLiteDatabaseWrapper {
@@ -55,17 +56,12 @@ public class SQLiteDatabaseWrapper {
     }
 
     private void updateRow(SQLiteDatabase db, Cursor recordCursor) {
-        int ID = recordCursor.getInt(recordCursor.getColumnIndexOrThrow(_ID));
-        double halfLifeTime = recordCursor.getDouble(recordCursor.getColumnIndexOrThrow(COLUMN_NAME_HALF_LIFE_TIME));
-        double currentActivity =  recordCursor.getDouble(recordCursor.getColumnIndexOrThrow(COLUMN_NAME_ACTIVITY));
-        Log.d("O KURWA", String.valueOf(currentActivity));
-        long mostRecentTimeStamp = recordCursor.getLong(recordCursor.getColumnIndexOrThrow(COLUMN_NAME_MOST_RECENT_TIMESTAMP));
-        long currentTimeSeconds = System.currentTimeMillis() / 1_000;
-        long timeDifference = currentTimeSeconds - mostRecentTimeStamp;
-        currentActivity *= Math.pow(0.5, ((double) timeDifference/halfLifeTime));
-        ContentValues updatedRecord = new ContentValues();
-        updatedRecord.put(COLUMN_NAME_ACTIVITY, Double.toString(currentActivity));
-        updatedRecord.put(COLUMN_NAME_MOST_RECENT_TIMESTAMP, Long.toString(currentTimeSeconds));
-        db.update(TABLE_NAME, updatedRecord, String.format("%s = ?", _ID), new String[]{String.valueOf(ID)});
+        IsotopeActivity recordData = IsotopeActivity.fromDatabaseRecord(recordCursor);
+        long currentTimestamp = System.currentTimeMillis() / 1_000;
+        long timeDifference = currentTimestamp - recordData.getMostRecentTimestamp();
+        Log.d("XDD", String.valueOf(recordData.getActivity()));
+        recordData.setActivity(recordData.getActivity() * Math.pow(0.5, (timeDifference)/recordData.getHalfLifeTime()));
+        ContentValues updatedRecord = recordData.toContentValues();
+        db.update(TABLE_NAME, updatedRecord, String.format("%s = ?", _ID), new String[]{String.valueOf(recordData.getID())});
     }
 }
