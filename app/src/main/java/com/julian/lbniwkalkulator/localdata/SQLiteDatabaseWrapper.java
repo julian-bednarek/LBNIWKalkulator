@@ -1,9 +1,6 @@
 package com.julian.lbniwkalkulator.localdata;
 
 import static android.provider.BaseColumns._ID;
-import static com.julian.lbniwkalkulator.localdata.IsotopeDatabaseContract.IsotopeEntry.COLUMN_NAME_ACTIVITY;
-import static com.julian.lbniwkalkulator.localdata.IsotopeDatabaseContract.IsotopeEntry.COLUMN_NAME_HALF_LIFE_TIME;
-import static com.julian.lbniwkalkulator.localdata.IsotopeDatabaseContract.IsotopeEntry.COLUMN_NAME_MOST_RECENT_TIMESTAMP;
 import static com.julian.lbniwkalkulator.localdata.IsotopeDatabaseContract.IsotopeEntry.TABLE_NAME;
 
 import android.content.ContentValues;
@@ -14,6 +11,8 @@ import android.util.Log;
 
 import com.julian.lbniwkalkulator.dataclasess.IsotopeActivity;
 import com.julian.lbniwkalkulator.exceptions.InsertionFailedSQLiteException;
+
+import java.util.Objects;
 
 public class SQLiteDatabaseWrapper {
 
@@ -42,13 +41,15 @@ public class SQLiteDatabaseWrapper {
         try {
             db.beginTransaction();
             Cursor recordCursor = db.query(TABLE_NAME, null, null, null, null, null, null, null);
-            if(recordCursor.moveToFirst()) {
+            if (recordCursor.moveToFirst()) {
                 do {
                     updateRow(db, recordCursor);
                 } while (recordCursor.moveToNext());
             }
             recordCursor.close();
             db.setTransactionSuccessful();
+        } catch (Exception e) {
+            Log.e("Something went wrong in SQLite", Objects.requireNonNull(e.getMessage()));
         } finally {
             db.endTransaction();
         }
@@ -59,7 +60,6 @@ public class SQLiteDatabaseWrapper {
         IsotopeActivity recordData = IsotopeActivity.fromDatabaseRecord(recordCursor);
         long currentTimestamp = System.currentTimeMillis() / 1_000;
         long timeDifference = currentTimestamp - recordData.getMostRecentTimestamp();
-        Log.d("XDD", String.valueOf(recordData.getActivity()));
         recordData.setActivity(recordData.getActivity() * Math.pow(0.5, (timeDifference)/recordData.getHalfLifeTime()));
         recordData.setMostRecentTimestamp(currentTimestamp);
         ContentValues updatedRecord = recordData.toContentValues();
