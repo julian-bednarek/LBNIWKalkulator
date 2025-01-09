@@ -1,22 +1,11 @@
 package com.julian.lbniwkalkulator.core;
 
-import static android.provider.BaseColumns._ID;
-
-import static com.julian.lbniwkalkulator.localdata.IsotopeDatabaseContract.IsotopeEntry.COLUMN_NAME_ACTIVITY;
-import static com.julian.lbniwkalkulator.localdata.IsotopeDatabaseContract.IsotopeEntry.COLUMN_NAME_HALF_LIFE_TIME;
-import static com.julian.lbniwkalkulator.localdata.IsotopeDatabaseContract.IsotopeEntry.COLUMN_NAME_ISOTOPE_NAME;
-import static com.julian.lbniwkalkulator.localdata.IsotopeDatabaseContract.IsotopeEntry.COLUMN_NAME_MOST_RECENT_TIMESTAMP;
-
-import android.content.ContentValues;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import com.julian.lbniwkalkulator.R;
-import com.julian.lbniwkalkulator.exceptions.InsertionFailedSQLiteException;
 import com.julian.lbniwkalkulator.localdata.SQLiteDatabaseWrapper;
 import com.julian.lbniwkalkulator.util.StringGetter;
 

@@ -61,6 +61,7 @@ public class SQLiteDatabaseWrapper {
         long timeDifference = currentTimestamp - recordData.getMostRecentTimestamp();
         Log.d("XDD", String.valueOf(recordData.getActivity()));
         recordData.setActivity(recordData.getActivity() * Math.pow(0.5, (timeDifference)/recordData.getHalfLifeTime()));
+        recordData.setMostRecentTimestamp(currentTimestamp);
         ContentValues updatedRecord = recordData.toContentValues();
         db.update(TABLE_NAME, updatedRecord, String.format("%s = ?", _ID), new String[]{String.valueOf(recordData.getID())});
     }
