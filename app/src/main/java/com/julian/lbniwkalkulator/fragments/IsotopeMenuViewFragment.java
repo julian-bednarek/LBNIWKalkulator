@@ -4,9 +4,7 @@ import static com.julian.lbniwkalkulator.util.CustomInputParsers.parseInputDoubl
 import static com.julian.lbniwkalkulator.util.CustomInputParsers.parseInputInt;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.RadioButton;
 
 import androidx.annotation.NonNull;
@@ -23,7 +21,7 @@ import com.julian.lbniwkalkulator.exceptions.InputNotSupportedException;
 public class IsotopeMenuViewFragment extends AbstractInputMenuFragment{
 
     public IsotopeMenuViewFragment() {
-        super(R.layout.isotope_menu_layout);
+        super(R.layout.view_isotope_menu_layout);
     }
 
     @Override
@@ -31,6 +29,7 @@ public class IsotopeMenuViewFragment extends AbstractInputMenuFragment{
                              @Nullable Bundle savedInstanceState) {
 
         generalSetUp(view, R.id.calculate_button_isotope);
+        ((RadioButton) view.findViewById(R.id.isotope_from_saved_radio)).setChecked(true);
     }
 
     @Override

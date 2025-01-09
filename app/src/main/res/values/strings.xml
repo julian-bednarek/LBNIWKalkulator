@@ -3,6 +3,7 @@
     <string name="button_select_xray">X-Ray (generic)</string>
     <string name="button_select_isotope">Isotope</string>
     <string name="button_select_saved_isotopes">Saved isotopes</string>
+    <string name="current_activity">Current activity</string>
     <string name="company_logo">Company Logo</string>
     <string name="voltage">Voltage</string>
     <string name="current">Current</string>
@@ -20,6 +21,8 @@
     <string name="activity">Activity</string>
     <string name="eresco_x_ray_lamp" translatable="false">Eresco 200kV</string>
     <string name="y_smart_x_ray_lamp" translatable="false">Y.Smart 300kV</string>
+    <string name="from_saved_isotopes">From saved isotopes</string>
+    <string name="enter_manually">Other</string>
     <!--
      Exception messages
      -->

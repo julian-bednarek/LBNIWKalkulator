@@ -44,17 +44,17 @@ public class CalculatedTimeViewFragment extends Fragment {
     private AudioHandler audioHandler;
 
     public CalculatedTimeViewFragment() {
-        super(R.layout.calculated_time_view_layout);
+        super(R.layout.view_calculated_time_layout);
     }
 
     @Override
     public void onViewCreated(@NonNull View view,
                              @Nullable Bundle savedInstanceState) {
         setExposureTime();
-        handlePermissions(requireActivity());
         this.notificationHandler = new AppNotificationHandler(requireContext(), exposureTime);
         this.audioHandler = new AudioHandler(requireContext());
         setUpButton(view);
+        handlePermissions(requireActivity());
     }
 
     @Override

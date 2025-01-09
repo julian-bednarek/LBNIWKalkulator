@@ -14,12 +14,26 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Custom spinner component designed to display an enum-based list of options.
+ * <p>
+ * This class is used for selecting a value from a list derived from an enum type.
+ * It populates the spinner with enum constants and handles validation of the enum type input.
+ * </p>
+ */
 public class InputFieldSpinner extends androidx.appcompat.widget.AppCompatSpinner {
 
     public InputFieldSpinner(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
+    /**
+     * Sets the enum type for the spinner and populates it with the enum constants.
+     *
+     * @param enumType The name of the enum type to be used for the spinner options.
+     * @throws MissingComponentParameterException if the enumType is null.
+     * @throws InvalidComponentParameterException if the provided enumType is not valid.
+     */
     public void setEnum(String enumType) throws MissingComponentParameterException, InvalidComponentParameterException {
         if(enumType == null) throw new MissingComponentParameterException(
                 StringGetter.fromStringsXML(R.string.exception_missing_component_parameter_exception_message),
@@ -38,11 +52,15 @@ public class InputFieldSpinner extends androidx.appcompat.widget.AppCompatSpinne
             String displayName = enumConstant.name().replace("_", " ");
             spinnerData.add(displayName);
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.item_list_main_field, spinnerData);
-        adapter.setDropDownViewResource(R.layout.item_list_dropdown_field);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.components_item_list_main_field, spinnerData);
+        adapter.setDropDownViewResource(R.layout.components_item_list_dropdown_field);
         setAdapter(adapter);
     }
-
+    /**
+     * Retrieves the currently selected value from the spinner.
+     *
+     * @return The selected value as a string, or an empty string if no selection is made.
+     */
     public String getInputValue() {
         Object selectedItem = getSelectedItem();
         return selectedItem != null ? selectedItem.toString() : "";

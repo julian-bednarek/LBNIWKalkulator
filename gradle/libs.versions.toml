@@ -11,8 +11,10 @@ espressoIntents = "3.6.1"
 mockitoAndroid = "4.3.1"
 mockitoInline = "4.8.0"
 navigationFragmentKtx = "2.6.0"
+navigationSafeArgsGradlePlugin = "2.8.5"
 navigationUiKtx = "2.6.0"
 robotiumSolo = "5.6.3"
+sqliteFramework = "2.4.0"
 testng = "6.9.6"
 uiautomator = "2.3.0"
 datastoreRxjava3 = "1.1.1"
@@ -37,9 +39,11 @@ navigation-compose = { module = "androidx.navigation:navigation-compose" }
 navigation-dynamic-features-fragment = { module = "androidx.navigation:navigation-dynamic-features-fragment" }
 navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigationFragment" }
 navigation-fragment-ktx-v260 = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
+navigation-safe-args-gradle-plugin = { module = "androidx.navigation:navigation-safe-args-gradle-plugin", version.ref = "navigationSafeArgsGradlePlugin" }
 navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigationFragment" }
 navigation-ui-ktx-v260 = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigationUiKtx" }
 robotium-solo = { module = "com.robotium:robotium-solo", version.ref = "robotiumSolo" }
+sqlite-framework = { module = "androidx.sqlite:sqlite-framework", version.ref = "sqliteFramework" }
 testng = { group = "org.testng", name = "testng", version.ref = "testng" }
 uiautomator = { group = "androidx.test.uiautomator", name = "uiautomator", version.ref = "uiautomator" }
 datastore-rxjava3 = { group = "androidx.datastore", name = "datastore-rxjava3", version.ref = "datastoreRxjava3" }

@@ -6,7 +6,6 @@
         android:icon="@drawable/lbniw_ai"
         android:label="@string/app_name"
         android:roundIcon="@drawable/lbniw_ai"
-        android:name=".core.LBNIWKalkulatorApp"
         android:supportsRtl="true"
         android:theme="@style/Theme.LBNIWKalkulator"
         android:localeConfig="@xml/locales_config">

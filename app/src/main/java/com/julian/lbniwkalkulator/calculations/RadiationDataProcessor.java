@@ -11,7 +11,15 @@ import com.julian.lbniwkalkulator.exceptions.InputNotSupportedException;
 import com.julian.lbniwkalkulator.exceptions.InvalidRadiationDataTypeException;
 import com.julian.lbniwkalkulator.util.StringGetter;
 
+
 public class RadiationDataProcessor {
+    /**
+     * Strategy pattern implementation for calculating the correct exposure time.
+     * <p>
+     * This class safely handles different types of radiation data. If a new radiation data type
+     * has not been implemented, an {@link InvalidRadiationDataTypeException} will be thrown.
+     * </p>
+     */
     public static ExposureTime processRadiationData(RadiationData data) throws ExposureTimeTooLongException, InvalidRadiationDataTypeException, InputNotSupportedException {
         return switch (data.getType()) {
             case RadiationDataTypes.ISOTOPE -> processIsotopeData((IsotopeData) data);

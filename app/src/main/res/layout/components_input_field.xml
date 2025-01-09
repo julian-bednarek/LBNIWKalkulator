@@ -44,7 +44,7 @@
             android:layout_width="@dimen/input_entry_width"
             android:layout_height="@dimen/input_entry_height"
             app:enum_type="@string/voltage_enum"
-            android:background="@drawable/entry_shape"
+            android:background="@drawable/input_entry_shape"
             android:textColor="@color/default_text_color"
             android:textSize="14sp"
             android:visibility="gone"

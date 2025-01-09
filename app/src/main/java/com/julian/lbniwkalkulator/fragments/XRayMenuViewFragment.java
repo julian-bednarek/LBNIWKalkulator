@@ -4,9 +4,7 @@ import static com.julian.lbniwkalkulator.util.CustomInputParsers.parseInputDoubl
 import static com.julian.lbniwkalkulator.util.CustomInputParsers.parseInputInt;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.RadioButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,7 +19,7 @@ import com.julian.lbniwkalkulator.exceptions.InputNotSupportedException;
 public class XRayMenuViewFragment extends AbstractInputMenuFragment {
 
     public XRayMenuViewFragment() {
-        super(R.layout.x_ray_menu_layout);
+        super(R.layout.view_x_ray_menu_layout);
     }
 
     @Override

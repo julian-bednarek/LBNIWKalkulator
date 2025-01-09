@@ -12,23 +12,23 @@ import androidx.fragment.app.Fragment;
 
 
 import com.julian.lbniwkalkulator.R;
-import com.julian.lbniwkalkulator.databinding.StartViewLayoutBinding;
+import com.julian.lbniwkalkulator.databinding.ViewStartLayoutBinding;
 import com.julian.lbniwkalkulator.util.StringGetter;
 import android.os.Bundle;
 import android.widget.Button;
 
 public class StartViewFragment extends Fragment {
 
-    private StartViewLayoutBinding startViewLayoutBinding;
+    private ViewStartLayoutBinding startViewLayoutBinding;
 
     public StartViewFragment() {
-        super(R.layout.start_view_layout);
+        super(R.layout.view_start_layout);
     }
 
     @Override
     public void onViewCreated(@NonNull View view,
                              @Nullable Bundle savedInstanceState) {
-            startViewLayoutBinding = StartViewLayoutBinding.bind(view);
+            startViewLayoutBinding = ViewStartLayoutBinding.bind(view);
             setUpButtons();
             setUpLanguageSelector(view);
         }
@@ -40,6 +40,9 @@ public class StartViewFragment extends Fragment {
 
         startViewLayoutBinding.buttonSelectIsotope.setOnClickListener(view -> {
             startNewFragment(new IsotopeMenuViewFragment());
+        });
+        startViewLayoutBinding.buttonSelectSavedIsotope.setOnClickListener(view -> {
+            startNewFragment(new SavedIsotopesMenuFragment());
         });
 
     }

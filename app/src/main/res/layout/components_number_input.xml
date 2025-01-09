@@ -4,7 +4,7 @@
     android:id="@+id/number_input"
     android:layout_width="@dimen/input_entry_width"
     android:layout_height="@dimen/input_entry_height"
-    android:background="@drawable/entry_shape"
+    android:background="@drawable/input_entry_shape"
     android:theme="@style/Theme.AppCompat">
 
     <EditText

@@ -8,6 +8,7 @@ import com.julian.lbniwkalkulator.util.StringGetter;
 
 import java.util.Locale;
 
+//TODO: remove milliseconds, add hours instead
 public class ExposureTime {
     private final int minutes;
     private final int seconds;

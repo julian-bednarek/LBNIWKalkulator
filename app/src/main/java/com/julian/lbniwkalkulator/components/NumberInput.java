@@ -10,24 +10,24 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.julian.lbniwkalkulator.R;
 
+import javax.annotation.Nullable;
+
 public class NumberInput extends LinearLayout {
 
     private EditText input;
     private TextView inputUnit;
     private static final int MAX_INPUT_LEN = 5;
 
-    private void setUpInput(int type) {
-        input.setInputType(type);
-        input.setFilters(new InputFilter[]{new InputFilter.LengthFilter(MAX_INPUT_LEN)});
+    public NumberInput(Context context, AttributeSet attrset) {
+        super(context, attrset);
+        init(context, attrset);
     }
 
-    private void setUpInputUnit(String unit) {
-        if(unit == null) unit = "";
-        inputUnit.setText(unit);
-    }
-
+    /**
+     * Function responsible for enabling input by clicking at any point on wrapper not just actual input fields
+     */
     public void init(Context context, AttributeSet attrset) {
-        LayoutInflater.from(context).inflate(R.layout.number_input, this, true);
+        LayoutInflater.from(context).inflate(R.layout.components_number_input, this, true);
         input = findViewById(R.id.actual_input);
         inputUnit = findViewById(R.id.suffix_label);
         TypedArray attributes = context.obtainStyledAttributes(attrset, R.styleable.NumberInput);
@@ -38,13 +38,18 @@ public class NumberInput extends LinearLayout {
         setUpInputUnit(unit);
     }
 
-    public void setPlaceholder(String placeholder) {
-        input.setHint(placeholder);
+    private void setUpInput(int type) {
+        input.setInputType(type);
+        input.setFilters(new InputFilter[]{new InputFilter.LengthFilter(MAX_INPUT_LEN)});
     }
 
-    public NumberInput(Context context, AttributeSet attrset) {
-        super(context, attrset);
-        init(context, attrset);
+    private void setUpInputUnit(@Nullable String unit) {
+        if(unit == null) unit = "";
+        inputUnit.setText(unit);
+    }
+
+    public void setPlaceholder(@Nullable String placeholder) {
+        input.setHint(placeholder);
     }
 
     public String getInputValue() {

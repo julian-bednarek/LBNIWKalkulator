@@ -9,17 +9,83 @@
     android:focusable="true"
     tools:context="core.MainActivity">
 
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="@dimen/textview_width"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="205dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="475dp"
+        android:background="@drawable/radio_group_background"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextSizeCheck">
+
+        <RadioButton
+            android:id="@+id/lamp_y_smart"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/radio_button_selector"
+            android:button="@null"
+            android:padding="10dp"
+            android:text="@string/y_smart_x_ray_lamp"
+            android:textAlignment="center"
+            android:textColor="@color/default_text_color"
+            android:textSize="23sp" />
+
+        <RadioButton
+            android:id="@+id/lamp_eresco"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/radio_button_selector"
+            android:button="@null"
+            android:padding="10dp"
+            android:text="@string/eresco_x_ray_lamp"
+            android:textAlignment="center"
+            android:textColor="@color/default_text_color"
+            android:textSize="23sp"
+            tools:layout_editor_absoluteX="31dp"
+            tools:layout_editor_absoluteY="206dp" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="@dimen/textview_width"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/buttons_start_buttons"
+        android:padding="@dimen/textview_padding"
+        android:text="@string/button_select_xray"
+        android:textAlignment="center"
+        android:textColor="@color/default_text_color"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toTopOf="@+id/radioGroup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.511"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
     <com.julian.lbniwkalkulator.components.InputFieldWrapper
         android:id="@+id/inputXRayVoltage"
         android:layout_width="@dimen/input_field_size"
         android:layout_height="@dimen/input_field_size"
+        android:layout_marginTop="@dimen/input_up_margin"
         android:layout_marginEnd="@dimen/input_side_margin"
         android:hint="@string/null_str"
         android:inputType="none"
         android:textColor="@color/default_text_color"
         app:enum_type="@string/voltage_enum"
         app:labelText="@string/voltage"
-        android:layout_marginTop="@dimen/input_up_margin"
         app:layout_constraintEnd_toStartOf="@+id/inputXRayCurrent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup"
         app:using_list_input="true"
@@ -31,10 +97,10 @@
         android:id="@+id/inputXRayCurrent"
         android:layout_width="@dimen/input_field_size"
         android:layout_height="@dimen/input_field_size"
+        android:layout_marginTop="@dimen/input_up_margin"
         android:hint="@string/integer_placeholder"
         android:inputType="number"
         android:textColor="@color/default_text_color"
-        android:layout_marginTop="@dimen/input_up_margin"
         app:labelText="@string/current"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -107,7 +173,7 @@
         android:layout_width="@dimen/textview_width"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/input_up_margin"
-        android:background="@drawable/button_selector"
+        android:background="@drawable/buttons_button_selector"
         android:text="@string/calculate"
         android:textColor="@color/default_text_color"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -118,51 +184,39 @@
         app:layout_constraintVertical_bias="0.005"
         tools:ignore="VisualLintButtonSize" />
 
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="@dimen/textview_width"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="31dp"
-        android:layout_marginTop="206dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="475dp"
-        android:background="@drawable/radio_group_background"
-        android:clipChildren="false"
-        android:clipToPadding="false"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="0dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintGuide_begin="20dp" />
 
-        <RadioButton
-            android:id="@+id/lamp_y_smart"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/radio_button_selector"
-            android:button="@null"
-            android:padding="10dp"
-            android:text="@string/y_smart_x_ray_lamp"
-            android:textAlignment="center"
-            android:textColor="@color/default_text_color"
-            android:textSize="23sp" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="165dp" />
 
-        <RadioButton
-            android:id="@+id/lamp_eresco"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/radio_button_selector"
-            android:button="@null"
-            android:padding="10dp"
-            android:text="@string/eresco_x_ray_lamp"
-            android:textAlignment="center"
-            android:textColor="@color/default_text_color"
-            android:textSize="23sp"
-            tools:layout_editor_absoluteX="31dp"
-            tools:layout_editor_absoluteY="206dp" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="232dp" />
 
-    </RadioGroup>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="785dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

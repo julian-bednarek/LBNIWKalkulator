@@ -16,6 +16,9 @@ import com.julian.lbniwkalkulator.exceptions.InvalidComponentException;
 import com.julian.lbniwkalkulator.exceptions.MissingComponentParameterException;
 import com.julian.lbniwkalkulator.util.StringGetter;
 
+/**
+ * A custom wrapper for input fields, which can be either a text input (which is also custom) or a spinner (dropdown list).
+ */
 public class InputFieldWrapper extends LinearLayout {
 
     private TextView label;
@@ -26,10 +29,13 @@ public class InputFieldWrapper extends LinearLayout {
     public InputFieldWrapper(Context context, AttributeSet attrs) throws InvalidComponentException {
         super(context, attrs);
         init(context, attrs);
-        setStateListeners(context);
+        setClickListener(context);
     }
 
-    private void setStateListeners(Context context) {
+    /**
+     * Function responsible for enabling input by clicking at any point on wrapper not just actual input fields
+     */
+    private void setClickListener(Context context) {
         EditText editText = findViewById(R.id.actual_input);
         Spinner spinner = findViewById(R.id.input_spinner);
         setOnClickListener(v -> {
@@ -62,8 +68,12 @@ public class InputFieldWrapper extends LinearLayout {
         text_input.setPlaceholder(placeholder);
     }
 
-    private void init(Context context, AttributeSet attrset) throws InvalidComponentException{
-        LayoutInflater.from(context).inflate(R.layout.input_field, this, true);
+    /**
+     * Function mainly for retrieval of custom arguments
+     * @throws InvalidComponentException from setUpLabel and setUpPlaceholder
+     */
+    private void init(Context context, AttributeSet attrset) throws InvalidComponentException {
+        LayoutInflater.from(context).inflate(R.layout.components_input_field, this, true);
         label = findViewById(R.id.input_label);
         text_input = findViewById(R.id.text_input);
         list_input = findViewById(R.id.input_spinner);

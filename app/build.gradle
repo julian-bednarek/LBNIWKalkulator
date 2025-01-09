@@ -11,13 +11,12 @@ android {
         enabled = true
     }
 
-    namespace 'com.julian.lbniwkalkulator'
+    namespace "com.julian.lbniwkalkulator"
     compileSdk 34
 
     defaultConfig {
         applicationId "com.julian.lbniwkalkulator"
         minSdk 33
-        //noinspection OldTargetApi
         targetSdk 34
         versionCode 1
         versionName "1.0"
@@ -36,13 +35,12 @@ android {
         targetCompatibility JavaVersion.VERSION_17
     }
 }
-
 dependencies {
 
     implementation libs.material
     implementation libs.appcompat
     implementation libs.datastore.preferences
-
+    implementation libs.sqlite.framework
     implementation libs.navigation.fragment.ktx
     implementation libs.navigation.ui.ktx
     implementation libs.fragment.testing

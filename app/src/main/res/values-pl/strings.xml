@@ -6,6 +6,7 @@
     <string name="button_select_saved_isotopes">Zapisane izotopy</string>
     <string name="voltage">Napięcie</string>
     <string name="current">Natężenie</string>
+    <string name="current_activity">Atualna aktywność</string>
     <string name="steel_thickness">Grubość materiału</string>
     <string name="film_type">Typ błony</string>
     <string name="source_to_detector">Odległość od lampy</string>
@@ -20,6 +21,7 @@
     <!--
     Exception messages
     -->
+    <string name="enter_manually">Inny</string>
     <string name="error">Wystąpił błąd</string>
     <string name="exception_too_long_exposure_time">Za długi czas eskpozycji. Najprawdopodobniej wprowadzone dane są niewłaściwe.</string>
     <string name="exception_too_long_exposure_time_additional">Nieprawidłowy czas ekspozycji wynosi: </string>
@@ -36,4 +38,5 @@
     <string name="exception_input_not_supported_additional">Nieprawidłowe dane wejściowe:</string>
     <string name="exception_radiation_data_not_found_message">"Coś poszło nie tak podczas przekazywania danych o promieniowaniu"</string>
     <string name="notifications_denied">"Odmówiono pozwolenia na wysyłanie powiadomień."</string>
+    <string name="from_saved_isotopes">Z zapisanych izotopów</string>
 </resources>
