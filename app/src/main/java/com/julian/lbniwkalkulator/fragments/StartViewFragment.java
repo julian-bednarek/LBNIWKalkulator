@@ -1,5 +1,6 @@
 package com.julian.lbniwkalkulator.fragments;
 
+import static androidx.navigation.Navigation.findNavController;
 import static com.julian.lbniwkalkulator.util.ErrorHandler.showErrorDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -35,27 +36,18 @@ public class StartViewFragment extends Fragment {
 
     private void setUpButtons() {
         startViewLayoutBinding.buttonSelectXray.setOnClickListener(view -> {
-            startNewFragment(new XRayMenuViewFragment());
+            findNavController(view).navigate(StartViewFragmentDirections.actionStartViewFragmentToXRayMenuViewFragment());
         });
-
         startViewLayoutBinding.buttonSelectIsotope.setOnClickListener(view -> {
-            startNewFragment(new IsotopeMenuViewFragment());
+            findNavController(view).navigate(StartViewFragmentDirections.actionStartViewFragmentToIsotopeMenuViewFragment());
         });
         startViewLayoutBinding.buttonSelectSavedIsotope.setOnClickListener(view -> {
-            startNewFragment(new SavedIsotopesMenuFragment());
+            findNavController(view).navigate(StartViewFragmentDirections.actionStartViewFragmentToSavedIsotopesMenuFragment());
         });
 
     }
 
-    private void startNewFragment(Fragment fragment) {
-        requireActivity().getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.nav_host_fragment_activity_main, fragment)
-                .addToBackStack(null)
-                .commit();
-    }
-
-    private void setUpLanguageSelector(View rootView) {
+    private void setUpLanguageSelector(@NonNull View rootView) {
         Button languageButton = rootView.findViewById(R.id.language_button);
         languageButton.setOnClickListener(view -> {
             try {

@@ -1,6 +1,5 @@
 package com.julian.lbniwkalkulator.fragments;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -10,6 +9,7 @@ import android.widget.TableRow;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import com.julian.lbniwkalkulator.R;
 import com.julian.lbniwkalkulator.components.CustomTableRow;
@@ -31,14 +31,41 @@ public class SavedIsotopesMenuFragment extends Fragment {
     public void onViewCreated(@NonNull View view,
                               @Nullable Bundle savedInstanceState) {
         binding = ViewSavedIsotopesMenuLayoutBinding.bind(view);
+        setUpTable();
+        setUpButtons();
+    }
+
+    private void setUpButtons() {
+        binding.buttonAdd.setOnClickListener(v -> addIsotope());
+        binding.buttonRemove.setOnClickListener(v -> removeClickedIsotopes());
+        binding.savedIsotopesBackButton.setOnClickListener(v ->
+                Navigation.findNavController(v).navigate(SavedIsotopesMenuFragmentDirections.
+                actionSavedIsotopesMenuFragmentToStartViewFragment()));
+    }
+
+    private void removeClickedIsotopes() {
+
+    }
+
+    private void addIsotope() {
+
+    }
+
+    private void setUpTable() {
         TableRow testRow = new TableRow(requireContext());
         testRow.setGravity(Gravity.CENTER);
-        ArrayList<IsotopeActivity> savedIsotopes = ((MainActivity)requireActivity()).getDatabase().loadRecords(null, null);
+        setUpTableRows();
+    }
+
+    private void setUpTableRows() {
+        ArrayList<IsotopeActivity> savedIsotopes = ((MainActivity)requireActivity())
+                                                    .getDatabase()
+                                                    .loadAllRecords();
         for (IsotopeActivity isotope : savedIsotopes) {
             CustomTableRow row = new CustomTableRow(requireContext(),
-                                                    isotope.getID(),
-                                                    isotope.getIsotopeName(),
-                                                    String.format(Locale.getDefault(),"%.2f", isotope.getActivity()));
+                    isotope.getID(),
+                    isotope.getIsotopeName(),
+                    String.format(Locale.getDefault(),"%.2f", isotope.getActivity()));
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT

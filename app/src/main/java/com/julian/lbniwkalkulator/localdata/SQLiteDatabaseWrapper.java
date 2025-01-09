@@ -37,6 +37,10 @@ public class SQLiteDatabaseWrapper {
                 null, null, null);
     }
 
+    public ArrayList<IsotopeActivity> loadAllRecords() {
+        return loadRecords(null,null);
+    }
+
     public ArrayList<IsotopeActivity> loadRecords(String whereClause, String[] whereClauseArgs) {
         ArrayList<IsotopeActivity> retval = new ArrayList<>();
         SQLiteDatabase db = dbHelper.getReadableDatabase();

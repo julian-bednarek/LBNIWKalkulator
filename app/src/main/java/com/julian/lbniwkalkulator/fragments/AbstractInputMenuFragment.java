@@ -11,6 +11,9 @@ import androidx.annotation.NonNull;
 import com.julian.lbniwkalkulator.R;
 import com.julian.lbniwkalkulator.dataclasess.RadiationData;
 
+/**
+ * Abstract class for input fragments <b>mandatory</b> if the next fragment is meant to {@link CalculatedTimeViewFragment}
+ */
 public abstract class AbstractInputMenuFragment extends Fragment {
 
     public AbstractInputMenuFragment(int layout) {
@@ -22,23 +25,12 @@ public abstract class AbstractInputMenuFragment extends Fragment {
      */
     protected abstract RadiationData collectData(View rootView);
 
-    protected void setUpCalculateButton(@NonNull View view, int buttonID) {
-        Button calculateButton = view.findViewById(buttonID);
-        calculateButton.setOnClickListener(v -> {
-            RadiationData data = collectData(view);
-            Bundle bundle = new Bundle();
-            bundle.putParcelable("input_data", data);
-            CalculatedTimeViewFragment nextFragment = new CalculatedTimeViewFragment();
-            nextFragment.setArguments(bundle);
-            requireActivity().getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.nav_host_fragment_activity_main, nextFragment)
-                    .addToBackStack(null)
-                    .commit();
-        });
-        setUpHideKeyboard(view);
-    }
+    protected abstract void setUpCalculateButton(@NonNull View view, int buttonID);
 
+    /**
+     * Function to remove phenomenon of keyboard which cannot be discarded
+     * @param view fragments' view
+     */
     protected void setUpHideKeyboard(@NonNull View view) {
         view.setOnClickListener(v -> {
             InputMethodManager inputMethodManager = (InputMethodManager) requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -50,7 +42,7 @@ public abstract class AbstractInputMenuFragment extends Fragment {
     }
 
     protected void generalSetUp(View view, int buttonID) {
-
+        setUpHideKeyboard(view);
         setUpCalculateButton(view, buttonID);
     }
 }

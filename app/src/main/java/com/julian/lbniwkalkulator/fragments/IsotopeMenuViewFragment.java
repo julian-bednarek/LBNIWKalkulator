@@ -1,5 +1,6 @@
 package com.julian.lbniwkalkulator.fragments;
 
+import static androidx.navigation.Navigation.findNavController;
 import static com.julian.lbniwkalkulator.util.CustomInputParsers.parseInputDouble;
 import static com.julian.lbniwkalkulator.util.CustomInputParsers.parseInputInt;
 
@@ -9,9 +10,12 @@ import android.widget.RadioButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
 
 import com.julian.lbniwkalkulator.R;
 import com.julian.lbniwkalkulator.components.InputFieldWrapper;
+import com.julian.lbniwkalkulator.databinding.ViewIsotopeMenuLayoutBinding;
+import com.julian.lbniwkalkulator.databinding.ViewSavedIsotopesMenuLayoutBinding;
 import com.julian.lbniwkalkulator.dataclasess.IsotopeData;
 import com.julian.lbniwkalkulator.dataclasess.RadiationData;
 import com.julian.lbniwkalkulator.dataclasess.XRayData;
@@ -20,14 +24,24 @@ import com.julian.lbniwkalkulator.exceptions.InputNotSupportedException;
 
 public class IsotopeMenuViewFragment extends AbstractInputMenuFragment{
 
+    ViewIsotopeMenuLayoutBinding binding;
+
     public IsotopeMenuViewFragment() {
         super(R.layout.view_isotope_menu_layout);
     }
 
     @Override
+    protected void setUpCalculateButton(@NonNull View view, int buttonID) {
+        binding.calculateButtonIsotope.setOnClickListener(v -> {
+            findNavController(v).navigate(IsotopeMenuViewFragmentDirections.
+                    actionIsotopeMenuViewFragmentToCalculatedTimeViewFragment(collectData(view)));
+        });
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view,
                              @Nullable Bundle savedInstanceState) {
-
+        binding = ViewIsotopeMenuLayoutBinding.bind(view);
         generalSetUp(view, R.id.calculate_button_isotope);
         ((RadioButton) view.findViewById(R.id.isotope_from_saved_radio)).setChecked(true);
     }

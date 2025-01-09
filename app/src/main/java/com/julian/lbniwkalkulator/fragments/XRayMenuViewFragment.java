@@ -1,5 +1,6 @@
 package com.julian.lbniwkalkulator.fragments;
 
+import static androidx.navigation.Navigation.findNavController;
 import static com.julian.lbniwkalkulator.util.CustomInputParsers.parseInputDouble;
 import static com.julian.lbniwkalkulator.util.CustomInputParsers.parseInputInt;
 
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.julian.lbniwkalkulator.R;
 import com.julian.lbniwkalkulator.components.InputFieldWrapper;
+import com.julian.lbniwkalkulator.databinding.ViewXRayMenuLayoutBinding;
 import com.julian.lbniwkalkulator.dataclasess.RadiationData;
 import com.julian.lbniwkalkulator.dataclasess.XRayData;
 import com.julian.lbniwkalkulator.enums.FilmTypeEnum;
@@ -17,6 +19,8 @@ import com.julian.lbniwkalkulator.enums.VoltageValuesEnum;
 import com.julian.lbniwkalkulator.exceptions.InputNotSupportedException;
 
 public class XRayMenuViewFragment extends AbstractInputMenuFragment {
+
+    ViewXRayMenuLayoutBinding binding;
 
     public XRayMenuViewFragment() {
         super(R.layout.view_x_ray_menu_layout);
@@ -26,8 +30,17 @@ public class XRayMenuViewFragment extends AbstractInputMenuFragment {
     public void onViewCreated(@NonNull View view,
                              @Nullable Bundle savedInstanceState) {
 
+        binding = ViewXRayMenuLayoutBinding.bind(view);
         ((RadioButton) view.findViewById(R.id.lamp_y_smart)).setChecked(true);
         generalSetUp(view, R.id.calculate_button_xray);
+    }
+
+    @Override
+    protected void setUpCalculateButton(@NonNull View view, int buttonID) {
+        binding.calculateButtonXray.setOnClickListener(v -> {
+            findNavController(v).navigate(XRayMenuViewFragmentDirections.
+                    actionXRayMenuViewFragmentToCalculatedTimeViewFragment(collectData(view)));
+        });
     }
 
     @Override
