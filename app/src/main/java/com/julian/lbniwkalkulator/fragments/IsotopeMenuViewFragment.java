@@ -3,6 +3,7 @@ package com.julian.lbniwkalkulator.fragments;
 import static androidx.navigation.Navigation.findNavController;
 import static com.julian.lbniwkalkulator.util.CustomInputParsers.parseInputDouble;
 import static com.julian.lbniwkalkulator.util.CustomInputParsers.parseInputInt;
+import static com.julian.lbniwkalkulator.util.ErrorHandler.processException;
 
 import android.os.Bundle;
 import android.view.View;
@@ -33,8 +34,11 @@ public class IsotopeMenuViewFragment extends AbstractInputMenuFragment{
     @Override
     protected void setUpCalculateButton(@NonNull View view, int buttonID) {
         binding.calculateButtonIsotope.setOnClickListener(v -> {
-            findNavController(v).navigate(IsotopeMenuViewFragmentDirections.
-                    actionIsotopeMenuViewFragmentToCalculatedTimeViewFragment(collectData(view)));
+            RadiationData checkData = collectData(view);
+            if(checkData != null) {
+                findNavController(v).navigate(IsotopeMenuViewFragmentDirections.
+                        actionIsotopeMenuViewFragmentToCalculatedTimeViewFragment(checkData));
+            }
         });
     }
 
@@ -70,7 +74,8 @@ public class IsotopeMenuViewFragment extends AbstractInputMenuFragment{
             return new IsotopeData(activity, steelThickness, sourceToDetectorDistance,
                     isotopeType, filmType, targetDensity);
         } catch (InputNotSupportedException e) {
-            return new XRayData();
+            processException(requireContext(), e.getMessage(), null, null, null);
+            return null;
         }
     }
 }

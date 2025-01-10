@@ -1,14 +1,10 @@
 package com.julian.lbniwkalkulator.fragments;
 
 import androidx.fragment.app.Fragment;
-
 import android.content.Context;
-import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import androidx.annotation.NonNull;
-import com.julian.lbniwkalkulator.R;
 import com.julian.lbniwkalkulator.dataclasess.RadiationData;
 
 /**

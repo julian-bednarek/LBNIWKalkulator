@@ -3,6 +3,7 @@ package com.julian.lbniwkalkulator.fragments;
 import static androidx.navigation.Navigation.findNavController;
 import static com.julian.lbniwkalkulator.util.CustomInputParsers.parseInputDouble;
 import static com.julian.lbniwkalkulator.util.CustomInputParsers.parseInputInt;
+import static com.julian.lbniwkalkulator.util.ErrorHandler.processException;
 
 import android.os.Bundle;
 import android.view.View;
@@ -38,8 +39,11 @@ public class XRayMenuViewFragment extends AbstractInputMenuFragment {
     @Override
     protected void setUpCalculateButton(@NonNull View view, int buttonID) {
         binding.calculateButtonXray.setOnClickListener(v -> {
-            findNavController(v).navigate(XRayMenuViewFragmentDirections.
-                    actionXRayMenuViewFragmentToCalculatedTimeViewFragment(collectData(view)));
+            RadiationData checkData = collectData(view);
+            if(checkData != null) {
+                findNavController(v).navigate(XRayMenuViewFragmentDirections.
+                        actionXRayMenuViewFragmentToCalculatedTimeViewFragment(checkData));
+            }
         });
     }
 
@@ -67,7 +71,8 @@ public class XRayMenuViewFragment extends AbstractInputMenuFragment {
             return new XRayData(voltage, current, steelThickness,
                     filmType, sourceToDetectorDistance, targetDensity);
         } catch (InputNotSupportedException e) {
-            return new XRayData();
+            processException(requireContext(), e.getMessage(), null, null, null);
+            return null;
         }
     }
 }
