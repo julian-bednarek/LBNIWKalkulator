@@ -23,6 +23,7 @@
     <string name="y_smart_x_ray_lamp" translatable="false">Y.Smart 300kV</string>
     <string name="from_saved_isotopes">From saved isotopes</string>
     <string name="enter_manually">Other</string>
+    <string name="time_left">Time left</string>
     <!--
      Exception messages
      -->

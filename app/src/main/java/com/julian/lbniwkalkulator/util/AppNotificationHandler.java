@@ -35,7 +35,7 @@ public class AppNotificationHandler {
 
     private void setUpBuilder(long timeRemaining) {
         this.builder.setSmallIcon(R.drawable.lbniw_ai)
-                    .setContentTitle("Time left")
+                    .setContentTitle(StringGetter.fromStringsXML(R.string.time_left))
                     .setPriority(NotificationCompat.PRIORITY_MAX)
                     .setCategory(NotificationCompat.CATEGORY_ALARM)
                     .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)

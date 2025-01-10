@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.util.Log;
 import com.julian.lbniwkalkulator.R;
+import com.julian.lbniwkalkulator.components.dialogs.CustomErrorDialog;
 
 public class ErrorHandler {
 
@@ -32,13 +33,10 @@ public class ErrorHandler {
     public static final String ERROR_BUTTON_TEXT = "OK";
 
     public static void showErrorDialog(Context context, String title, String message, Runnable dismissAction) {
-            AlertDialog dialog = new AlertDialog.Builder(context)
+            CustomErrorDialog dialog = new CustomErrorDialog.Builder(context)
                     .setTitle(title)
                     .setMessage(message)
-                    .setPositiveButton(ERROR_BUTTON_TEXT, (dialogInterface, which) -> {
-                        dialogInterface.dismiss();
-                    })
-                    .setCancelable(false)
+                    .setDismissButtonText(ERROR_BUTTON_TEXT)
                     .create();
 
             dialog.setOnDismissListener(dialogInterface -> {
@@ -46,7 +44,6 @@ public class ErrorHandler {
                     dismissAction.run();
                 }
             });
-
             dialog.show();
     }
 }
