@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.julian.lbniwkalkulator.R;
+import com.julian.lbniwkalkulator.components.dialogs.CustomInsertInputDialog;
 import com.julian.lbniwkalkulator.components.table.CustomTableRow;
 import com.julian.lbniwkalkulator.core.MainActivity;
 import com.julian.lbniwkalkulator.databinding.ViewSavedIsotopesMenuLayoutBinding;
@@ -48,7 +49,8 @@ public class SavedIsotopesMenuFragment extends Fragment {
     }
 
     private void addIsotope() {
-
+        CustomInsertInputDialog dialog = new CustomInsertInputDialog(requireContext());
+        dialog.show();
     }
 
     private void setUpTable() {

@@ -6,7 +6,7 @@
     <string name="button_select_saved_isotopes">Zapisane izotopy</string>
     <string name="voltage">Napięcie</string>
     <string name="current">Natężenie</string>
-    <string name="current_activity">Atualna aktywność</string>
+    <string name="current_activity">Aktualna aktywność</string>
     <string name="steel_thickness">Grubość materiału</string>
     <string name="film_type">Typ błony</string>
     <string name="source_to_detector">Odległość od lampy</string>
@@ -15,9 +15,7 @@
     <string name="decimal_placeholder">0.0</string>
     <string name="integer_placeholder">0</string>
     <string name="null_str">null</string>
-    <string name="voltage_enum">VOLTAGE_VALUE</string>
-    <string name="film_type_enum">FILM_TYPE</string>
-    <string name="activity">Aktywność izotopu</string>
+    <string name="activity">Aktywność</string>
     <string name="time_left">Pozostały czas</string>
     <!--
     Exception messages
@@ -40,4 +38,8 @@
     <string name="exception_radiation_data_not_found_message">"Coś poszło nie tak podczas przekazywania danych o promieniowaniu"</string>
     <string name="notifications_denied">"Odmówiono pozwolenia na wysyłanie powiadomień."</string>
     <string name="from_saved_isotopes">Z zapisanych izotopów</string>
+    <string name="half_life_time_unit">dni</string>
+    <string name="isotope_name_field">Nazwa izotopu</string>
+    <string name="half_life_time">Czas półtrwania</string>
+    <string name="add_to_database">Dodaj do bazy danych</string>
 </resources>

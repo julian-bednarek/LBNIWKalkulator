@@ -11,5 +11,6 @@
         <attr name="android:inputType" format="string" />
         <attr name="suffixText" format="string" />
         <attr name="maxLength" format="integer" />
+        <attr name="using_str" format="string" />
     </declare-styleable>
 </resources>

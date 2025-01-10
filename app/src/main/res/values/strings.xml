@@ -46,4 +46,8 @@
      Other
     -->
     <string name="notifications_denied">"Permission to post notifications denied."</string>
+    <string name="half_life_time_unit">days</string>
+    <string name="isotope_name_field">Isotope name</string>
+    <string name="half_life_time">Half-life time</string>
+    <string name="add_to_database">Add to database</string>
 </resources>

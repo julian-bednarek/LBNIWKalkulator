@@ -16,47 +16,67 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Isotope name"/>
+                android:layout_weight="1"
+                android:text="@string/isotope_name_field"
+                android:layout_gravity="center_vertical"/>
 
             <com.julian.lbniwkalkulator.components.inputfields.NumberInput
-                android:layout_width="wrap_content"
+                android:id="@+id/insert_name_input"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:inputType="text"
+                app:using_str="true"
                 android:layout_height="wrap_content" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Current activity"/>
+                android:layout_weight="1"
+                android:text="@string/activity"
+                android:layout_gravity="center_vertical"/>
 
             <com.julian.lbniwkalkulator.components.inputfields.NumberInput
-                android:layout_width="wrap_content"
+                android:id="@+id/insert_activity_input"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:inputType="numberDecimal"
+                app:suffixText="Ci"
                 android:layout_height="wrap_content" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Half life time"/>
+                android:layout_weight="1"
+                android:text="@string/half_life_time"
+                android:layout_gravity="center_vertical"/>
 
             <com.julian.lbniwkalkulator.components.inputfields.NumberInput
-                android:layout_width="wrap_content"
+                android:id="@+id/insert_half_life_input"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:inputType="numberDecimal"
+                app:suffixText="@string/half_life_time_unit"
                 android:layout_height="wrap_content" />
         </LinearLayout>
 
@@ -69,8 +89,8 @@
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:layout_gravity="center"
-            android:text="Add to database"
+            android:text="@string/add_to_database"
             android:textColor="@color/default_text_color" />
 
     </LinearLayout>
-</LinearLayout>>
+</LinearLayout>

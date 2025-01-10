@@ -16,7 +16,8 @@ public class NumberInput extends LinearLayout {
 
     private EditText input;
     private TextView inputUnit;
-    private static final int MAX_INPUT_LEN = 5;
+    private static final int MAX_INPUT_LEN_NUM = 5;
+    private static final int MAX_INPUT_LEN_STR = 8;
 
     public NumberInput(Context context, AttributeSet attrset) {
         super(context, attrset);
@@ -31,16 +32,22 @@ public class NumberInput extends LinearLayout {
         input = findViewById(R.id.actual_input);
         inputUnit = findViewById(R.id.suffix_label);
         TypedArray attributes = context.obtainStyledAttributes(attrset, R.styleable.NumberInput);
+        boolean usingStr = attributes.getBoolean(R.styleable.NumberInput_using_str, false);
         int inputType = attributes.getInt(R.styleable.NumberInput_android_inputType, 0);
         String unit = attributes.getString(R.styleable.NumberInput_suffixText);
         attributes.recycle();
-        setUpInput(inputType);
+        setUpInput(inputType, usingStr);
         setUpInputUnit(unit);
     }
 
-    private void setUpInput(int type) {
+    /**
+     *
+     * @param type type of input e.g. text, number, numberDecimal etc.
+     * @param usingStr just type == text (but needed to add explicitly)
+     */
+    private void setUpInput(int type, boolean usingStr) {
         input.setInputType(type);
-        input.setFilters(new InputFilter[]{new InputFilter.LengthFilter(MAX_INPUT_LEN)});
+        input.setFilters(new InputFilter[]{new InputFilter.LengthFilter(usingStr ? MAX_INPUT_LEN_STR : MAX_INPUT_LEN_NUM)});
     }
 
     private void setUpInputUnit(@Nullable String unit) {

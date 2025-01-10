@@ -14,7 +14,7 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 
 public class IsotopeActivity implements Parcelable {
-    private final int ID;
+    private int ID;
 
     public void setActivity(double activity) {
         this.activity = activity;
@@ -24,10 +24,22 @@ public class IsotopeActivity implements Parcelable {
         this.mostRecentTimestamp = mostRecentTimestamp;
     }
 
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public void setHalfLifeTime(double halfLifeTime) {
+        this.halfLifeTime = halfLifeTime;
+    }
+
+    public void setIsotopeName(String isotopeName) {
+        this.isotopeName = isotopeName;
+    }
+
     private double activity;
     private long mostRecentTimestamp;
-    private final double halfLifeTime;
-    private final String isotopeName;
+    private double halfLifeTime;
+    private String isotopeName;
 
     public IsotopeActivity(int ID, String isotopeName, double halfLifeTime, long mostRecentTimestamp, double activity) {
         this.ID = ID;
