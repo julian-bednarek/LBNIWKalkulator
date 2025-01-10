@@ -11,15 +11,12 @@ import android.widget.RadioButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.databinding.DataBindingUtil;
 
 import com.julian.lbniwkalkulator.R;
-import com.julian.lbniwkalkulator.components.InputFieldWrapper;
+import com.julian.lbniwkalkulator.components.inputfields.InputFieldWrapper;
 import com.julian.lbniwkalkulator.databinding.ViewIsotopeMenuLayoutBinding;
-import com.julian.lbniwkalkulator.databinding.ViewSavedIsotopesMenuLayoutBinding;
 import com.julian.lbniwkalkulator.dataclasess.IsotopeData;
 import com.julian.lbniwkalkulator.dataclasess.RadiationData;
-import com.julian.lbniwkalkulator.dataclasess.XRayData;
 import com.julian.lbniwkalkulator.enums.FilmTypeEnum;
 import com.julian.lbniwkalkulator.exceptions.InputNotSupportedException;
 

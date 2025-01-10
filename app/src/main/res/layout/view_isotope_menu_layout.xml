@@ -69,7 +69,7 @@
 
     </RadioGroup>
 
-    <com.julian.lbniwkalkulator.components.InputFieldWrapper
+    <com.julian.lbniwkalkulator.components.inputfields.InputFieldWrapper
         android:id="@+id/activity_input_isotope"
         android:layout_width="@dimen/input_field_size"
         android:layout_height="@dimen/input_field_size"
@@ -84,7 +84,7 @@
         app:layout_constraintTop_toBottomOf="@+id/radioGroup"
         app:suffixText="Ci" />
 
-    <com.julian.lbniwkalkulator.components.InputFieldWrapper
+    <com.julian.lbniwkalkulator.components.inputfields.InputFieldWrapper
         android:id="@+id/film_type_isotope"
         android:layout_width="@dimen/input_field_size"
         android:layout_height="@dimen/input_field_size"
@@ -101,7 +101,7 @@
         app:layout_constraintTop_toBottomOf="@+id/radioGroup"
         app:using_list_input="true" />
 
-    <com.julian.lbniwkalkulator.components.InputFieldWrapper
+    <com.julian.lbniwkalkulator.components.inputfields.InputFieldWrapper
         android:id="@+id/target_density_isotope"
         android:layout_width="@dimen/input_field_size"
         android:layout_height="@dimen/input_field_size"
@@ -115,7 +115,7 @@
         app:layout_constraintTop_toBottomOf="@+id/material_thickness_isotope"
         app:suffixText="" />
 
-    <com.julian.lbniwkalkulator.components.InputFieldWrapper
+    <com.julian.lbniwkalkulator.components.inputfields.InputFieldWrapper
         android:id="@+id/distance_from_detector_isotope"
         android:layout_width="@dimen/input_field_size"
         android:layout_height="@dimen/input_field_size"
@@ -131,7 +131,7 @@
         app:layout_constraintTop_toBottomOf="@+id/activity_input_isotope"
         app:suffixText="mm" />
 
-    <com.julian.lbniwkalkulator.components.InputFieldWrapper
+    <com.julian.lbniwkalkulator.components.inputfields.InputFieldWrapper
         android:id="@+id/isotope_type_isotope"
         android:layout_width="@dimen/input_field_size"
         android:layout_height="@dimen/input_field_size"
@@ -172,7 +172,7 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="165dp" />
 
-    <com.julian.lbniwkalkulator.components.InputFieldWrapper
+    <com.julian.lbniwkalkulator.components.inputfields.InputFieldWrapper
         android:id="@+id/material_thickness_isotope"
         android:layout_width="@dimen/input_field_size"
         android:layout_height="@dimen/input_field_size"

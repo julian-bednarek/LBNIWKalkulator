@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.julian.lbniwkalkulator.R;
-import com.julian.lbniwkalkulator.components.CustomTableRow;
+import com.julian.lbniwkalkulator.components.table.CustomTableRow;
 import com.julian.lbniwkalkulator.core.MainActivity;
 import com.julian.lbniwkalkulator.databinding.ViewSavedIsotopesMenuLayoutBinding;
 import com.julian.lbniwkalkulator.dataclasess.IsotopeActivity;

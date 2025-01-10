@@ -1,4 +1,4 @@
-package com.julian.lbniwkalkulator.components;
+package com.julian.lbniwkalkulator.components.inputfields;
 
 import android.content.Context;
 import android.content.res.TypedArray;

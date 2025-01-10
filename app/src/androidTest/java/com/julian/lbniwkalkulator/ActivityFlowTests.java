@@ -13,14 +13,14 @@ import static com.julian.lbniwkalkulator.util.ErrorHandler.ERROR_BUTTON_TEXT;
 
 import android.view.View;
 import android.widget.EditText;
-import androidx.test.core.app.ActivityScenario;
+
 import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.uiautomator.UiDevice;
 import androidx.fragment.app.testing.FragmentScenario;
-import com.julian.lbniwkalkulator.components.InputFieldWrapper;
+import com.julian.lbniwkalkulator.components.inputfields.InputFieldWrapper;
 import com.julian.lbniwkalkulator.fragments.StartViewFragment;
 import com.julian.lbniwkalkulator.fragments.XRayMenuViewFragment;
 import com.julian.lbniwkalkulator.util.StringGetter;

@@ -28,7 +28,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.julian.lbniwkalkulator.components.NumberInput
+        <com.julian.lbniwkalkulator.components.inputfields.NumberInput
             android:id="@+id/text_input"
             android:layout_width="@dimen/input_entry_width"
             android:layout_height="@dimen/input_entry_height"
@@ -39,7 +39,7 @@
             app:layout_constraintVertical_bias="0.771"
             android:visibility="visible"/>
 
-        <com.julian.lbniwkalkulator.components.InputFieldSpinner
+        <com.julian.lbniwkalkulator.components.inputfields.InputFieldSpinner
             android:id="@+id/input_spinner"
             android:layout_width="@dimen/input_entry_width"
             android:layout_height="@dimen/input_entry_height"

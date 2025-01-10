@@ -75,7 +75,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
-    <com.julian.lbniwkalkulator.components.InputFieldWrapper
+    <com.julian.lbniwkalkulator.components.inputfields.InputFieldWrapper
         android:id="@+id/inputXRayVoltage"
         android:layout_width="@dimen/input_field_size"
         android:layout_height="@dimen/input_field_size"
@@ -91,9 +91,9 @@
         app:using_list_input="true"
         tools:layout_editor_absoluteY="279dp">
 
-    </com.julian.lbniwkalkulator.components.InputFieldWrapper>
+    </com.julian.lbniwkalkulator.components.inputfields.InputFieldWrapper>
 
-    <com.julian.lbniwkalkulator.components.InputFieldWrapper
+    <com.julian.lbniwkalkulator.components.inputfields.InputFieldWrapper
         android:id="@+id/inputXRayCurrent"
         android:layout_width="@dimen/input_field_size"
         android:layout_height="@dimen/input_field_size"
@@ -107,7 +107,7 @@
         app:layout_constraintTop_toBottomOf="@+id/radioGroup"
         app:suffixText="mA" />
 
-    <com.julian.lbniwkalkulator.components.InputFieldWrapper
+    <com.julian.lbniwkalkulator.components.inputfields.InputFieldWrapper
         android:id="@+id/inputXRaySteelThickness"
         android:layout_width="@dimen/input_field_size"
         android:layout_height="@dimen/input_field_size"
@@ -120,7 +120,7 @@
         app:layout_constraintTop_toTopOf="@+id/inputXRayCurrent"
         app:suffixText="mm" />
 
-    <com.julian.lbniwkalkulator.components.InputFieldWrapper
+    <com.julian.lbniwkalkulator.components.inputfields.InputFieldWrapper
         android:id="@+id/inputXRayFilmType"
         android:layout_width="@dimen/input_field_size"
         android:layout_height="@dimen/input_field_size"
@@ -135,9 +135,9 @@
         app:layout_constraintTop_toBottomOf="@+id/inputXRayVoltage"
         app:using_list_input="true">
 
-    </com.julian.lbniwkalkulator.components.InputFieldWrapper>
+    </com.julian.lbniwkalkulator.components.inputfields.InputFieldWrapper>
 
-    <com.julian.lbniwkalkulator.components.InputFieldWrapper
+    <com.julian.lbniwkalkulator.components.inputfields.InputFieldWrapper
         android:id="@+id/inputXRaySourceToDetector"
         android:layout_width="@dimen/input_field_size"
         android:layout_height="@dimen/input_field_size"
@@ -152,7 +152,7 @@
         app:layout_constraintTop_toBottomOf="@+id/inputXRayCurrent"
         app:suffixText="mm" />
 
-    <com.julian.lbniwkalkulator.components.InputFieldWrapper
+    <com.julian.lbniwkalkulator.components.inputfields.InputFieldWrapper
         android:id="@+id/inputXRayTargetDensity"
         android:layout_width="@dimen/input_field_size"
         android:layout_height="@dimen/input_field_size"
@@ -166,7 +166,7 @@
         app:layout_constraintTop_toBottomOf="@+id/inputXRaySteelThickness"
         app:suffixText="">
 
-    </com.julian.lbniwkalkulator.components.InputFieldWrapper>
+    </com.julian.lbniwkalkulator.components.inputfields.InputFieldWrapper>
 
     <Button
         android:id="@+id/calculate_button_xray"

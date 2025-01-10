@@ -1,4 +1,4 @@
-package com.julian.lbniwkalkulator.components;
+package com.julian.lbniwkalkulator.components.table;
 
 import static com.julian.lbniwkalkulator.enums.TableColumns.*;
 import com.julian.lbniwkalkulator.R;
