@@ -41,6 +41,23 @@ public class SQLiteDatabaseWrapper {
         return loadRecords(null,null);
     }
 
+    public int getUsableID() {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        int usableID = 1;
+        Cursor cursor = null;
+        try {
+            cursor = db.rawQuery("SELECT MAX(" + _ID + ") FROM " + TABLE_NAME, null);
+            if (cursor != null && cursor.moveToFirst()) {
+                usableID = cursor.getInt(0) + 1;
+            }
+        } catch (Exception e) {
+            Log.e("SQLiteDatabaseWrapper", "Error getting usable ID: " + e.getMessage());
+        } finally {
+            if (cursor != null) cursor.close();
+        }
+        return usableID;
+    }
+
     public ArrayList<IsotopeActivity> loadRecords(String whereClause, String[] whereClauseArgs) {
         ArrayList<IsotopeActivity> retval = new ArrayList<>();
         SQLiteDatabase db = dbHelper.getReadableDatabase();
