@@ -19,7 +19,6 @@ import com.julian.lbniwkalkulator.databinding.ViewSavedIsotopesMenuLayoutBinding
 import com.julian.lbniwkalkulator.dataclasess.IsotopeActivity;
 import com.julian.lbniwkalkulator.exceptions.InputNotSupportedException;
 import com.julian.lbniwkalkulator.util.ErrorHandler;
-import com.julian.lbniwkalkulator.util.StringGetter;
 
 import java.util.ArrayList;
 import java.util.Locale;
