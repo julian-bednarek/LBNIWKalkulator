@@ -10,7 +10,7 @@ import com.julian.lbniwkalkulator.localdata.SQLiteDatabaseWrapper;
 import com.julian.lbniwkalkulator.util.StringGetter;
 
 public class MainActivity extends AppCompatActivity {
-    private static final int AUTO_UPDATE_MILLISECONDS = 1_000;
+    private static final int AUTO_UPDATE_MILLISECONDS = 180_000;
 
     private SQLiteDatabaseWrapper database;
     private final Handler dbUpdateHandler = new Handler(Looper.getMainLooper());

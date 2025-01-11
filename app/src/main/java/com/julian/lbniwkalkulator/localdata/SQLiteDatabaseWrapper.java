@@ -13,6 +13,7 @@ import com.julian.lbniwkalkulator.dataclasess.IsotopeActivity;
 import com.julian.lbniwkalkulator.exceptions.InsertionFailedSQLiteException;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class SQLiteDatabaseWrapper {
@@ -35,6 +36,39 @@ public class SQLiteDatabaseWrapper {
     public Cursor select(String whereClause, String[] whereClauseArgs) {
         return dbHelper.getReadableDatabase().query(TABLE_NAME, null, whereClause, whereClauseArgs,
                 null, null, null);
+    }
+
+    public void delete(String whereClause, String[] whereClauseArgs) {
+        dbHelper.getWritableDatabase().delete(TABLE_NAME, whereClause, whereClauseArgs);
+    }
+
+    public static class DeleteWhereClause {
+        private final String whereClause;
+        private final String[] whereClauseArgs;
+
+        public DeleteWhereClause(List<Integer> IDsToRemove) {
+            this.whereClauseArgs = IDsToRemove.stream()
+                    .map(String::valueOf)
+                    .toArray(String[]::new);
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(String.format("%s IN (", _ID));
+            for (int i = 0; i < IDsToRemove.size(); i++) {
+                stringBuilder.append("?");
+                if (i < IDsToRemove.size() - 1) {
+                    stringBuilder.append(", ");
+                }
+            }
+            stringBuilder.append(")");
+            this.whereClause = stringBuilder.toString();
+        }
+
+        public String getWhereClause() {
+            return whereClause;
+        }
+
+        public String[] getWhereClauseArgs() {
+            return whereClauseArgs;
+        }
     }
 
     public ArrayList<IsotopeActivity> loadAllRecords() {

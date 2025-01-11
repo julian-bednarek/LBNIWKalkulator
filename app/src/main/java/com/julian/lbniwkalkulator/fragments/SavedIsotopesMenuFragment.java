@@ -18,9 +18,11 @@ import com.julian.lbniwkalkulator.core.MainActivity;
 import com.julian.lbniwkalkulator.databinding.ViewSavedIsotopesMenuLayoutBinding;
 import com.julian.lbniwkalkulator.dataclasess.IsotopeActivity;
 import com.julian.lbniwkalkulator.exceptions.InputNotSupportedException;
+import com.julian.lbniwkalkulator.localdata.SQLiteDatabaseWrapper.DeleteWhereClause;
 import com.julian.lbniwkalkulator.util.ErrorHandler;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class SavedIsotopesMenuFragment extends Fragment {
@@ -47,7 +49,22 @@ public class SavedIsotopesMenuFragment extends Fragment {
     }
 
     private void removeClickedIsotopes() {
-
+        List<Integer> checkedIndexes = new ArrayList<>();
+        List<View> rowsToRemove = new ArrayList<>();
+        for (int i = 0; i < binding.tableContents.getChildCount(); i++) {
+            View row = binding.tableContents.getChildAt(i);
+            if(row instanceof CustomTableRow && ((CustomTableRow) row).isChecked()) {
+                checkedIndexes.add(((CustomTableRow) row).getEntryID());
+                rowsToRemove.add(row);
+            }
+        }
+        for (View row : rowsToRemove) {
+            binding.tableContents.removeView(row);
+        }
+        DeleteWhereClause deleteWhereClause = new DeleteWhereClause(checkedIndexes);
+        ((MainActivity)requireActivity()).getDatabase()
+                .delete(deleteWhereClause.getWhereClause(), deleteWhereClause.getWhereClauseArgs());
+        refreshTable();
     }
 
     private void addIsotope() {
@@ -73,11 +90,15 @@ public class SavedIsotopesMenuFragment extends Fragment {
                 toBeInserted[0].setMostRecentTimestamp(currentTimestamp);
                 toBeInserted[0].setID(ID);
                 ((MainActivity) requireActivity()).getDatabase().insert(toBeInserted[0].toContentValues());
-                clearRows();
-                setUpTableRows();
+                refreshTable();
             }
         });
 
+    }
+
+    private void refreshTable() {
+        clearRows();
+        setUpTableRows();
     }
 
     private void setUpTable() {
@@ -91,6 +112,8 @@ public class SavedIsotopesMenuFragment extends Fragment {
     }
 
     private void setUpTableRows() {
+        final int SIDE_MARGINS = 15;
+        final int TOP_BOTTOM_MARGINS = 5;
         ArrayList<IsotopeActivity> savedIsotopes = ((MainActivity)requireActivity())
                                                     .getDatabase()
                                                     .loadAllRecords();
@@ -103,9 +126,9 @@ public class SavedIsotopesMenuFragment extends Fragment {
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
             );
-            params.setMarginEnd(15);
-            params.setMarginStart(15);
-            params.setMargins(0, 5, 0, 5);
+            params.setMarginEnd(SIDE_MARGINS);
+            params.setMarginStart(SIDE_MARGINS);
+            params.setMargins(0, TOP_BOTTOM_MARGINS, 0, TOP_BOTTOM_MARGINS);
             row.setLayoutParams(params);
             binding.tableContents.addView(row);
         }
