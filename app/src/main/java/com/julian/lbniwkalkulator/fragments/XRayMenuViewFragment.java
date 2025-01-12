@@ -1,10 +1,13 @@
 package com.julian.lbniwkalkulator.fragments;
 
 import static androidx.navigation.Navigation.findNavController;
+import static com.julian.lbniwkalkulator.enums.VoltageValuesEnum.RANGE_ERESCO;
+import static com.julian.lbniwkalkulator.enums.VoltageValuesEnum.RANGE_Y_SMART;
 import static com.julian.lbniwkalkulator.util.CustomInputParsers.parseInputDouble;
 import static com.julian.lbniwkalkulator.util.CustomInputParsers.parseInputInt;
 import static com.julian.lbniwkalkulator.util.ErrorHandler.processException;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioButton;
@@ -34,6 +37,7 @@ public class XRayMenuViewFragment extends AbstractInputMenuFragment {
         binding = ViewXRayMenuLayoutBinding.bind(view);
         ((RadioButton) view.findViewById(R.id.lamp_y_smart)).setChecked(true);
         generalSetUp(view, R.id.calculate_button_xray);
+        setUpRadioGroup();
     }
 
     @Override
@@ -43,6 +47,20 @@ public class XRayMenuViewFragment extends AbstractInputMenuFragment {
             if(checkData != null) {
                 findNavController(v).navigate(XRayMenuViewFragmentDirections.
                         actionXRayMenuViewFragmentToCalculatedTimeViewFragment(checkData));
+            }
+        });
+    }
+
+    @SuppressLint("NonConstantResourceId")
+    private void setUpRadioGroup() {
+        binding.radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            switch (checkedId) {
+                case R.id.lamp_y_smart:
+                    binding.inputXRayVoltage.setRange(RANGE_Y_SMART);
+                    break;
+                case R.id.lamp_eresco:
+                    binding.inputXRayVoltage.setRange(RANGE_ERESCO);
+                    break;
             }
         });
     }

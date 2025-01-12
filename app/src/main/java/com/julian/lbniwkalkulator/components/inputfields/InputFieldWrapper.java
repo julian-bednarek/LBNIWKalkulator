@@ -8,23 +8,28 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.AdapterView;
 
 import com.julian.lbniwkalkulator.R;
 import com.julian.lbniwkalkulator.exceptions.InvalidComponentException;
+import com.julian.lbniwkalkulator.exceptions.InvalidComponentParameterException;
 import com.julian.lbniwkalkulator.exceptions.MissingComponentParameterException;
 import com.julian.lbniwkalkulator.util.StringGetter;
 
+import java.util.List;
+
 /**
- * A custom wrapper for input fields, which can be either a text input (which is also custom) or a spinner (dropdown list).
+ * A custom wrapper for input fields, which can be either a text input or a popup list view.
  */
 public class InputFieldWrapper extends LinearLayout {
 
     private TextView label;
     private NumberInput textInput;
-    private InputFieldSpinner listInput;
+    private PopupListView popupListView;
     private boolean listInputVisible;
+    private String currentSelection = StringGetter.fromStringsXML(R.string.select_);
+    private String possibleEnum;
 
     public InputFieldWrapper(Context context, AttributeSet attrs) throws InvalidComponentException {
         super(context, attrs);
@@ -33,16 +38,14 @@ public class InputFieldWrapper extends LinearLayout {
     }
 
     /**
-     * Function responsible for enabling input by clicking at any point on wrapper not just actual input fields
+     * Function responsible for enabling input by clicking at any point on wrapper
      */
     private void setClickListener(Context context) {
         EditText editText = findViewById(R.id.actual_input);
-        Spinner spinner = findViewById(R.id.input_spinner);
         setOnClickListener(v -> {
-
-            if (spinner.getVisibility() == View.VISIBLE) {
+            if (listInputVisible) {
                 editText.clearFocus();
-                spinner.performClick();
+                showPopupList();
             } else {
                 editText.requestFocus();
                 InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -51,8 +54,26 @@ public class InputFieldWrapper extends LinearLayout {
         });
     }
 
-    private void setUpListInput() {
-        listInput.setVisibility(VISIBLE);
+    private void showPopupList() {
+        popupListView.show();
+    }
+
+    private void setUpListInput(Context context, AttributeSet attributeSet) {
+        TextView selectedValueText = findViewById(R.id.selected_value_text);
+        popupListView = new PopupListView(context, attributeSet);
+        popupListView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItem = parent.getAdapter().getItem(position).toString();
+                currentSelection = selectedItem;
+                selectedValueText.setText(selectedItem);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
+
+        selectedValueText.setVisibility(VISIBLE);
         textInput.setVisibility(GONE);
     }
 
@@ -76,31 +97,47 @@ public class InputFieldWrapper extends LinearLayout {
         LayoutInflater.from(context).inflate(R.layout.components_input_field, this, true);
         label = findViewById(R.id.input_label);
         textInput = findViewById(R.id.text_input);
-        listInput = findViewById(R.id.input_spinner);
+        ((TextView)findViewById(R.id.selected_value_text)).setText(currentSelection);
         TypedArray attributes = context.obtainStyledAttributes(attrset, R.styleable.InputFieldWrapper);
         String fieldLabel = attributes.getString(R.styleable.InputFieldWrapper_labelText);
         listInputVisible = attributes.getBoolean(R.styleable.InputFieldWrapper_using_list_input, false);
-        String possibleEnum = attributes.getString(R.styleable.InputFieldWrapper_enum_type);
+        possibleEnum = attributes.getString(R.styleable.InputFieldWrapper_enum_type);
         String textInputPlaceholder = attributes.getString(R.styleable.InputFieldWrapper_android_hint);
         attributes.recycle();
+
         setUpLabel(fieldLabel);
         setUpPlaceholder(textInputPlaceholder);
-        textInput.init(context, attrset);
+
         if(listInputVisible) {
-            listInput.setEnum(possibleEnum);
-            setUpListInput();
+            setUpListInput(context, attrset);
+            try {
+                popupListView.setOrUpdateContents(possibleEnum);
+            } catch (InvalidComponentParameterException | MissingComponentParameterException e) {
+                throw new InvalidComponentException(e.getMessage());
+            }
+        } else {
+            textInput.init(context, attrset);
         }
     }
 
     public String getInputValue() {
-        if(listInputVisible) {
-            return listInput.getInputValue();
-        } else {
-            return textInput.getInputValue();
-        }
+        return listInputVisible ? currentSelection : textInput.getInputValue();
     }
-
     public NumberInput getTextInput() {
         return textInput;
+    }
+
+    /**
+     * Used only in case of voltage
+     * @param range maximum value of voltage
+     */
+    public void setRange(int range) {
+        popupListView.setRange(range);
+        try {
+            popupListView.setOrUpdateContents(possibleEnum);
+            //temporary catch
+        } catch (InvalidComponentParameterException | MissingComponentParameterException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

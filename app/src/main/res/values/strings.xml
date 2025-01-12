@@ -50,4 +50,5 @@
     <string name="isotope_name_field">Isotope name</string>
     <string name="half_life_time">Half-life time</string>
     <string name="add_to_database">Add to database</string>
+    <string name="select_">Select...</string>
 </resources>

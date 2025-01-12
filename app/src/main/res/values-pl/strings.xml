@@ -42,4 +42,5 @@
     <string name="isotope_name_field">Nazwa izotopu</string>
     <string name="half_life_time">Czas półtrwania</string>
     <string name="add_to_database">Dodaj do bazy danych</string>
+    <string name="select_">Wybierz...</string>
 </resources>

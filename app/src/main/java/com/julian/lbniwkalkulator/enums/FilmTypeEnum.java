@@ -2,7 +2,11 @@ package com.julian.lbniwkalkulator.enums;
 
 import com.julian.lbniwkalkulator.exceptions.InputNotSupportedException;
 
-public enum FilmTypeEnum {
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+public enum FilmTypeEnum implements InputEnumScheme {
     _D1(1),
     _D2(2),
     _D3(3),
@@ -30,4 +34,16 @@ public enum FilmTypeEnum {
         }
         throw new InputNotSupportedException("Parsing value from film enum failed");
     }
+
+    @Override
+    public String getParsedName() {
+        return name().substring(1);
+    }
+
+    public List<String> getContents() {
+        return Stream.of(values())
+                .map(FilmTypeEnum::getParsedName)
+                .collect(Collectors.toList());
+    }
+
 }

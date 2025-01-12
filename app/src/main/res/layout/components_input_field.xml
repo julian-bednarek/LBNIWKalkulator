@@ -39,19 +39,20 @@
             app:layout_constraintVertical_bias="0.771"
             android:visibility="visible"/>
 
-        <com.julian.lbniwkalkulator.components.inputfields.InputFieldSpinner
-            android:id="@+id/input_spinner"
+        <TextView
+            android:id="@+id/selected_value_text"
             android:layout_width="@dimen/input_entry_width"
             android:layout_height="@dimen/input_entry_height"
-            app:enum_type="@string/voltage_enum"
             android:background="@drawable/input_entry_shape"
             android:textColor="@color/default_text_color"
             android:textSize="14sp"
+            android:gravity="center"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.771" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </merge>

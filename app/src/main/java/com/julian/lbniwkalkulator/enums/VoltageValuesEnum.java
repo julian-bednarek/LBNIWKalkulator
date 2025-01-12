@@ -2,8 +2,10 @@ package com.julian.lbniwkalkulator.enums;
 
 import com.julian.lbniwkalkulator.exceptions.InputNotSupportedException;
 
-//TODO: TO BE REVIEWED
-public enum VoltageValuesEnum {
+import java.util.ArrayList;
+import java.util.List;
+
+public enum VoltageValuesEnum implements InputEnumScheme {
     _50kV(50_000),
     _60kV(60_000),
     _70kV(70_000),
@@ -58,5 +60,28 @@ public enum VoltageValuesEnum {
             return Integer.parseInt(voltageString);
         }
         throw new InputNotSupportedException("Parsing value from voltage enum failed: Invalid format");
+    }
+
+    public static final int RANGE_ERESCO = 200_000;
+    public static final int RANGE_Y_SMART = 300_000;
+
+
+
+    public List<String> getContents(int range) throws InputNotSupportedException {
+        List<String> voltageValues = new ArrayList<>();
+        for (VoltageValuesEnum voltage : VoltageValuesEnum.values()) {
+            if (voltage.getVoltage() <= range) {
+                voltageValues.add(voltage.getParsedName());
+            }
+        }
+        if (voltageValues.isEmpty()) {
+            throw new InputNotSupportedException("No voltage values found within the specified range");
+        }
+        return voltageValues;
+    }
+
+    @Override
+    public String getParsedName() {
+        return name().substring(1);
     }
 }
