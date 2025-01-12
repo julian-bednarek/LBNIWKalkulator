@@ -26,6 +26,13 @@ public enum IsotopeTypeEnum implements InputEnumScheme {
         this.halfLife = halfLife;
     }
 
+    public double getHalfLife() {
+        return halfLife;
+    }
+
+    public double getHalfLifeInDays() {
+        return halfLife / (60 * 60 * 24);
+    }
 
     @Override
     public List<String> getContents() {
@@ -35,6 +42,6 @@ public enum IsotopeTypeEnum implements InputEnumScheme {
     @Override
     public String getParsedName() {
         String[] parts = name().split("_");
-        return parts[0] + "-" + parts[1];
+        return parts[1] + "-" + parts[2];
     }
 }

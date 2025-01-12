@@ -34,7 +34,7 @@ public enum VoltageValuesEnum implements InputEnumScheme {
     _300kV(300_000);
 
     private final int voltage;
-    private static final String STRINGIFIED_ENUM_REGEX = " \\d{1,3}kV";
+    private static final String STRINGIFIED_ENUM_REGEX = "\\d{1,3}kV";
 
     VoltageValuesEnum(int voltage) {
         this.voltage = voltage;

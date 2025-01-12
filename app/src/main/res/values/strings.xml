@@ -51,4 +51,7 @@
     <string name="half_life_time">Half-life time</string>
     <string name="add_to_database">Add to database</string>
     <string name="select_">Select...</string>
+    <string name="ready_isotopes">Ready isotopes</string>
+    <string name="se_75" translatable="false">Se-75</string>
+    <string name="ir_192" translatable="false">Ir-192</string>
 </resources>

@@ -17,7 +17,7 @@ public enum FilmTypeEnum implements InputEnumScheme {
 
 
     private final int typeNumber;
-    private static final String STRINGIFIED_ENUM_REGEX = " D[0-9]";
+    private static final String STRINGIFIED_ENUM_REGEX = "D[0-9]";
 
     FilmTypeEnum(int typeNumber) {
         this.typeNumber = typeNumber;

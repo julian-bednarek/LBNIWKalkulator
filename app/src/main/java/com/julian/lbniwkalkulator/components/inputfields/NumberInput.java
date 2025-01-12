@@ -16,8 +16,8 @@ public class NumberInput extends LinearLayout {
 
     private EditText input;
     private TextView inputUnit;
-    private static final int MAX_INPUT_LEN_NUM = 5;
-    private static final int MAX_INPUT_LEN_STR = 8;
+    private static final int MAX_INPUT_LEN_NUM = 7;
+    private static final int MAX_INPUT_LEN_STR = 9;
 
     public NumberInput(Context context, AttributeSet attrset) {
         super(context, attrset);
@@ -65,5 +65,9 @@ public class NumberInput extends LinearLayout {
 
     public EditText getInput() {
         return input;
+    }
+
+    public void setInputValue(String value) {
+        input.setText(value);
     }
 }

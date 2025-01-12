@@ -80,6 +80,43 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textAlignment="center"
+            android:text="@string/ready_isotopes"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/ready_isotope_se_75"
+                android:layout_width="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/buttons_button_selector"
+                android:textColor="@color/default_text_color"
+                android:text="@string/se_75" />
+
+            <Button
+                android:id="@+id/ready_isotope_ir_192"
+                android:background="@drawable/buttons_button_selector"
+                android:layout_marginStart="5dp"
+                android:layout_width="wrap_content"
+                android:textColor="@color/default_text_color"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/ir_192" />
+        </LinearLayout>
+
         <Button
             android:id="@+id/insert_button"
             android:layout_width="wrap_content"
