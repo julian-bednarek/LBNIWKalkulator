@@ -4,9 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.widget.Button;
-
 import androidx.annotation.NonNull;
-
 import com.julian.lbniwkalkulator.R;
 import com.julian.lbniwkalkulator.components.inputfields.NumberInput;
 import com.julian.lbniwkalkulator.dataclasess.IsotopeActivity;

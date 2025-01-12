@@ -20,10 +20,10 @@
         android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.226" />
+        app:layout_constraintVertical_bias="0.245" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
@@ -70,19 +70,21 @@
     </RadioGroup>
 
     <com.julian.lbniwkalkulator.components.inputfields.InputFieldWrapper
-        android:id="@+id/activity_input_isotope"
+        android:id="@+id/isotope_type_isotope"
         android:layout_width="@dimen/input_field_size"
         android:layout_height="@dimen/input_field_size"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:hint="@string/decimal_placeholder"
-        android:inputType="numberDecimal"
-        app:labelText="@string/activity"
+        android:hint="@string/null_str"
+        android:inputType="none"
+        android:textColor="@color/default_text_color"
+        app:enum_type="@string/isotope_enum"
+        app:labelText="@string/button_select_isotope"
         app:layout_constraintEnd_toStartOf="@+id/material_thickness_isotope"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup"
-        app:suffixText="Ci" />
+        app:using_list_input="true" />
 
     <com.julian.lbniwkalkulator.components.inputfields.InputFieldWrapper
         android:id="@+id/film_type_isotope"
@@ -128,25 +130,23 @@
         app:layout_constraintEnd_toStartOf="@+id/target_density_isotope"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_input_isotope"
+        app:layout_constraintTop_toBottomOf="@+id/material_thickness_isotope"
         app:suffixText="mm" />
 
     <com.julian.lbniwkalkulator.components.inputfields.InputFieldWrapper
-        android:id="@+id/isotope_type_isotope"
+        android:id="@+id/activity_input_isotope"
         android:layout_width="@dimen/input_field_size"
         android:layout_height="@dimen/input_field_size"
-        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:hint="@string/null_str"
-        android:inputType="none"
-        android:textColor="@color/default_text_color"
-        app:enum_type="@string/isotope_enum"
-        app:labelText="@string/button_select_isotope"
+        android:layout_marginEnd="10dp"
+        android:hint="@string/decimal_placeholder"
+        android:inputType="numberDecimal"
+        app:labelText="@string/activity"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toEndOf="@+id/target_density_isotope"
         app:layout_constraintTop_toBottomOf="@+id/film_type_isotope"
-        app:using_list_input="true"
+        app:suffixText="Ci"
         tools:ignore="DuplicateSpeakableTextCheck" />
 
     <Button

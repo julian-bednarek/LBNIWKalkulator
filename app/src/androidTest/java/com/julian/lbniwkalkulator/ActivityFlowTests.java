@@ -130,7 +130,7 @@ public class ActivityFlowTests {
 
                         @Override
                         public void perform(UiController uiController, View view) {
-                            EditText editText = ((InputFieldWrapper) view).getText_input().getInput();
+                            EditText editText = ((InputFieldWrapper) view).getTextInput().getInput();
                             editText.setText("4");
                         }
                     }, closeSoftKeyboard());

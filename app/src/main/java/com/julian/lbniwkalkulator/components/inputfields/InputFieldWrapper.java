@@ -22,8 +22,8 @@ import com.julian.lbniwkalkulator.util.StringGetter;
 public class InputFieldWrapper extends LinearLayout {
 
     private TextView label;
-    private NumberInput text_input;
-    private InputFieldSpinner list_input;
+    private NumberInput textInput;
+    private InputFieldSpinner listInput;
     private boolean listInputVisible;
 
     public InputFieldWrapper(Context context, AttributeSet attrs) throws InvalidComponentException {
@@ -52,8 +52,8 @@ public class InputFieldWrapper extends LinearLayout {
     }
 
     private void setUpListInput() {
-        list_input.setVisibility(VISIBLE);
-        text_input.setVisibility(GONE);
+        listInput.setVisibility(VISIBLE);
+        textInput.setVisibility(GONE);
     }
 
     private void setUpLabel(String fieldLabel) throws MissingComponentParameterException {
@@ -65,7 +65,7 @@ public class InputFieldWrapper extends LinearLayout {
     private void setUpPlaceholder(String placeholder) throws MissingComponentParameterException {
         if(placeholder == null) throw new MissingComponentParameterException(StringGetter.
                 fromStringsXML(R.string.exception_missing_component_parameter_exception_message), "hint");
-        text_input.setPlaceholder(placeholder);
+        textInput.setPlaceholder(placeholder);
     }
 
     /**
@@ -75,8 +75,8 @@ public class InputFieldWrapper extends LinearLayout {
     private void init(Context context, AttributeSet attrset) throws InvalidComponentException {
         LayoutInflater.from(context).inflate(R.layout.components_input_field, this, true);
         label = findViewById(R.id.input_label);
-        text_input = findViewById(R.id.text_input);
-        list_input = findViewById(R.id.input_spinner);
+        textInput = findViewById(R.id.text_input);
+        listInput = findViewById(R.id.input_spinner);
         TypedArray attributes = context.obtainStyledAttributes(attrset, R.styleable.InputFieldWrapper);
         String fieldLabel = attributes.getString(R.styleable.InputFieldWrapper_labelText);
         listInputVisible = attributes.getBoolean(R.styleable.InputFieldWrapper_using_list_input, false);
@@ -85,22 +85,22 @@ public class InputFieldWrapper extends LinearLayout {
         attributes.recycle();
         setUpLabel(fieldLabel);
         setUpPlaceholder(textInputPlaceholder);
-        text_input.init(context, attrset);
+        textInput.init(context, attrset);
         if(listInputVisible) {
-            list_input.setEnum(possibleEnum);
+            listInput.setEnum(possibleEnum);
             setUpListInput();
         }
     }
 
     public String getInputValue() {
         if(listInputVisible) {
-            return list_input.getInputValue();
+            return listInput.getInputValue();
         } else {
-            return text_input.getInputValue();
+            return textInput.getInputValue();
         }
     }
 
-    public NumberInput getText_input() {
-        return text_input;
+    public NumberInput getTextInput() {
+        return textInput;
     }
 }
