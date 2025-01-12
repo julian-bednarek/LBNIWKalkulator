@@ -177,6 +177,7 @@
         android:layout_width="@dimen/input_field_size"
         android:layout_height="@dimen/input_field_size"
         android:layout_marginTop="10dp"
+        android:inputType="numberDecimal"
         android:hint="@string/decimal_placeholder"
         app:labelText="@string/steel_thickness"
         app:layout_constraintBottom_toBottomOf="parent"
