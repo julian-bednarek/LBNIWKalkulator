@@ -38,6 +38,7 @@ import java.util.stream.Collectors;
  */
 public class PopupListView extends PopupWindow {
 
+    public static final String ISOTOPE_FROM_DATABASE_REGEX = "\\S+:\\t{5}([\\d.]+) Ci";
     public static final String ISOTOPE_FROM_DATABASE = "ISOTOPE_FROM_DATABASE";
     public static final String ISOTOPE_ENUM = "ISOTOPE_ENUM";
     private final Context context;
@@ -136,5 +137,14 @@ public class PopupListView extends PopupWindow {
     public void show() {
         showAtLocation(((Activity) context).findViewById(android.R.id.content),
                 Gravity.CENTER, 0, 0);
+    }
+
+    public static String processSelection(String selectedItem) {
+
+        if(selectedItem.matches(ISOTOPE_FROM_DATABASE_REGEX)) {
+            return selectedItem.split(":")[0];
+        } else {
+            return selectedItem;
+        }
     }
 }

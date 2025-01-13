@@ -3,25 +3,34 @@ package com.julian.lbniwkalkulator.fragments;
 import static androidx.navigation.Navigation.findNavController;
 import static com.julian.lbniwkalkulator.components.inputfields.PopupListView.ISOTOPE_ENUM;
 import static com.julian.lbniwkalkulator.components.inputfields.PopupListView.ISOTOPE_FROM_DATABASE;
+import static com.julian.lbniwkalkulator.components.inputfields.PopupListView.ISOTOPE_FROM_DATABASE_REGEX;
+import static com.julian.lbniwkalkulator.components.inputfields.PopupListView.processSelection;
 import static com.julian.lbniwkalkulator.util.CustomInputParsers.parseInputDouble;
 import static com.julian.lbniwkalkulator.util.CustomInputParsers.parseInputInt;
 import static com.julian.lbniwkalkulator.util.ErrorHandler.processException;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.julian.lbniwkalkulator.R;
 import com.julian.lbniwkalkulator.components.inputfields.InputFieldWrapper;
+import com.julian.lbniwkalkulator.components.inputfields.PopupListView;
 import com.julian.lbniwkalkulator.databinding.ViewIsotopeMenuLayoutBinding;
 import com.julian.lbniwkalkulator.dataclasess.IsotopeData;
 import com.julian.lbniwkalkulator.dataclasess.RadiationData;
 import com.julian.lbniwkalkulator.enums.FilmTypeEnum;
 import com.julian.lbniwkalkulator.exceptions.InputNotSupportedException;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class IsotopeMenuViewFragment extends AbstractInputMenuFragment{
 
@@ -53,6 +62,7 @@ public class IsotopeMenuViewFragment extends AbstractInputMenuFragment{
             findNavController(view).navigate(IsotopeMenuViewFragmentDirections.
                     actionIsotopeMenuViewFragmentToStartViewFragment());
         });
+        setUpIsotopeTypeListener();
         binding.radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
             switch (checkedId) {
                 case R.id.isotope_from_saved_radio:
@@ -64,6 +74,36 @@ public class IsotopeMenuViewFragment extends AbstractInputMenuFragment{
             }
             binding.isotopeTypeIsotope.resetCurrentSelection();
         });
+    }
+
+    private void setUpIsotopeTypeListener() {
+        PopupListView popupListView = binding.isotopeTypeIsotope.getPopupListView();
+        popupListView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                TextView selectedValueText = requireActivity().findViewById(R.id.selected_value_text);
+                String currentSelection = parent.getAdapter().getItem(position).toString();
+                String actualSelection = processSelection(currentSelection);
+                selectedValueText.setText(actualSelection);
+                binding.isotopeTypeIsotope.setCurrentSelection(currentSelection);
+                conditionallySetActivityInput(currentSelection);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
+    }
+
+    private void conditionallySetActivityInput(String actualSelection) {
+        if(actualSelection.matches(ISOTOPE_FROM_DATABASE_REGEX)) {
+            Pattern pattern = Pattern.compile(ISOTOPE_FROM_DATABASE_REGEX);
+            Matcher matcher = pattern.matcher(actualSelection);
+            if(matcher.find()) {
+                binding.activityInputIsotope.getTextInput().getInput().setText(matcher.group(1));
+            }
+        } else {
+            binding.activityInputIsotope.getTextInput().getInput().setText("");
+        }
     }
 
     @Override

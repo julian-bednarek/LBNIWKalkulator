@@ -55,6 +55,14 @@ public class InputFieldWrapper extends LinearLayout {
         });
     }
 
+    public void setCurrentSelection(String currentSelection) {
+        this.currentSelection = currentSelection;
+    }
+
+    public PopupListView getPopupListView() {
+        return popupListView;
+    }
+
     public void resetCurrentSelection() {
         currentSelection = defaultSelection;
         ((TextView)findViewById(R.id.selected_value_text)).setText(currentSelection);
@@ -62,6 +70,15 @@ public class InputFieldWrapper extends LinearLayout {
 
     private void showPopupList() {
         popupListView.show();
+    }
+
+    private String processSelection(String selectedItem) {
+        final String ISOTOPE_FROM_DATABASE_REGEX = "\\S+:\\t{5}[\\d\\.]+ Ci";
+        if(selectedItem.matches(ISOTOPE_FROM_DATABASE_REGEX)) {
+            return selectedItem.split(":")[0];
+        } else {
+            return selectedItem;
+        }
     }
 
     private void setUpListInput(Context context, AttributeSet attributeSet, String listTitle) throws MissingComponentParameterException {
@@ -133,6 +150,14 @@ public class InputFieldWrapper extends LinearLayout {
     }
     public NumberInput getTextInput() {
         return textInput;
+    }
+
+    /**
+     * I hope it's only temporary
+     * @return string with value because it needs to be set on activity field
+     */
+    public String getActivityFromIsotopeFromDatabase() {
+        return currentSelection.split("\t\t\t\t\t")[1];
     }
 
     /**
