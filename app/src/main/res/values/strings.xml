@@ -57,4 +57,7 @@
     <string name="delete_message">Are you sure you want to delete checked records?</string>
     <string name="yes_text">Yes</string>
     <string name="no_text">No</string>
+    <string name="choose_isotope">Choose isotope</string>
+    <string name="choose_voltage">Choose voltage</string>
+    <string name="choose_film_type">Choose film type</string>
 </resources>

@@ -17,6 +17,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import com.julian.lbniwkalkulator.R;
 import com.julian.lbniwkalkulator.enums.InputEnumTypes;
@@ -62,6 +63,10 @@ public class PopupListView extends PopupWindow {
 
     public void setRange(int range) {
         this.range = range;
+    }
+
+    public TextView getTitle() {
+        return getContentView().findViewById(R.id.popup_title);
     }
 
     /**

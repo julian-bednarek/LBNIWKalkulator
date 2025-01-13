@@ -58,7 +58,7 @@ public class InputFieldWrapper extends LinearLayout {
         popupListView.show();
     }
 
-    private void setUpListInput(Context context, AttributeSet attributeSet) {
+    private void setUpListInput(Context context, AttributeSet attributeSet, String listTitle) throws MissingComponentParameterException {
         TextView selectedValueText = findViewById(R.id.selected_value_text);
         popupListView = new PopupListView(context, attributeSet);
         popupListView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -72,7 +72,8 @@ public class InputFieldWrapper extends LinearLayout {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {}
         });
-
+        if(listTitle == null) throw new MissingComponentParameterException(StringGetter.fromStringsXML(R.string.exception_missing_component_parameter_exception_message), "list_title");
+        popupListView.getTitle().setText(listTitle);
         selectedValueText.setVisibility(VISIBLE);
         textInput.setVisibility(GONE);
     }
@@ -103,13 +104,14 @@ public class InputFieldWrapper extends LinearLayout {
         listInputVisible = attributes.getBoolean(R.styleable.InputFieldWrapper_using_list_input, false);
         possibleEnum = attributes.getString(R.styleable.InputFieldWrapper_enum_type);
         String textInputPlaceholder = attributes.getString(R.styleable.InputFieldWrapper_android_hint);
+        String listTitle = attributes.getString(R.styleable.InputFieldWrapper_list_title);
         attributes.recycle();
 
         setUpLabel(fieldLabel);
         setUpPlaceholder(textInputPlaceholder);
 
         if(listInputVisible) {
-            setUpListInput(context, attrset);
+            setUpListInput(context, attrset, listTitle);
             try {
                 popupListView.setOrUpdateContents(possibleEnum);
             } catch (InvalidComponentParameterException | MissingComponentParameterException e) {
@@ -135,7 +137,6 @@ public class InputFieldWrapper extends LinearLayout {
         popupListView.setRange(range);
         try {
             popupListView.setOrUpdateContents(possibleEnum);
-            //temporary catch
         } catch (InvalidComponentParameterException | MissingComponentParameterException e) {
             throw new RuntimeException(e);
         }

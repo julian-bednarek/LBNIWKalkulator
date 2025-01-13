@@ -6,6 +6,7 @@
         <attr name="using_list_input" format="boolean" />
         <attr name="enum_type" format="string" />
         <attr name="android:hint" format="string" />
+        <attr name="list_title" format="string" />
     </declare-styleable>
     <declare-styleable name="NumberInput">
         <attr name="android:inputType" format="string" />

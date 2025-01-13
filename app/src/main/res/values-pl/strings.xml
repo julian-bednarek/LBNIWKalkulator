@@ -47,4 +47,7 @@
     <string name="delete_message">Czy na pewno chcesz usunąć zaznaczone rekordy?</string>
     <string name="yes_text">Tak</string>
     <string name="no_text">Nie</string>
+    <string name="choose_isotope">Wybierz izotop</string>
+    <string name="choose_voltage">Wybierz napięcie</string>
+    <string name="choose_film_type">Wybierz typ błony</string>
 </resources>
