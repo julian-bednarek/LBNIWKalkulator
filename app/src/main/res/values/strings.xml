@@ -54,4 +54,7 @@
     <string name="ready_isotopes">Ready isotopes</string>
     <string name="se_75" translatable="false">Se-75</string>
     <string name="ir_192" translatable="false">Ir-192</string>
+    <string name="delete_message">Are you sure you want to delete checked records?</string>
+    <string name="yes_text">Yes</string>
+    <string name="no_text">No</string>
 </resources>

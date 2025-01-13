@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.julian.lbniwkalkulator.R;
+import com.julian.lbniwkalkulator.components.dialogs.CustomDeleteRecordsDialog;
 import com.julian.lbniwkalkulator.components.dialogs.CustomInsertInputDialog;
 import com.julian.lbniwkalkulator.components.table.CustomTableRow;
 import com.julian.lbniwkalkulator.core.MainActivity;
@@ -48,6 +49,26 @@ public class SavedIsotopesMenuFragment extends Fragment {
                 actionSavedIsotopesMenuFragmentToStartViewFragment()));
     }
 
+    private void updateTableAfterDeletion(List<View> rowsToRemove) {
+        for (View row : rowsToRemove) {
+            binding.tableContents.removeView(row);
+        }
+        refreshTable();
+    }
+
+    private void deleteRecords(List<Integer> checkedIndexes, List<View> rowsToRemove) {
+        CustomDeleteRecordsDialog dialog = new CustomDeleteRecordsDialog(requireContext());
+        dialog.show();
+        dialog.getYesButton().setOnClickListener(view -> {
+            DeleteWhereClause deleteWhereClause = new DeleteWhereClause(checkedIndexes);
+            ((MainActivity)requireActivity()).getDatabase()
+                    .delete(deleteWhereClause.getWhereClause(), deleteWhereClause.getWhereClauseArgs());
+            updateTableAfterDeletion(rowsToRemove);
+            dialog.dismiss();
+        });
+        dialog.getNoButton().setOnClickListener(view -> dialog.dismiss());
+    }
+
     private void removeClickedIsotopes() {
         List<Integer> checkedIndexes = new ArrayList<>();
         List<View> rowsToRemove = new ArrayList<>();
@@ -58,13 +79,9 @@ public class SavedIsotopesMenuFragment extends Fragment {
                 rowsToRemove.add(row);
             }
         }
-        for (View row : rowsToRemove) {
-            binding.tableContents.removeView(row);
+        if(!rowsToRemove.isEmpty()) {
+            deleteRecords(checkedIndexes, rowsToRemove);
         }
-        DeleteWhereClause deleteWhereClause = new DeleteWhereClause(checkedIndexes);
-        ((MainActivity)requireActivity()).getDatabase()
-                .delete(deleteWhereClause.getWhereClause(), deleteWhereClause.getWhereClauseArgs());
-        refreshTable();
     }
 
     private void addIsotope() {

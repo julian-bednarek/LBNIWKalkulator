@@ -44,4 +44,7 @@
     <string name="add_to_database">Dodaj do bazy danych</string>
     <string name="select_">Wybierz...</string>
     <string name="ready_isotopes">Gotowe izotopy</string>
+    <string name="delete_message">Czy na pewno chcesz usunąć zaznaczone rekordy?</string>
+    <string name="yes_text">Tak</string>
+    <string name="no_text">Nie</string>
 </resources>
