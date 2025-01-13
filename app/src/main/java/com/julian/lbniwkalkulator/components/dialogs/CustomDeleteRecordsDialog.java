@@ -8,7 +8,6 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 
 import com.julian.lbniwkalkulator.R;
-import com.julian.lbniwkalkulator.core.MainActivity;
 
 public class CustomDeleteRecordsDialog extends Dialog {
     public CustomDeleteRecordsDialog(@NonNull Context context) {
