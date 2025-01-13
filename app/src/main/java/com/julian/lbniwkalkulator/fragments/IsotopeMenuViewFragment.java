@@ -27,6 +27,7 @@ import com.julian.lbniwkalkulator.dataclasess.IsotopeData;
 import com.julian.lbniwkalkulator.dataclasess.RadiationData;
 import com.julian.lbniwkalkulator.enums.FilmTypeEnum;
 import com.julian.lbniwkalkulator.exceptions.InputNotSupportedException;
+import com.julian.lbniwkalkulator.util.StringGetter;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -123,6 +124,9 @@ public class IsotopeMenuViewFragment extends AbstractInputMenuFragment{
             String isotopeType = (((InputFieldWrapper) rootView
                     .findViewById(R.id.isotope_type_isotope))
                     .getInputValue());
+            if(isotopeType.equals(StringGetter.fromStringsXML(R.string.select_))) {
+                throw new InputNotSupportedException(StringGetter.fromStringsXML(R.string.exception_input_not_supported_message));
+            }
             int filmType = FilmTypeEnum.valueFromString(((InputFieldWrapper) rootView
                     .findViewById(R.id.film_type_isotope))
                     .getInputValue());
