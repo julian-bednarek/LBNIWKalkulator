@@ -1,9 +1,6 @@
 package com.julian.lbniwkalkulator.components.inputfields;
 
-import static com.julian.lbniwkalkulator.components.inputfields.InputFieldWrapper.defaultSelection;
-import static com.julian.lbniwkalkulator.enums.VoltageValuesEnum.RANGE_ERESCO;
 import static com.julian.lbniwkalkulator.enums.VoltageValuesEnum.RANGE_Y_SMART;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;

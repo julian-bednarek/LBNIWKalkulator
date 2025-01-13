@@ -11,7 +11,6 @@ import static com.julian.lbniwkalkulator.util.ErrorHandler.processException;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.RadioButton;

@@ -17,8 +17,6 @@ import com.julian.lbniwkalkulator.exceptions.InvalidComponentParameterException;
 import com.julian.lbniwkalkulator.exceptions.MissingComponentParameterException;
 import com.julian.lbniwkalkulator.util.StringGetter;
 
-import java.util.List;
-
 /**
  * A custom wrapper for input fields, which can be either a text input or a popup list view.
  */
@@ -70,15 +68,6 @@ public class InputFieldWrapper extends LinearLayout {
 
     private void showPopupList() {
         popupListView.show();
-    }
-
-    private String processSelection(String selectedItem) {
-        final String ISOTOPE_FROM_DATABASE_REGEX = "\\S+:\\t{5}[\\d\\.]+ Ci";
-        if(selectedItem.matches(ISOTOPE_FROM_DATABASE_REGEX)) {
-            return selectedItem.split(":")[0];
-        } else {
-            return selectedItem;
-        }
     }
 
     private void setUpListInput(Context context, AttributeSet attributeSet, String listTitle) throws MissingComponentParameterException {
@@ -151,15 +140,6 @@ public class InputFieldWrapper extends LinearLayout {
     public NumberInput getTextInput() {
         return textInput;
     }
-
-    /**
-     * I hope it's only temporary
-     * @return string with value because it needs to be set on activity field
-     */
-    public String getActivityFromIsotopeFromDatabase() {
-        return currentSelection.split("\t\t\t\t\t")[1];
-    }
-
     /**
      * Used only in case of voltage
      * @param range maximum value of voltage
