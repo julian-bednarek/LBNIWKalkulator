@@ -28,7 +28,8 @@ public class InputFieldWrapper extends LinearLayout {
     private NumberInput textInput;
     private PopupListView popupListView;
     private boolean listInputVisible;
-    private String currentSelection = StringGetter.fromStringsXML(R.string.select_);
+    public static final String defaultSelection = StringGetter.fromStringsXML(R.string.select_);
+    private String currentSelection = defaultSelection;
     private String possibleEnum;
 
     public InputFieldWrapper(Context context, AttributeSet attrs) throws InvalidComponentException {
@@ -52,6 +53,11 @@ public class InputFieldWrapper extends LinearLayout {
                 inputMethodManager.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT);
             }
         });
+    }
+
+    public void resetCurrentSelection() {
+        currentSelection = defaultSelection;
+        ((TextView)findViewById(R.id.selected_value_text)).setText(currentSelection);
     }
 
     private void showPopupList() {
@@ -137,6 +143,14 @@ public class InputFieldWrapper extends LinearLayout {
         popupListView.setRange(range);
         try {
             popupListView.setOrUpdateContents(possibleEnum);
+        } catch (InvalidComponentParameterException | MissingComponentParameterException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void toggleIsotopeData(String data) {
+        try {
+            popupListView.setOrUpdateContents(data);
         } catch (InvalidComponentParameterException | MissingComponentParameterException e) {
             throw new RuntimeException(e);
         }

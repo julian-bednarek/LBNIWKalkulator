@@ -1,10 +1,13 @@
 package com.julian.lbniwkalkulator.fragments;
 
 import static androidx.navigation.Navigation.findNavController;
+import static com.julian.lbniwkalkulator.components.inputfields.PopupListView.ISOTOPE_ENUM;
+import static com.julian.lbniwkalkulator.components.inputfields.PopupListView.ISOTOPE_FROM_DATABASE;
 import static com.julian.lbniwkalkulator.util.CustomInputParsers.parseInputDouble;
 import static com.julian.lbniwkalkulator.util.CustomInputParsers.parseInputInt;
 import static com.julian.lbniwkalkulator.util.ErrorHandler.processException;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioButton;
@@ -39,15 +42,27 @@ public class IsotopeMenuViewFragment extends AbstractInputMenuFragment{
         });
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onViewCreated(@NonNull View view,
                              @Nullable Bundle savedInstanceState) {
         binding = ViewIsotopeMenuLayoutBinding.bind(view);
         generalSetUp(view, R.id.calculate_button_isotope);
-        ((RadioButton) view.findViewById(R.id.isotope_from_saved_radio)).setChecked(true);
+        ((RadioButton) view.findViewById(R.id.custom_isotope_radio)).setChecked(true);
         binding.isotopeMenuBackButton.setOnClickListener(v -> {
             findNavController(view).navigate(IsotopeMenuViewFragmentDirections.
                     actionIsotopeMenuViewFragmentToStartViewFragment());
+        });
+        binding.radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            switch (checkedId) {
+                case R.id.isotope_from_saved_radio:
+                    binding.isotopeTypeIsotope.toggleIsotopeData(ISOTOPE_FROM_DATABASE);
+                    break;
+                case R.id.custom_isotope_radio:
+                    binding.isotopeTypeIsotope.toggleIsotopeData(ISOTOPE_ENUM);
+                    break;
+            }
+            binding.isotopeTypeIsotope.resetCurrentSelection();
         });
     }
 

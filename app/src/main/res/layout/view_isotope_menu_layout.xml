@@ -40,19 +40,6 @@
         tools:ignore="TextSizeCheck">
 
         <RadioButton
-            android:id="@+id/isotope_from_saved_radio"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/radio_button_selector"
-            android:button="@null"
-            android:padding="10dp"
-            android:text="@string/from_saved_isotopes"
-            android:textAlignment="center"
-            android:textColor="@color/default_text_color"
-            android:textSize="23sp" />
-
-        <RadioButton
             android:id="@+id/custom_isotope_radio"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -66,6 +53,19 @@
             android:textSize="23sp"
             tools:layout_editor_absoluteX="31dp"
             tools:layout_editor_absoluteY="206dp" />
+
+        <RadioButton
+            android:id="@+id/isotope_from_saved_radio"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/radio_button_selector"
+            android:button="@null"
+            android:padding="10dp"
+            android:text="@string/from_saved_isotopes"
+            android:textAlignment="center"
+            android:textColor="@color/default_text_color"
+            android:textSize="23sp" />
 
     </RadioGroup>
 

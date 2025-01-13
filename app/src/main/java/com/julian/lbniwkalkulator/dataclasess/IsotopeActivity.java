@@ -13,6 +13,8 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+import java.util.Locale;
+
 public class IsotopeActivity implements Parcelable {
     private int ID;
 
@@ -121,5 +123,11 @@ public class IsotopeActivity implements Parcelable {
         retval.put(COLUMN_NAME_MOST_RECENT_TIMESTAMP, mostRecentTimestamp);
         retval.put(COLUMN_NAME_ACTIVITY, activity);
         return retval;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return String.format(Locale.US,"%s:\t\t\t\t\t%.2f Ci", isotopeName, activity);
     }
 }

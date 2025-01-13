@@ -1,5 +1,6 @@
 package com.julian.lbniwkalkulator.components.inputfields;
 
+import static com.julian.lbniwkalkulator.components.inputfields.InputFieldWrapper.defaultSelection;
 import static com.julian.lbniwkalkulator.enums.VoltageValuesEnum.RANGE_ERESCO;
 import static com.julian.lbniwkalkulator.enums.VoltageValuesEnum.RANGE_Y_SMART;
 
@@ -20,6 +21,8 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.julian.lbniwkalkulator.R;
+import com.julian.lbniwkalkulator.core.MainActivity;
+import com.julian.lbniwkalkulator.dataclasess.IsotopeActivity;
 import com.julian.lbniwkalkulator.enums.InputEnumTypes;
 import com.julian.lbniwkalkulator.exceptions.InvalidComponentParameterException;
 import com.julian.lbniwkalkulator.exceptions.MissingComponentParameterException;
@@ -27,12 +30,16 @@ import com.julian.lbniwkalkulator.util.StringGetter;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * A custom PopupWindow that displays a list of items in a dropdown style.
  */
 public class PopupListView extends PopupWindow {
 
+    public static final String ISOTOPE_FROM_DATABASE = "ISOTOPE_FROM_DATABASE";
+    public static final String ISOTOPE_ENUM = "ISOTOPE_ENUM";
     private final Context context;
     private ListView listView;
     private OnItemSelectedListener onItemSelectedListener;
@@ -94,8 +101,17 @@ public class PopupListView extends PopupWindow {
         });
     }
 
-    public void setOrUpdateContents(String enumType) throws InvalidComponentParameterException, MissingComponentParameterException {
-        setItems(contentsFromEnum(enumType));
+    public void setOrUpdateContents(String dataType) throws InvalidComponentParameterException, MissingComponentParameterException {
+        if(Objects.equals(dataType, ISOTOPE_FROM_DATABASE)){
+            setItems(contentsFromDatabase());
+        } else {
+            setItems(contentsFromEnum(dataType));
+        }
+    }
+
+    private List<String> contentsFromDatabase() {
+        return ((MainActivity) context).getDatabase().loadAllRecords().stream()
+                .map(IsotopeActivity::toString).collect(Collectors.toList());
     }
 
     public List<String> contentsFromEnum(String enumType) throws InvalidComponentParameterException, MissingComponentParameterException {

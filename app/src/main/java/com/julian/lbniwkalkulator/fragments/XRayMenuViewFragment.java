@@ -66,6 +66,7 @@ public class XRayMenuViewFragment extends AbstractInputMenuFragment {
                     binding.inputXRayVoltage.setRange(RANGE_ERESCO);
                     break;
             }
+            binding.inputXRayVoltage.resetCurrentSelection();
         });
     }
 
