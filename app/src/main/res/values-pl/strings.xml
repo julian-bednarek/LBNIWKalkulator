@@ -50,4 +50,6 @@
     <string name="choose_isotope">Wybierz izotop</string>
     <string name="choose_voltage">Wybierz napięcie</string>
     <string name="choose_film_type">Wybierz typ błony</string>
+    <string name="add_isotope">Dodaj</string>
+    <string name="remove_isotope">Usuń</string>
 </resources>

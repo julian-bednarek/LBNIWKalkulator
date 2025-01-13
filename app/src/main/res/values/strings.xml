@@ -60,4 +60,6 @@
     <string name="choose_isotope">Choose isotope</string>
     <string name="choose_voltage">Choose voltage</string>
     <string name="choose_film_type">Choose film type</string>
+    <string name="add_isotope">Add</string>
+    <string name="remove_isotope">Remove</string>
 </resources>

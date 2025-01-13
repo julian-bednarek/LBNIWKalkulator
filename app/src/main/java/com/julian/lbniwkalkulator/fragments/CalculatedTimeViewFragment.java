@@ -1,5 +1,6 @@
 package com.julian.lbniwkalkulator.fragments;
 
+import static androidx.navigation.fragment.FragmentKt.findNavController;
 import static com.julian.lbniwkalkulator.util.ErrorHandler.processException;
 
 import android.Manifest;
@@ -31,6 +32,7 @@ import com.julian.lbniwkalkulator.util.AudioHandler;
 import com.julian.lbniwkalkulator.util.StringGetter;
 
 public class CalculatedTimeViewFragment extends Fragment {
+
     private static final String INPUT_DATA_ARGUMENT = "input_data";
     private static final int SOUND_TIME_MILLISECONDS = 10_000;
     private static final int TIMER_TICK_MILLISECONDS = 10;
@@ -77,6 +79,11 @@ public class CalculatedTimeViewFragment extends Fragment {
             } else {
                 startCountdown(countDownButton);
             }
+        });
+        Button backButton = rootView.findViewById(R.id.calculated_view_back_button);
+        backButton.setOnClickListener(view ->{
+            findNavController(this).navigate(CalculatedTimeViewFragmentDirections.
+                    actionCalculatedTimeViewFragmentToStartViewFragment());
         });
     }
 

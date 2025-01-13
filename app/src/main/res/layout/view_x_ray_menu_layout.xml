@@ -85,10 +85,10 @@
         android:inputType="none"
         android:textColor="@color/default_text_color"
         app:enum_type="@string/voltage_enum"
-        app:list_title="@string/choose_voltage"
         app:labelText="@string/voltage"
         app:layout_constraintEnd_toStartOf="@+id/inputXRayCurrent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+        app:list_title="@string/choose_voltage"
         app:using_list_input="true"
         tools:layout_editor_absoluteY="279dp">
 
@@ -131,10 +131,10 @@
         android:inputType="none"
         android:textColor="@color/default_text_color"
         app:enum_type="@string/film_type_enum"
-        app:list_title="@string/choose_film_type"
         app:labelText="@string/film_type"
         app:layout_constraintEnd_toStartOf="@+id/inputXRaySourceToDetector"
         app:layout_constraintTop_toBottomOf="@+id/inputXRayVoltage"
+        app:list_title="@string/choose_film_type"
         app:using_list_input="true">
 
     </com.julian.lbniwkalkulator.components.inputfields.InputFieldWrapper>
@@ -220,5 +220,18 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_end="785dp" />
+
+    <Button
+        android:id="@+id/x_ray_menu_back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/buttons_back_button"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.095"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.53"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

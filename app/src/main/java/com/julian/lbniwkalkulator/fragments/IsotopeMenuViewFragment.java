@@ -45,6 +45,10 @@ public class IsotopeMenuViewFragment extends AbstractInputMenuFragment{
         binding = ViewIsotopeMenuLayoutBinding.bind(view);
         generalSetUp(view, R.id.calculate_button_isotope);
         ((RadioButton) view.findViewById(R.id.isotope_from_saved_radio)).setChecked(true);
+        binding.isotopeMenuBackButton.setOnClickListener(v -> {
+            findNavController(view).navigate(IsotopeMenuViewFragmentDirections.
+                    actionIsotopeMenuViewFragmentToStartViewFragment());
+        });
     }
 
     @Override

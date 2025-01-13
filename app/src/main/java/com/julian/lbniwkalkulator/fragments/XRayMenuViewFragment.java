@@ -38,6 +38,10 @@ public class XRayMenuViewFragment extends AbstractInputMenuFragment {
         ((RadioButton) view.findViewById(R.id.lamp_y_smart)).setChecked(true);
         generalSetUp(view, R.id.calculate_button_xray);
         setUpRadioGroup();
+        binding.xRayMenuBackButton.setOnClickListener(v ->{
+            findNavController(view).navigate(XRayMenuViewFragmentDirections.
+                    actionXRayMenuViewFragmentToStartViewFragment());
+        });
     }
 
     @Override
