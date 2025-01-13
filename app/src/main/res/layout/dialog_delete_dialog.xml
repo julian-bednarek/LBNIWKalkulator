@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
@@ -12,7 +13,8 @@
         android:layout_height="wrap_content"
         android:background="@drawable/background_dialog_background"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        tools:ignore="TextSizeCheck">
 
         <TextView
             android:id="@+id/delete_message"
@@ -24,32 +26,35 @@
             android:textStyle="bold" />
 
         <LinearLayout
+            style="?android:attr/buttonBarStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/yes_button"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
-                android:text="@string/yes_text"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:layout_weight="1"
                 android:background="@drawable/buttons_button_selector"
                 android:paddingStart="16dp"
-                android:layout_weight="1"
                 android:paddingEnd="16dp"
-                android:layout_marginEnd="15dp"
+                android:text="@string/yes_text"
                 android:textColor="@color/default_text_color" />
 
             <Button
                 android:id="@+id/no_button"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
-                android:text="@string/no_text"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_weight="1"
                 android:background="@drawable/buttons_button_selector"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
+                android:text="@string/no_text"
                 android:textColor="@color/default_text_color" />
         </LinearLayout>
 
